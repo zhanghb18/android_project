@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/InitFragment">
+
+    <fragment
+        android:id="@+id/InitFragment"
+        android:name="com.example.forum.ui.InitPage"
+        android:label="@string/init_fragment_label"
+        tools:layout="@layout/fragment_initpage">
+
+        <action
+            android:id="@+id/action_InitPage_to_SignInFragment"
+            app:destination="@id/SignInFragment" />
+
+        <action
+            android:id="@+id/action_InitPage_to_SignUpFragment"
+            app:destination="@+id/SignUpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/SignInFragment"
+        android:name="com.example.forum.ui.Sign.SignInPage"
+        android:label="@string/sign_in_fragment_label"
+        tools:layout="@layout/fragment_signinpage">
+
+        <action
+            android:id="@+id/action_SignInFragment_to_InitFragment"
+            app:destination="@id/InitFragment" />
+    </fragment>
+
+<!--    <fragment-->
+<!--        android:id="@+id/SignUpFragment"-->
+<!--        android:name="com.example.forum.ui.Sign.SignUpPage"-->
+<!--        android:label="@string/sign_up_fragment_label"-->
+<!--        tools:layout="@layout/fragment_signuppage">-->
+<!--        <action-->
+<!--            android:id="@+id/action_SignUpFragment_to_InitFragment"-->
+<!--            app:destination="@+id/InitFragment" />-->
+
+<!--    </fragment>-->
+</navigation>
