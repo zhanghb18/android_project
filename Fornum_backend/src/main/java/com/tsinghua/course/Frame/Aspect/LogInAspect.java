@@ -1,7 +1,6 @@
 package com.tsinghua.course.Frame.Aspect;
 
 import com.tsinghua.course.Base.Annotation.NeedLogin;
-import com.tsinghua.course.Base.Enum.UserType;
 import com.tsinghua.course.Base.Error.CourseWarn;
 import com.tsinghua.course.Base.Error.UserWarnEnum;
 import com.tsinghua.course.Base.Model.User;

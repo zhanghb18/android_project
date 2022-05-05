@@ -1,7 +1,5 @@
 package com.tsinghua.course.Base.Annotation;
 
-import com.tsinghua.course.Base.Enum.UserType;
-
 import java.lang.annotation.*;
 
 /**

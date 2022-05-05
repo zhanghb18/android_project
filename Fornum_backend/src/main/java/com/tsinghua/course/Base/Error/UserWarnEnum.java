@@ -8,7 +8,19 @@ public enum UserWarnEnum implements ExceptionInterface {
 
     NEED_LOGIN("UserWarn002", "用户未登录或登录已过期"),
 
-    PERMISSION_DENIED("UserWarn003", "无权限访问对应内容")
+    PERMISSION_DENIED("UserWarn003", "无权限访问对应内容"),
+
+    SIGNUP_FAILED("UserWarn004", "注册失败，请检查填写信息"),
+
+    USERNAME_DOUBLED("UserWarn005", "用户名已存在"),
+
+    FILE_INVALID("UserWarn006", "文件不合法"),
+
+    INVALID_OPTION("UserWarn007", "操作不合法"),
+
+    INVALID_USERNAME("UserWarn008", "用户名不合法"),
+
+    INCORRECT_VERIFIEDCODE("UserWarn009", "验证码错误"),
     ;
 
     UserWarnEnum(String code, String msg) {

@@ -1,6 +1,5 @@
 package com.tsinghua.course.Base.Model;
 
-import com.tsinghua.course.Base.Enum.UserType;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Map;
