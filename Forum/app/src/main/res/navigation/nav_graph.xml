@@ -30,14 +30,14 @@
             app:destination="@id/InitFragment" />
     </fragment>
 
-<!--    <fragment-->
-<!--        android:id="@+id/SignUpFragment"-->
-<!--        android:name="com.example.forum.ui.Sign.SignUpPage"-->
-<!--        android:label="@string/sign_up_fragment_label"-->
-<!--        tools:layout="@layout/fragment_signuppage">-->
-<!--        <action-->
-<!--            android:id="@+id/action_SignUpFragment_to_InitFragment"-->
-<!--            app:destination="@+id/InitFragment" />-->
+    <fragment
+        android:id="@+id/SignUpFragment"
+        android:name="com.example.forum.ui.Sign.SignUpPage"
+        android:label="@string/sign_up_fragment_label"
+        tools:layout="@layout/fragment_signuppage">
+        <action
+            android:id="@+id/action_SignUpFragment_to_InitFragment"
+            app:destination="@+id/InitFragment" />
 
-<!--    </fragment>-->
+    </fragment>
 </navigation>

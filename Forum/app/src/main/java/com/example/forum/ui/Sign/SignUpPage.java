@@ -56,12 +56,12 @@ public class SignUpPage extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
-//        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_signuppage, container, false);
-//    }
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_signuppage, container, false);
+    }
 //
 //    @Override
 //    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

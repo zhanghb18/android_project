@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     android:paddingTop="?attr/actionBarSize">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:theme="@style/Theme.Forum.AppBarOverlay"/>
+<!--    <com.google.android.material.appbar.AppBarLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:background="#FFFFFF"-->
+<!--        android:theme="@style/Theme.Forum.AppBarOverlay"/>-->
 
     <include layout="@layout/content_main" />
 
