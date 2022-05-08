@@ -9,12 +9,12 @@
 
     <ImageView
         android:id="@+id/SignUp_return"
-        android:layout_width="0dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="@string/SignIn"
+        android:contentDescription="@string/SignUp"
         android:src="@drawable/ic_before"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,15 +22,14 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/shape_corner_up"
+        android:layout_marginTop="0dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/SignUp_return"
         app:layout_constraintVertical_bias="1.0">
 
         <TextView
@@ -42,7 +41,7 @@
             android:layout_marginTop="60dp"
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="50dp"
             android:text="@string/SignUp"
             android:textColor="#000000"
             android:textSize="36sp"
@@ -71,7 +70,7 @@
 
             <EditText
                 android:id="@+id/editTextUsername"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="9"
                 android:autofillHints="@string/RegistnameHint"
@@ -81,7 +80,8 @@
                 android:drawablePadding="2dp"
                 android:ems="10"
                 android:hint="@string/RegistnameHint"
-                android:inputType="text" />
+                android:inputType="text"
+                android:minHeight="48dp" />
 
         </LinearLayout>
 
@@ -98,16 +98,17 @@
 
             <EditText
                 android:id="@+id/editTextPassword"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="9"
                 android:autofillHints="@string/PasswordHint"
-                android:drawableLeft="@drawable/ic_password"
                 android:drawableStart="@drawable/ic_password"
+                android:drawableLeft="@drawable/ic_password"
                 android:drawablePadding="2dp"
                 android:ems="10"
                 android:hint="@string/PasswordHint"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:minHeight="48dp" />
 
         </LinearLayout>
 
@@ -123,45 +124,46 @@
 
             <EditText
                 android:id="@+id/editTextVerifyPassword"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="9"
                 android:autofillHints="@string/VerificationPasswordHint"
-                android:drawableLeft="@drawable/ic_password"
                 android:drawableStart="@drawable/ic_password"
+                android:drawableLeft="@drawable/ic_password"
                 android:drawablePadding="2dp"
                 android:ems="10"
                 android:hint="@string/VerificationPasswordHint"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:minHeight="48dp" />
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:orientation="vertical"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:paddingRight="20dp"
-            android:paddingBottom="20dp">
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:orientation="vertical"-->
+<!--            android:paddingLeft="20dp"-->
+<!--            android:paddingTop="10dp"-->
+<!--            android:paddingRight="20dp"-->
+<!--            android:paddingBottom="20dp">-->
 
 
-            <Button
-                android:layout_width="wrap_content"
-                android:text="@string/verify_button"
-                android:layout_height="45dp"
-                android:layout_weight="2"
-                android:id="@+id/verify_button"
-                android:layout_gravity="center_horizontal"
-                android:textSize="17sp"
-                android:textColor="@color/black"
-                app:backgroundTint="@color/white"
-                app:strokeColor="#000000"
-                app:strokeWidth="1dp"
-                />
+<!--            <Button-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:text="@string/verify_button"-->
+<!--                android:layout_height="45dp"-->
+<!--                android:layout_weight="2"-->
+<!--                android:id="@+id/verify_button"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:textSize="17sp"-->
+<!--                android:textColor="@color/black"-->
+<!--                app:backgroundTint="@color/white"-->
+<!--                app:strokeColor="#000000"-->
+<!--                app:strokeWidth="1dp"-->
+<!--                />-->
 
-        </LinearLayout>
+<!--        </LinearLayout>-->
 
         <ImageView
             android:id="@+id/rightarrow_Icon"

@@ -11,7 +11,8 @@
         android:id="@+id/SignIn_return"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="16dp"
         android:contentDescription="@string/SignIn"
         android:src="@drawable/ic_before"
@@ -40,36 +41,36 @@
             android:layout_marginTop="60dp"
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="50dp"
             android:text="@string/SignIn"
             android:textColor="#000000"
             android:textSize="36sp"
             android:textStyle="normal" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/SignInTip_textview"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="20dp"-->
-<!--            android:layout_marginLeft="20dp"-->
-<!--            android:layout_marginEnd="20dp"-->
-<!--            android:layout_marginRight="20dp"-->
-<!--            android:text="@string/SignInTip"-->
-<!--            android:textColor="#101010" />-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/SignInTip_textview"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="20dp"-->
+        <!--            android:layout_marginLeft="20dp"-->
+        <!--            android:layout_marginEnd="20dp"-->
+        <!--            android:layout_marginRight="20dp"-->
+        <!--            android:text="@string/SignInTip"-->
+        <!--            android:textColor="#101010" />-->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingLeft="20dp"
-            android:paddingTop="40dp"
+            android:paddingTop="20dp"
             android:paddingRight="20dp"
-            android:paddingBottom="40dp">
+            android:paddingBottom="20dp">
 
 
             <EditText
                 android:id="@+id/editTextUsername"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="9"
                 android:autofillHints="@string/UsernameHint"
@@ -79,7 +80,8 @@
                 android:drawablePadding="2dp"
                 android:ems="10"
                 android:hint="@string/UsernameHint"
-                android:inputType="text" />
+                android:inputType="text"
+                android:minHeight="48dp" />
 
         </LinearLayout>
 
@@ -89,13 +91,13 @@
             android:layout_gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="20dp"
-            android:paddingTop="40dp"
+            android:paddingTop="20dp"
             android:paddingRight="20dp"
-            android:paddingBottom="40dp">
+            android:paddingBottom="20dp">
 
             <EditText
                 android:id="@+id/editTextPassword"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="9"
                 android:autofillHints="@string/PasswordHint"
@@ -103,7 +105,8 @@
                 android:drawablePadding="2dp"
                 android:ems="10"
                 android:hint="@string/PasswordHint"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:minHeight="48dp" />
 
         </LinearLayout>
 
