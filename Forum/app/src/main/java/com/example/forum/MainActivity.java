@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+}
 
 //原代码
 //package com.example.forum;
