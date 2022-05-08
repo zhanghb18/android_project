@@ -7,6 +7,14 @@
     android:paddingTop="?attr/actionBarSize"
     android:background="@color/black">
 
+<!--    <com.google.android.material.appbar.AppBarLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:background="#FFFFFF"-->
+<!--        android:theme="@style/Theme.Forum.AppBarOverlay"/>-->
+
+    <include layout="@layout/content_main" />
+
 <!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
 <!--        android:id="@+id/nav_view"-->
 <!--        android:layout_width="0dp"-->
@@ -30,7 +38,5 @@
 <!--        app:layout_constraintRight_toRightOf="parent"-->
 <!--        app:layout_constraintTop_toTopOf="parent"-->
 <!--        app:navGraph="@navigation/mobile_navigation" />-->
-
-    <include layout="@layout/content_main" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

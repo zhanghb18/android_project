@@ -1,18 +1,49 @@
 package com.tsinghua.course.Base.Enum;
 
-import com.tsinghua.course.Biz.Controller.TestController;
-import com.tsinghua.course.Biz.Controller.TimerController;
-import com.tsinghua.course.Biz.Controller.UserController;
+import com.tsinghua.course.Biz.Controller.*;
 
 /**
  * @描述 业务类型枚举，所有的业务类型都需要枚举在此类中
  **/
 public enum BizTypeEnum {
     /** 以下为用户业务类型 */
-    USER_LOGIN(UserController.class, "用户登录"),
+//    USER_LOGIN(UserController.class, "用户登录"),
+    // Not Need Login
+    USER_LOGIN(UserController.class,"用户登录"),
+    USER_SIGNUP(UserController.class, "用户注册"),
+//    USER_VERFIEDCODE(UserController.class, "获取验证码"),
+    // Do Need Login
+    USER_PASSWORD(UserController.class, "用户修改密码"),
+    USER_INFO(UserController.class, "用户基本信息获取"),
+    USER_NICKNAME(UserController.class, "用户昵称修改"),
+    USER_EMAIL(UserController.class, "用户邮箱修改"),
+    USER_AVATAR(UserController.class, "用户头像设置"),
+    USER_ADDSTAR(UserController.class, "用户关注"),
+    USER_DELETESTAR(UserController.class, "用户取消关注"),
+//    USER_REMARK(UserController.class, "修改用户备注"),
+//    USER_CONTACT(UserController.class, "用户获取通讯录"),
+//    USER_CHATLIST(UserController.class, "用户获取会话列表"),
+//    USER_OPENCHAT(UserController.class, "用户打开新的会话列表"),
+//    USER_CREATEGROUP(UserController.class, "创建群组"),
+//    USER_INVITEGROUP(GroupController.class, "邀请好友入群"),
+//    USER_DELETEMEMBER(GroupController.class, "将指定好友踢出群聊"),
+//    USER_SENDMESSAGE(UserController.class, "用户发送信息"),
+//    USER_GETCHAT(ChatController.class, "/user/getchat", "根据chat_id获取单个对话框的消息流"),
+//    USER_GETCHATID(ChatController.class, "/user/getchatid", "用户获取chat_id"),
+    USER_ISSTAR(UserController.class, "判断用户是否为自己关注的用户"),
+    USER_LOGOUT(UserController.class, "用户注销"),
+
+    /*Moment */
+    USER_POSTMOMENT(MomentController.class, "用户发送动态"),
+    USER_GETMOMENT(MomentController.class, "用户获取动态"),
+    USER_LIKEMOMENT(MomentController.class, "用户点赞动态"),
+    USER_COMMENTMOMENT(MomentController.class, "用户评论动态/回复评论"),
+    USER_CANCELLIKE(MomentController.class, "用户取消点赞"),
+    USER_DELETECOMMENT(MomentController.class, "用户删除评论/回复"),
 
     /** 定时任务业务测试 */
     LOG_TEST(TimerController.class, "定时日志测试"),
+    FILE_TEST(UserController.class, "文件存储测试"),
 
     /** 测试业务，在书写正式代码时可以删除，在书写正式代码前先运行测试业务，如果测试业务无问题说明各模块正常 */
     LOGIN_TEST(TestController.class, "登录控制测试"),

@@ -1,5 +1,7 @@
 package com.tsinghua.course.Base.Annotation;
 
+import com.tsinghua.course.Base.Enum.UserType;
+
 import java.lang.annotation.*;
 
 /**
@@ -9,6 +11,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface NeedLogin {
-    /** 需要对应的用户权限才可以访问该接口 */
+    /** 需要对应的用户权限才可以访问该接口
+     * @return*/
     UserType[] value() default {};
 }

@@ -1,5 +1,6 @@
 package com.tsinghua.course.Base.Model;
 
+import com.tsinghua.course.Base.Enum.UserType;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Map;
@@ -12,19 +13,37 @@ public class User {
     /** 子对象文档 */
     public static class SubObj {
         /** 存储的时间 */
-        String time;
+        private String time;
+        private String name;
+        private String contentType;
+        private String url;
+
+        public SubObj(String t, String n, String c, String u) {
+            this.time = t;
+            this.name = n;
+            this.contentType = c;
+            this.url = u;
+        }
 
         public String getTime() {
             return time;
         }
-
         public void setTime(String time) {
             this.time = time;
         }
+
+        public String getName() { return name; }
+        public void setName(String n) { this.name = n; }
+
+        public String getCotentType() { return contentType; }
+        public void setContentType(String c) { this.contentType = c; }
+
+        public String getUrl() { return url; }
+        public void setUrl(String u) { this.url = u; }
     }
     // mongodb唯一id
     String id;
-    // 用户名
+    // 用户名即邮箱
     String username;
     // 密码
     String password;
@@ -36,6 +55,18 @@ public class User {
     Map<String, String> testObj;
     // 另一个测试对象，和 Map<String, String> 方式存储的格式是一样的，但是直观很多
     SubObj subObj;
+
+    // 账号创建时间
+    String time;
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
 
     public String getUsername() {
         return username;

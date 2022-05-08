@@ -7,6 +7,7 @@ import com.tsinghua.course.Base.Error.UserWarnEnum;
 import com.tsinghua.course.Base.Model.User;
 import com.tsinghua.course.Biz.Controller.Params.CommonOutParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.LoginInParams;
+import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserUtil.SignUpParams;
 import com.tsinghua.course.Biz.Processor.UserProcessor;
 import com.tsinghua.course.Frame.Util.*;
 import io.netty.channel.ChannelHandlerContext;
@@ -21,6 +22,9 @@ public class UserController {
 
     @Autowired
     UserProcessor userProcessor;
+
+    @Autowired
+    RedisUtil redisUtil;
 
     /** 用户登录业务 */
     @BizType(BizTypeEnum.USER_LOGIN)
@@ -46,5 +50,22 @@ public class UserController {
         return new CommonOutParams(true);
     }
 
+    /** 用户注册业务 */
+    @BizType(BizTypeEnum.USER_SIGNUP)
+    public CommonOutParams userSignUp(SignUpParams inParams) throws Exception {
+        String username = inParams.getUsername();
+        if (username == null) {
+            throw new CourseWarn(UserWarnEnum.SIGNUP_FAILED);
+        }
+        String email = inParams.getEmail();
+//        String code = inParams.getVerified_code();
+//        if(!redisUtil.getString(phoneNumber).equals(code)) {
+//            throw new CourseWarn(UserWarnEnum.INCORRECT_VERIFIEDCODE);
+//        }
+//        redisUtil.deleteKeys(phoneNumber);
+        userProcessor.createUserByUsername(email, inParams.getPassword());
+        // userProcessor.addtime(inParams.getUsername());
+        return new CommonOutParams(true);
+    }
 
 }
