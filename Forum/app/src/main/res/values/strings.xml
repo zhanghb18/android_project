@@ -15,12 +15,4 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="SignUp">注册</string>
-    <string name="SignIn">登录</string>
-    <string name="init_fragment_label">init</string>
-    <string name="sign_in_fragment_label">sign in</string>
-    <string name="sign_up_fragment_label">sign up</string>
-    <string name="UsernameHint">用户名</string>
-    <string name="PasswordHint">密码</string>
-    <string name="RightArrowIcon">rightarrow_icon</string>
 </resources>
