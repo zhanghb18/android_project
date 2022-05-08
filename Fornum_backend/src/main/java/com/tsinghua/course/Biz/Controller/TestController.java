@@ -4,6 +4,7 @@ import com.tsinghua.course.Base.Annotation.NeedLogin;
 import com.tsinghua.course.Base.Annotation.BizType;
 import com.tsinghua.course.Base.Constant.NameConstant;
 import com.tsinghua.course.Base.Enum.BizTypeEnum;
+import com.tsinghua.course.Base.Enum.UserType;
 import com.tsinghua.course.Biz.Controller.Params.CommonInParams;
 import com.tsinghua.course.Biz.Controller.Params.CommonOutParams;
 import com.tsinghua.course.Biz.Controller.Params.TestParams.In.LogTestInParams;
