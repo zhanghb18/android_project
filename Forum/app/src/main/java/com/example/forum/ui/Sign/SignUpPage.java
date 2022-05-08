@@ -62,6 +62,20 @@ public class SignUpPage extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_signuppage, container, false);
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
+        super.onViewCreated(view, savedInstanceState);
+        view.findViewById(R.id.SignUp_return).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(SignUpPage.this)
+                        .navigate(R.id.action_SignUpFragment_to_InitFragment);
+            }
+        });
+    }
+
+
 //
 //    @Override
 //    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
