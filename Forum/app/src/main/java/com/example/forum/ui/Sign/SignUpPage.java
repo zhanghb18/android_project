@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.forum.R;
-//import com.example.forum.network.Sign;
 import com.example.forum.network.Sign;
 import com.google.android.material.snackbar.Snackbar;
 //import com.luozm.captcha.Captcha;
@@ -123,15 +122,15 @@ public class SignUpPage extends Fragment {
         return true;
     }
 
-//    private void verify(Runnable successRun) {
-//        EditText editText = getView().findViewById(R.id.editTextEmail);
-//        Sign.Verify(getContext(), getView(), editText.getText().toString(), successRun);
-//    }
+    private void verify(Runnable successRun) {
+        EditText editText = getView().findViewById(R.id.editTextEmail);
+        //Sign.Verify(getContext(), getView(), editText.getText().toString(), successRun);
+    }
 
-//    private void signup() {
-//        // TODO
-//        Sign.SignUp(getContext(), getView(), editTexts.get(0).getText().toString(),
-//                editTexts.get(2).getText().toString(), editTexts.get(1).getText().toString(),
-//                editTexts.get(4).getText().toString());
-//    }
+    private void signup() {
+        // TODO
+        Sign.SignUp(getContext(), getView(), editTexts.get(0).getText().toString(),
+                editTexts.get(1).getText().toString(), editTexts.get(2).getText().toString(),
+                editTexts.get(3).getText().toString());
+    }
 }

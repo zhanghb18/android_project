@@ -63,11 +63,11 @@ public class Sign {
         });
     }
 
-    public static void SignUp(Context context, View view, String userID, String email,
+    public static void SignUp(Context context, View view, String email, String userID, String nickname,
                               String password) {
         Retrofit retrofit = RetrofitUtil.getRetrofit();
         SignAPI service = retrofit.create(SignAPI.class);
-        Call<ResponseBody> call = service.SignUp(userID, email, password);
+        Call<ResponseBody> call = service.SignUp(email, userID, nickname, password);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

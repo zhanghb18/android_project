@@ -15,7 +15,7 @@ public interface SignAPI {
 
     // 注册
     @GET("user/signup")
-    Call<ResponseBody> SignUp(@Query("userID") String userID, @Query("email") String email,
+    Call<ResponseBody> SignUp( @Query("email") String email,@Query("userID") String userID,@Query("userID") String nickname,
                               @Query("password") String password);
 
     @GET("user/info")
