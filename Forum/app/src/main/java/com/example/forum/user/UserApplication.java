@@ -9,7 +9,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserApplication extends Application {
-    private static String username; // username = email
+    private static String userID;
+    private static String email;
     private static String nickname;
     private static String signinfo;
     private static String password;
@@ -20,9 +21,11 @@ public class UserApplication extends Application {
         return signinfo;
     }
 
-    public static String getUsername() {
-        return username;
+    public static String getUserID() {
+        return userID;
     }
+
+    public static String getEmail() { return email; }
 
     public static String getPassword() {
         return password;
@@ -40,9 +43,11 @@ public class UserApplication extends Application {
         return avatar;
     }
 
-    public static void setUsername(String username) {
-        UserApplication.username = username;
+    public static void setUserID(String id) {
+        UserApplication.userID = id;
     }
+
+    public static void setEmail(String e) { email = e; }
 
     public static void setSigninfo(String signinfo) {
         UserApplication.signinfo = signinfo;

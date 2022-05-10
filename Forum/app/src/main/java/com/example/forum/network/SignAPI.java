@@ -9,12 +9,11 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface SignAPI {
+    // 用邮箱和密码登录
     @GET("user/login")
-    Call<ResponseBody> SignIn(@Query("userID") String userID, @Query("password") String password);
+    Call<ResponseBody> SignIn(@Query("userID") String email, @Query("password") String password);
 
-//    @GET("user/verify")
-//    Call<ResponseBody> Verify(@Query("phoneNumber") String phoneNumber);
-
+    // 注册
     @GET("user/signup")
     Call<ResponseBody> SignUp(@Query("userID") String userID, @Query("email") String email,
                               @Query("password") String password);
