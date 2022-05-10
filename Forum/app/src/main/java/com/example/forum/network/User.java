@@ -31,7 +31,7 @@ public class User {
 
 //    public static void UserInfo() {
 //        Retrofit retrofit = RetrofitUtil.getRetrofit();
-//        UserApi service = retrofit.create(UserApi.class);
+//        UserAPI service = retrofit.create(UserAPI.class);
 //        Log.d("User Info", "start");
 //        Call<ResponseBody> call = service.UserInfo();
 //        call.enqueue(new Callback<ResponseBody>() {

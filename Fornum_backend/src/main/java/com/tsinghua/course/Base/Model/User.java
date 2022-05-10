@@ -43,8 +43,10 @@ public class User {
     }
     // mongodb唯一id
     String id;
-    // 用户名即邮箱
-    String username;
+    // 用户ID
+    String userID;
+    // 邮箱
+    String email;
     // 密码
     String password;
     // 用户类型
@@ -68,13 +70,17 @@ public class User {
     }
 
 
-    public String getUsername() {
-        return username;
+    public String getUserID() {
+        return userID;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserID(String username) {
+        this.userID = username;
     }
+
+    public String getEmail() { return email; }
+
+    public void setEmail(String e) { this.email = e; }
 
     public String getId() {
         return id;
