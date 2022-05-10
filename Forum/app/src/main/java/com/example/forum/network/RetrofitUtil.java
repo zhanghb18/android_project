@@ -44,7 +44,7 @@ public class RetrofitUtil {
                 })
                 .build();
         retrofit = new Retrofit.Builder()
-                .baseUrl(com.example.seino.network.NetApplication.http_ip)
+                .baseUrl(com.example.forum.network.NetApplication.http_ip)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(okHttpClient)
