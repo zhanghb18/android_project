@@ -47,7 +47,7 @@ public class Dispatcher {
      * 这只是一个最简单的分发器，可以根据业务逻辑的复杂程度定制不同复杂度的分发器
      **/
     public String dispatch(CommonInParams params) {
-        String username = params.getUsername();
+        String email = params.getEmail();
         BizTypeEnum bitType = params.getBizType();
 
         try {
@@ -66,8 +66,8 @@ public class Dispatcher {
                 throw new CourseError(SystemErrorEnum.PARAMS_ERROR);
 
             /** 获取用户并存在线程中，可以让以后的操作不需要重复获取用户 */
-            if (username != null && bitType != BizTypeEnum.USER_LOGIN) {
-                User user = userProcessor.getUserByUsername(username);
+            if (email != null && bitType != BizTypeEnum.USER_LOGIN) {
+                User user = userProcessor.getUserByEmail(email);
                 ThreadUtil.setUser(user);
             }
 
@@ -104,11 +104,11 @@ public class Dispatcher {
             if (isWarning) {
                 CourseWarn courseWarn = (CourseWarn)realError;
                 /** 记录警告日志，并返回警告的参数 */
-                LogUtil.WARN(username, bitType, params, courseWarn);
+                LogUtil.WARN(email, bitType, params, courseWarn);
                 return new SysWarnOutParams(courseWarn).toString();
             } else {
                 /** 记录错误日志并返回服务器内部错误 */
-                LogUtil.ERROR(username, bitType, params, realError);
+                LogUtil.ERROR(email, bitType, params, realError);
                 return new SysErrorOutParams().toString();
             }
         }

@@ -28,12 +28,12 @@ public class TimerJobHandler implements Job {
             /** 获取参数 */
             params = (CommonInParams) jobExecutionContext.getMergedJobDataMap().get(KeyConstant.PARAMS);
             /** 记录执行日志 */
-            LogUtil.TIMER(params.getUsername(), params.getBizType(), params);
+            LogUtil.TIMER(params.getUserID(), params.getBizType(), params);
             /** 分发并执行任务 */
             dispatcher.dispatch(params);
         } catch (Exception e) {
             /** 捕获错误并记录日志 */
-            LogUtil.ERROR(params.getUsername(), params.getBizType(), params, e);
+            LogUtil.ERROR(params.getUserID(), params.getBizType(), params, e);
         }
     }
 }

@@ -1,0 +1,120 @@
+2022-05-10 20:36:00.040 -INFO 16532 [           main] com.tsinghua.course.CourseApplication : Starting CourseApplication using Java 1.8.0_321 on DESKTOP-UBSNN99 with PID 16532 (C:\Users\hbtve\Desktop\campus_forum\android_project\Fornum_backend\target\classes started by hbtve in C:\Users\hbtve\Desktop\campus_forum\android_project\Fornum_backend)
+2022-05-10 20:36:00.045 -DEBUG 16532 [           main] com.tsinghua.course.CourseApplication : Running with Spring Boot v2.4.2, Spring v5.3.3
+2022-05-10 20:36:00.045 -INFO 16532 [           main] com.tsinghua.course.CourseApplication : No active profile set, falling back to default profiles: default
+2022-05-10 20:36:01.080 -INFO 16532 [           main] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-05-10 20:36:01.080 -INFO 16532 [           main] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-05-10 20:36:01.115 -INFO 16532 [           main] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 31 ms. Found 0 MongoDB repository interfaces.
+2022-05-10 20:36:01.140 -INFO 16532 [           main] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-05-10 20:36:01.145 -INFO 16532 [           main] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-05-10 20:36:01.170 -INFO 16532 [           main] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 16 ms. Found 0 Redis repository interfaces.
+2022-05-10 20:36:01.780 -INFO 16532 [           main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2022-05-10 20:36:01.790 -INFO 16532 [           main] org.apache.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8080"]
+2022-05-10 20:36:01.790 -INFO 16532 [           main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2022-05-10 20:36:01.790 -INFO 16532 [           main] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2022-05-10 20:36:01.900 -INFO 16532 [           main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2022-05-10 20:36:01.900 -INFO 16532 [           main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1725 ms
+2022-05-10 20:36:02.060 -INFO 16532 [           main] org.mongodb.driver.cluster : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-05-10 20:36:03.045 -INFO 16532 [           main] org.quartz.impl.StdSchedulerFactory : Using default implementation for ThreadExecutor
+2022-05-10 20:36:03.060 -INFO 16532 [           main] org.quartz.core.SchedulerSignalerImpl : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2022-05-10 20:36:03.060 -INFO 16532 [           main] org.quartz.core.QuartzScheduler : Quartz Scheduler v.2.3.2 created.
+2022-05-10 20:36:03.060 -INFO 16532 [           main] org.quartz.simpl.RAMJobStore : RAMJobStore initialized.
+2022-05-10 20:36:03.060 -INFO 16532 [           main] org.quartz.core.QuartzScheduler : Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2022-05-10 20:36:03.060 -INFO 16532 [           main] org.quartz.impl.StdSchedulerFactory : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2022-05-10 20:36:03.060 -INFO 16532 [           main] org.quartz.impl.StdSchedulerFactory : Quartz scheduler version: 2.3.2
+2022-05-10 20:36:03.065 -INFO 16532 [           main] org.quartz.core.QuartzScheduler : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@135a8c6f
+2022-05-10 20:36:03.240 -INFO 16532 [           main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor : Initializing ExecutorService 'applicationTaskExecutor'
+2022-05-10 20:36:03.450 -INFO 16532 [           main] org.apache.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8080"]
+2022-05-10 20:36:03.470 -INFO 16532 [           main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-10 20:36:03.470 -INFO 16532 [           main] org.springframework.scheduling.quartz.SchedulerFactoryBean : Starting Quartz Scheduler now
+2022-05-10 20:36:03.470 -INFO 16532 [           main] org.quartz.core.QuartzScheduler : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2022-05-10 20:36:03.480 -INFO 16532 [           main] com.tsinghua.course.CourseApplication : Started CourseApplication in 4.199 seconds (JVM running for 6.161)
+2022-05-10 20:36:04.124 -INFO 16532 [localhost:27017] org.mongodb.driver.cluster : Exception in monitor thread while connecting to server localhost:27017
+com.mongodb.MongoSocketOpenException: Exception opening socket
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:70)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:143)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:188)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:144)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:81)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:476)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:218)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:200)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:162)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:394)
+	at java.net.Socket.connect(Socket.java:606)
+	at com.mongodb.internal.connection.SocketStreamHelper.initialize(SocketStreamHelper.java:78)
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:79)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:65)
+	... 4 common frames omitted
+2022-05-10 20:37:33.985 -INFO 16532 [extShutdownHook] org.quartz.core.QuartzScheduler : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2022-05-10 20:37:34.705 -INFO 16532 [extShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor : Shutting down ExecutorService 'applicationTaskExecutor'
+2022-05-10 20:37:34.705 -INFO 16532 [extShutdownHook] org.springframework.scheduling.quartz.SchedulerFactoryBean : Shutting down Quartz Scheduler
+2022-05-10 20:37:34.705 -INFO 16532 [extShutdownHook] org.quartz.core.QuartzScheduler : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2022-05-10 20:37:34.705 -INFO 16532 [extShutdownHook] org.quartz.core.QuartzScheduler : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2022-05-10 20:37:34.705 -INFO 16532 [extShutdownHook] org.quartz.core.QuartzScheduler : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2022-05-10 20:37:42.840 -INFO 18376 [           main] com.tsinghua.course.CourseApplication : Starting CourseApplication using Java 1.8.0_321 on DESKTOP-UBSNN99 with PID 18376 (C:\Users\hbtve\Desktop\campus_forum\android_project\Fornum_backend\target\classes started by hbtve in C:\Users\hbtve\Desktop\campus_forum\android_project\Fornum_backend)
+2022-05-10 20:37:42.844 -DEBUG 18376 [           main] com.tsinghua.course.CourseApplication : Running with Spring Boot v2.4.2, Spring v5.3.3
+2022-05-10 20:37:42.845 -INFO 18376 [           main] com.tsinghua.course.CourseApplication : No active profile set, falling back to default profiles: default
+2022-05-10 20:37:44.030 -INFO 18376 [           main] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-05-10 20:37:44.032 -INFO 18376 [           main] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-05-10 20:37:44.099 -INFO 18376 [           main] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 57 ms. Found 0 MongoDB repository interfaces.
+2022-05-10 20:37:44.121 -INFO 18376 [           main] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-05-10 20:37:44.123 -INFO 18376 [           main] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-05-10 20:37:44.151 -INFO 18376 [           main] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 0 Redis repository interfaces.
+2022-05-10 20:37:44.835 -INFO 18376 [           main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2022-05-10 20:37:44.845 -INFO 18376 [           main] org.apache.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8080"]
+2022-05-10 20:37:44.845 -INFO 18376 [           main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2022-05-10 20:37:44.845 -INFO 18376 [           main] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2022-05-10 20:37:44.980 -INFO 18376 [           main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2022-05-10 20:37:44.980 -INFO 18376 [           main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2045 ms
+2022-05-10 20:37:45.100 -INFO 18376 [           main] org.mongodb.driver.cluster : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-05-10 20:37:45.660 -INFO 18376 [           main] org.quartz.impl.StdSchedulerFactory : Using default implementation for ThreadExecutor
+2022-05-10 20:37:45.672 -INFO 18376 [           main] org.quartz.core.SchedulerSignalerImpl : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2022-05-10 20:37:45.672 -INFO 18376 [           main] org.quartz.core.QuartzScheduler : Quartz Scheduler v.2.3.2 created.
+2022-05-10 20:37:45.672 -INFO 18376 [           main] org.quartz.simpl.RAMJobStore : RAMJobStore initialized.
+2022-05-10 20:37:45.672 -INFO 18376 [           main] org.quartz.core.QuartzScheduler : Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2022-05-10 20:37:45.672 -INFO 18376 [           main] org.quartz.impl.StdSchedulerFactory : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2022-05-10 20:37:45.672 -INFO 18376 [           main] org.quartz.impl.StdSchedulerFactory : Quartz scheduler version: 2.3.2
+2022-05-10 20:37:45.672 -INFO 18376 [           main] org.quartz.core.QuartzScheduler : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@6cbe7d4d
+2022-05-10 20:37:45.830 -INFO 18376 [           main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor : Initializing ExecutorService 'applicationTaskExecutor'
+2022-05-10 20:37:46.098 -INFO 18376 [           main] org.apache.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8080"]
+2022-05-10 20:37:46.121 -INFO 18376 [           main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-10 20:37:46.123 -INFO 18376 [           main] org.springframework.scheduling.quartz.SchedulerFactoryBean : Starting Quartz Scheduler now
+2022-05-10 20:37:46.123 -INFO 18376 [           main] org.quartz.core.QuartzScheduler : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2022-05-10 20:37:46.132 -INFO 18376 [           main] com.tsinghua.course.CourseApplication : Started CourseApplication in 4.489 seconds (JVM running for 6.411)
+2022-05-10 20:37:47.170 -INFO 18376 [localhost:27017] org.mongodb.driver.cluster : Exception in monitor thread while connecting to server localhost:27017
+com.mongodb.MongoSocketOpenException: Exception opening socket
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:70)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:143)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:188)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:144)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:81)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:476)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:218)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:200)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:162)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:394)
+	at java.net.Socket.connect(Socket.java:606)
+	at com.mongodb.internal.connection.SocketStreamHelper.initialize(SocketStreamHelper.java:78)
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:79)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:65)
+	... 4 common frames omitted
