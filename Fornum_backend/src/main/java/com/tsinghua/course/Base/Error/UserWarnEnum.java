@@ -12,15 +12,17 @@ public enum UserWarnEnum implements ExceptionInterface {
 
     SIGNUP_FAILED("UserWarn004", "注册失败，请检查填写信息"),
 
-    USERNAME_DOUBLED("UserWarn005", "用户名已存在"),
+    USERID_DOUBLED("UserWarn005", "用户ID已存在"),
 
-    FILE_INVALID("UserWarn006", "文件不合法"),
-
-    INVALID_OPTION("UserWarn007", "操作不合法"),
-
-    INVALID_USERNAME("UserWarn008", "用户名不合法"),
-
-    INCORRECT_VERIFIEDCODE("UserWarn009", "验证码错误"),
+    EMAIL_DOUBLED("UserWarn006", "该邮箱已被注册，请直接登录"),
+//
+//    FILE_INVALID("UserWarn006", "文件不合法"),
+//
+//    INVALID_OPTION("UserWarn007", "操作不合法"),
+//
+//    INVALID_USERNAME("UserWarn008", "用户名不合法"),
+//
+//    INCORRECT_VERIFIEDCODE("UserWarn009", "验证码错误"),
     ;
 
     UserWarnEnum(String code, String msg) {

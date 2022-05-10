@@ -43,10 +43,12 @@ public class User {
     }
     // mongodb唯一id
     String id;
-    // 用户ID
-    String userID;
     // 邮箱
     String email;
+    // 用户ID
+    String userID;
+    // 昵称
+    String nickname;
     // 密码
     String password;
     // 用户类型
@@ -69,6 +71,9 @@ public class User {
         this.time = time;
     }
 
+    public String getEmail() { return email; }
+
+    public void setEmail(String e) { this.email = e; }
 
     public String getUserID() {
         return userID;
@@ -78,9 +83,9 @@ public class User {
         this.userID = username;
     }
 
-    public String getEmail() { return email; }
+    public String getNickname() { return nickname; }
 
-    public void setEmail(String e) { this.email = e; }
+    public void setNickname(String n) { this.nickname = n; }
 
     public String getId() {
         return id;

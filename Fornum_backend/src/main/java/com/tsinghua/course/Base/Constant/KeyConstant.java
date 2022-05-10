@@ -14,5 +14,7 @@ public class KeyConstant {
 
     /** 以下为User关键key */
     // 用户名
-    public static final String USERNAME = "username";
+    public static final String USERID = "userID";
+
+    public static final String EMAIL = "email";
 }
