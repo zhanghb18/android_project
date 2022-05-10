@@ -88,22 +88,20 @@ public class SignUpPage extends Fragment {
         view.findViewById(R.id.rightarrow_Icon).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InputMethodManager im = (InputMethodManager) v.getContext()
-                        .getSystemService( Context.INPUT_METHOD_SERVICE );
-                if (im.isActive()){
-                    im.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);
+                if (!judgeInfoCompleted()) {
+                    // TODO
+                    return;
                 }
-//                String username = username_edit.getText().toString();
-//                String pwd = pwd_edit.getText().toString();
-//                if (username == null || username.length() <= 0 || pwd == null || pwd.length() <=0){
-//                    Snackbar.make(view, "Please fill your information.", Snackbar.LENGTH_LONG)
-//                            .setAction("Action", null).show();
-//                    return;
+                signup();
+//                InputMethodManager im = (InputMethodManager) v.getContext()
+//                        .getSystemService( Context.INPUT_METHOD_SERVICE );
+//                if (im.isActive()){
+//                    im.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);
 //                }
-                // 关闭之前的所有activity 进入Seino主程序
-                Intent intent = new Intent(getContext(), ForumActivity.class);
-                getContext().startActivity(intent);
-                //Sign.Login(getContext(), view, username, pwd);
+//                // 关闭之前的所有activity 进入Seino主程序
+//                Intent intent = new Intent(getContext(), ForumActivity.class);
+//                getContext().startActivity(intent);
+
             }
         });
     }
@@ -116,7 +114,7 @@ public class SignUpPage extends Fragment {
 
     private boolean judgeSingleInfoCompleted(EditText editText) {
         int id = editText.getId();
-        if (id == R.id.editTextUsername) return judge(editText.getText().toString(),
+        if (id == R.id.editTextEmail) return judge(editText.getText().toString(),
                                         "^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*\\.[a-zA-Z0-9]{2,6}$");
         else if (id == R.id.editTextId) return judge(editText.getText().toString(),
                                             "^[a-zA-Z0-9_]+$");
@@ -145,10 +143,10 @@ public class SignUpPage extends Fragment {
 //        Sign.Verify(getContext(), getView(), editText.getText().toString(), successRun);
 //    }
 //
-//    private void signup() {
-//        // TODO
-//        Sign.SignUp(getContext(), getView(), editTexts.get(0).getText().toString(),
-//                editTexts.get(2).getText().toString(), editTexts.get(1).getText().toString(),
-//                editTexts.get(4).getText().toString());
-//    }
+    private void signup() {
+        // TODO
+        Sign.SignUp(getContext(), getView(), editTexts.get(0).getText().toString(),
+                editTexts.get(2).getText().toString(), editTexts.get(1).getText().toString(),
+                editTexts.get(4).getText().toString());
+    }
 }

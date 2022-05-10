@@ -80,6 +80,7 @@
                 android:drawablePadding="2dp"
                 android:ems="10"
                 android:hint="@string/RegistnameHint"
+                android:text="hbt@123.com"
                 android:inputType="text"
                 android:minHeight="48dp" />
 
@@ -107,6 +108,7 @@
                 android:drawablePadding="2dp"
                 android:ems="10"
                 android:hint="@string/IdHint"
+                android:text="123"
                 android:inputType="text"
                 android:minHeight="48dp" />
 
@@ -134,6 +136,7 @@
                 android:drawablePadding="2dp"
                 android:ems="10"
                 android:hint="@string/NicknameHint"
+                android:text="123"
                 android:inputType="text"
                 android:minHeight="48dp" />
 
@@ -161,6 +164,7 @@
                 android:drawablePadding="2dp"
                 android:ems="10"
                 android:hint="@string/PasswordHint"
+                android:text="123"
                 android:inputType="textPassword"
                 android:minHeight="48dp" />
 
@@ -187,6 +191,7 @@
                 android:drawablePadding="2dp"
                 android:ems="10"
                 android:hint="@string/VerificationPasswordHint"
+                android:text="123"
                 android:inputType="textPassword"
                 android:minHeight="48dp" />
 
