@@ -66,7 +66,7 @@ public class TestController {
         /** 设置定时任务的参数 */
         LogTestInParams testInParams = new LogTestInParams();
         testInParams.setStartTime(new Date());
-        testInParams.setUsername(inParams.getUsername());
+        testInParams.setEmail(inParams.getEmail());
         testInParams.setBizType(BizTypeEnum.LOG_TEST);
 
         /** 五秒后执行定时任务，定时任务id为testJob */

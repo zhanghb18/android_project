@@ -10,9 +10,9 @@ import com.tsinghua.course.Biz.Controller.Params.CommonInParams;
  */
 @BizType(BizTypeEnum.USER_SIGNUP)
 public class SignUpParams extends CommonInParams{
-    // 注册--邮箱
+    // 注册--昵称
     @Required
-    private String email;
+    private String nickname;
 
 //    // 注册--验证码
 //    @Required
@@ -22,12 +22,21 @@ public class SignUpParams extends CommonInParams{
     @Required
     private String password;
 
-    public String getEmail() {
-        return email;
+
+    public String getNickname() {
+        return nickname;
     }
-    public void setEmail(String e) {
-        this.email = e;
+
+    public void setNickname(String n) {
+        this.nickname = n;
     }
+
+//    public String getEmail() {
+//        return email;
+//    }
+//    public void setEmail(String e) {
+//        this.email = e;
+//    }
 
 //    public String getVerified_code() {
 //        return verified_code;

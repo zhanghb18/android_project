@@ -24,22 +24,28 @@ public class UserProcessor {
 
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    /** 根据用户名从数据库中获取用户 */
-    public User getUserByUsername(String username) {
+    /** 根据邮箱从数据库中获取用户 */
+    public User getUserByEmail(String email) {
         Query query = new Query();
-        query.addCriteria(Criteria.where(KeyConstant.USERNAME).is(username));
+        query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email));
         return mongoTemplate.findOne(query, User.class);
     }
-    /* 创建根据用户名创建新用户 */
-    public void createUserByUsername(String username, String password) throws Exception {
+
+    /** 创建新用户 */
+    public void createUser(String email, String userID, String nickname, String password) throws Exception {
         String encoded_password = passwordEncoder.encode(password);
         Query query = new Query();
-        query.addCriteria(Criteria.where(KeyConstant.USERNAME).is(username));
+        query.addCriteria(Criteria.where(KeyConstant.USERID).is(userID)); // userID查重
         if(mongoTemplate.findOne(query, User.class) != null)
-            throw new CourseWarn(UserWarnEnum.USERNAME_DOUBLED);
+            throw new CourseWarn(UserWarnEnum.USERID_DOUBLED);
+        query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email)); // email查重
+        if(mongoTemplate.findOne(query, User.class) != null)
+            throw new CourseWarn(UserWarnEnum.EMAIL_DOUBLED);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         User new_user = new User();
-        new_user.setUsername(username);
+        new_user.setUserID(userID);
+        new_user.setEmail(email);
+        new_user.setNickname(nickname);
         new_user.setPassword(encoded_password);
 //        User.Avatar avatar = new User.Avatar("default",
 //                "default", 100, "0",

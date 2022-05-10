@@ -1,0 +1,6 @@
+2022-05-10 20:36:00.040 -INFO 16532 [           main] com.tsinghua.course.CourseApplication : Starting CourseApplication using Java 1.8.0_321 on DESKTOP-UBSNN99 with PID 16532 (C:\Users\hbtve\Desktop\campus_forum\android_project\Fornum_backend\target\classes started by hbtve in C:\Users\hbtve\Desktop\campus_forum\android_project\Fornum_backend)
+2022-05-10 20:36:00.045 -INFO 16532 [           main] com.tsinghua.course.CourseApplication : No active profile set, falling back to default profiles: default
+2022-05-10 20:36:03.480 -INFO 16532 [           main] com.tsinghua.course.CourseApplication : Started CourseApplication in 4.199 seconds (JVM running for 6.161)
+2022-05-10 20:37:42.840 -INFO 18376 [           main] com.tsinghua.course.CourseApplication : Starting CourseApplication using Java 1.8.0_321 on DESKTOP-UBSNN99 with PID 18376 (C:\Users\hbtve\Desktop\campus_forum\android_project\Fornum_backend\target\classes started by hbtve in C:\Users\hbtve\Desktop\campus_forum\android_project\Fornum_backend)
+2022-05-10 20:37:42.845 -INFO 18376 [           main] com.tsinghua.course.CourseApplication : No active profile set, falling back to default profiles: default
+2022-05-10 20:37:46.132 -INFO 18376 [           main] com.tsinghua.course.CourseApplication : Started CourseApplication in 4.489 seconds (JVM running for 6.411)

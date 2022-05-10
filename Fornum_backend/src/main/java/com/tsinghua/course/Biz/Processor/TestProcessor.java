@@ -24,7 +24,7 @@ public class TestProcessor {
     public void addTimeStr() {
         /** 查询模块 */
         Query query = new Query();
-        query.addCriteria(Criteria.where(KeyConstant.USERNAME).is("admin"));
+        query.addCriteria(Criteria.where(KeyConstant.EMAIL).is("admin"));
         /** 更新模块 */
         Update update = new Update();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -37,7 +37,7 @@ public class TestProcessor {
     public void setTimeAttr() {
         /** 查询模块 */
         Query query = new Query();
-        query.addCriteria(Criteria.where(KeyConstant.USERNAME).is("test"));
+        query.addCriteria(Criteria.where(KeyConstant.EMAIL).is("test"));
         /** 更新模块 */
         Update update = new Update();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

@@ -62,9 +62,9 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<Object> {
             /** 如果不是登录，需要获取用户信息 */
             if (!bizTypeEnum.equals(BizTypeEnum.USER_LOGIN)) {
                 username = SocketUtil.getSocketUser(ctx);
-                params.setUsername(username);
+                params.setEmail(username);
             } else {
-                username = params.getUsername();
+                username = params.getEmail();
                 if (username == null)
                     throw new CourseWarn(UserWarnEnum.LOGIN_FAILED);
             }

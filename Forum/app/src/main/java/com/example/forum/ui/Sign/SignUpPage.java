@@ -18,7 +18,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.forum.ForumActivity;
 import com.example.forum.R;
-//import com.example.forum.network.Sign;
+import com.example.forum.network.Sign;
 import com.google.android.material.snackbar.Snackbar;
 //import com.luozm.captcha.Captcha;
 

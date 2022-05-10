@@ -89,7 +89,7 @@ public class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
 
             /** 获取缓存在session中的用户名信息 */
             if (hasPreSession && !bizTypeEnum.equals(BizTypeEnum.USER_LOGIN)) {
-                params.setUsername(httpSession.getUsername());
+                params.setEmail(httpSession.getUsername());
             }
 
             /** 使用派发器执行业务并返回业务执行结果 */

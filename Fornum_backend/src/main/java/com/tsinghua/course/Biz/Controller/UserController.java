@@ -29,10 +29,13 @@ public class UserController {
     /** 用户登录业务 */
     @BizType(BizTypeEnum.USER_LOGIN)
     public CommonOutParams userLogin(LoginInParams inParams) throws Exception {
-        String username = inParams.getUsername();
-        if (username == null)
+        String email = inParams.getEmail();
+        if (email == null)
             throw new CourseWarn(UserWarnEnum.LOGIN_FAILED);
-        User user = userProcessor.getUserByUsername(username);
+        String userID = inParams.getUserID();
+        if (userID == null)
+            throw new CourseWarn(UserWarnEnum.LOGIN_FAILED);
+        User user = userProcessor.getUserByEmail(email);
         if (user == null || !user.getPassword().equals(inParams.getPassword()))
             throw new CourseWarn(UserWarnEnum.LOGIN_FAILED);
 
@@ -40,11 +43,11 @@ public class UserController {
         ChannelHandlerContext ctx =  ThreadUtil.getCtx();
         /** ctx不为空记录WebSocket状态，否则记录http状态 */
         if (ctx != null)
-            SocketUtil.setUserSocket(username, ctx);
+            SocketUtil.setUserSocket(email, ctx);
         else {
             HttpSession httpSession = ThreadUtil.getHttpSession();
             if (httpSession != null) {
-                httpSession.setUsername(username);
+                httpSession.setUsername(email);
             }
         }
         return new CommonOutParams(true);
@@ -53,17 +56,22 @@ public class UserController {
     /** 用户注册业务 */
     @BizType(BizTypeEnum.USER_SIGNUP)
     public CommonOutParams userSignUp(SignUpParams inParams) throws Exception {
-        String username = inParams.getUsername();
-        if (username == null) {
+        String email = inParams.getEmail();
+        if (email == null) {
             throw new CourseWarn(UserWarnEnum.SIGNUP_FAILED);
         }
-        String email = inParams.getEmail();
+        String userID = inParams.getUserID();
+        if (userID == null) {
+            throw new CourseWarn(UserWarnEnum.SIGNUP_FAILED);
+        }
+        String nickname = inParams.getNickname();
+
 //        String code = inParams.getVerified_code();
 //        if(!redisUtil.getString(phoneNumber).equals(code)) {
 //            throw new CourseWarn(UserWarnEnum.INCORRECT_VERIFIEDCODE);
 //        }
 //        redisUtil.deleteKeys(phoneNumber);
-        userProcessor.createUserByUsername(email, inParams.getPassword());
+        userProcessor.createUser(email, userID, nickname, inParams.getPassword());
         // userProcessor.addtime(inParams.getUsername());
         return new CommonOutParams(true);
     }
