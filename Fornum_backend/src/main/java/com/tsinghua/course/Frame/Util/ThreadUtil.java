@@ -50,11 +50,18 @@ public class ThreadUtil {
         }
         return threadParams;
     }
-    public static String getUsername() {
+    public static String getUserID() {
         User user = getUser();
         if (user == null)
             return null;
-        return user.getUsername();
+        return user.getUserID();
+    }
+
+    public static String getEmail() {
+        User user = getUser();
+        if (user == null)
+            return null;
+        return user.getEmail();
     }
 
     public static User getUser() {
