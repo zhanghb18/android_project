@@ -21,9 +21,9 @@ import okhttp3.WebSocket;
 import okhttp3.WebSocketListener;
 
 public class NetApplication extends Application {
-    public static final String http_ip = "http://42.193.117.251:1314/";
+    public static final String http_ip = "http://127.0.0.1:9999/";
     //public static final String http_ip = "http://127.0.0.1:7000/";
-    public static final String websocket_ip = "ws://42.193.117.251:520/ws";
+    public static final String websocket_ip = "ws://127.0.0.1:520/ws";
     private static WebSocket mwebSocket;
     private static final HashMap<String, List<Cookie>> cookieStore = new HashMap<>();
     private static String cookie;
