@@ -1,6 +1,7 @@
 package com.example.forum.ui.Sign;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.forum.ForumActivity;
+import com.example.forum.MainActivity;
 import com.example.forum.R;
 //import com.example.forum.network.Sign;
 import com.google.android.material.snackbar.Snackbar;
@@ -53,15 +56,14 @@ public class SignInPage extends Fragment {
                 }
                 String username = username_edit.getText().toString();
                 String pwd = pwd_edit.getText().toString();
-                if (username == null || username.length() <= 0 || pwd == null || pwd.length() <=0){
-                    Snackbar.make(view, "Please fill your information.", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-                    return;
-                }
+//                if (username == null || username.length() <= 0 || pwd == null || pwd.length() <=0){
+//                    Snackbar.make(view, "Please fill your information.", Snackbar.LENGTH_LONG)
+//                            .setAction("Action", null).show();
+//                    return;
+//                }
                 // 关闭之前的所有activity 进入Seino主程序
-//                Intent intent = new Intent(getActivity().getApplicationContext(), SeinoActivity.class)
-//                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-//                startActivity(intent);
+                Intent intent = new Intent(getContext(), ForumActivity.class);
+                getContext().startActivity(intent);
                 //Sign.Login(getContext(), view, username, pwd);
             }
         });

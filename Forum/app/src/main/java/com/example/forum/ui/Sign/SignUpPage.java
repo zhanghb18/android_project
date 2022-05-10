@@ -1,10 +1,13 @@
 package com.example.forum.ui.Sign;
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -13,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.forum.ForumActivity;
 import com.example.forum.R;
 import com.example.forum.network.Sign;
 import com.google.android.material.snackbar.Snackbar;
@@ -73,20 +77,32 @@ public class SignUpPage extends Fragment {
         editTexts.add(view.findViewById(R.id.editTextPassword));
         editTexts.add(view.findViewById(R.id.editTextVerifyPassword));
         //Button verifyButton = view.findViewById(R.id.verify_button);
-        view.findViewById(R.id.SignUp_return).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(SignUpPage.this)
-                        .navigate(R.id.action_SignUpFragment_to_InitFragment);
-            }
-        });
+//        view.findViewById(R.id.SignUp_return).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                NavHostFragment.findNavController(SignUpPage.this)
+//                        .navigate(R.id.action_SignUpFragment_to_InitFragment);
+//            }
+//        });
         boolean[] isVerified = {false};
-        view.findViewById(R.id.rightarrow_Icon).setOnClickListener(v -> {
-            if (!judgeInfoCompleted()) {
-                // TODO
-                return;
+        view.findViewById(R.id.rightarrow_Icon).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!judgeInfoCompleted()) {
+                    // TODO
+                    return;
+                }
+                signup();
+//                InputMethodManager im = (InputMethodManager) v.getContext()
+//                        .getSystemService( Context.INPUT_METHOD_SERVICE );
+//                if (im.isActive()){
+//                    im.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);
+//                }
+//                // 关闭之前的所有activity 进入Seino主程序
+//                Intent intent = new Intent(getContext(), ForumActivity.class);
+//                getContext().startActivity(intent);
+
             }
-            signup();
         });
     }
 
@@ -98,7 +114,7 @@ public class SignUpPage extends Fragment {
 
     private boolean judgeSingleInfoCompleted(EditText editText) {
         int id = editText.getId();
-        if (id == R.id.editTextUsername) return judge(editText.getText().toString(),
+        if (id == R.id.editTextEmail) return judge(editText.getText().toString(),
                                         "^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*\\.[a-zA-Z0-9]{2,6}$");
         else if (id == R.id.editTextId) return judge(editText.getText().toString(),
                                             "^[a-zA-Z0-9_]+$");
@@ -115,22 +131,22 @@ public class SignUpPage extends Fragment {
             }
         }
         // 密码不相等
-        if (!editTexts.get(2).getText().toString().equals(editTexts.get(3).getText().toString())) {
+        if (!editTexts.get(3).getText().toString().equals(editTexts.get(4).getText().toString())) {
             Snackbar.make(getView(), "两次输入密码不一致", Snackbar.LENGTH_SHORT).show();
             return false;
         }
         return true;
     }
 
-    private void verify(Runnable successRun) {
-        EditText editText = getView().findViewById(R.id.editTextEmail);
-        //Sign.Verify(getContext(), getView(), editText.getText().toString(), successRun);
-    }
-
+//    private void verify(Runnable successRun) {
+//        EditText editText = getView().findViewById(R.id.editTextEmail);
+//        Sign.Verify(getContext(), getView(), editText.getText().toString(), successRun);
+//    }
+//
     private void signup() {
         // TODO
         Sign.SignUp(getContext(), getView(), editTexts.get(0).getText().toString(),
-                editTexts.get(1).getText().toString(), editTexts.get(2).getText().toString(),
-                editTexts.get(3).getText().toString());
+                editTexts.get(2).getText().toString(), editTexts.get(1).getText().toString(),
+                editTexts.get(4).getText().toString());
     }
 }
