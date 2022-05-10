@@ -133,7 +133,7 @@ public class SignUpPage extends Fragment {
             }
         }
         // 密码不相等
-        if (!editTexts.get(2).getText().toString().equals(editTexts.get(3).getText().toString())) {
+        if (!editTexts.get(3).getText().toString().equals(editTexts.get(4).getText().toString())) {
             Snackbar.make(getView(), "两次输入密码不一致", Snackbar.LENGTH_SHORT).show();
             return false;
         }
