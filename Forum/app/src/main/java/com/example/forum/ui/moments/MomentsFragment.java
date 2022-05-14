@@ -9,8 +9,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+//import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.forum.databinding.FragmentMomentsBinding;
+import com.google.android.material.tabs.TabLayout;
+
+import com.example.forum.R;
+import com.example.forum.ui.moments.PagerAdapter;
 
 public class MomentsFragment extends Fragment {
 
@@ -24,8 +30,37 @@ public class MomentsFragment extends Fragment {
         binding = FragmentMomentsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textMoments;
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+//        final TextView textView = binding.textMoments;
+//        notificationsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
+        TabLayout tabLayout=binding.tabLayout;
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.moments_tablayout_all));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.moments_tablayout_concerned));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        final ViewPager viewPager=binding.pager;
+        final PagerAdapter adapter= new PagerAdapter(getFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(adapter);
+
+        viewPager.addOnPageChangeListener(new
+                TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(
+                new TabLayout.OnTabSelectedListener() {
+                    @Override
+                    public void onTabSelected(TabLayout.Tab tab) {
+                        viewPager.setCurrentItem(tab.getPosition());
+                    }
+
+                    @Override
+                    public void onTabUnselected(TabLayout.Tab tab) {
+                    }
+
+                    @Override
+                    public void onTabReselected(TabLayout.Tab tab) {
+                    }
+                });
+
+
         return root;
     }
 

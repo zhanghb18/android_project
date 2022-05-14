@@ -17,4 +17,6 @@
     <string name="IdHint">ID</string>
     <string name="NicknameHint">昵称</string>
     <string name="user_info_background_image">User Info Background Image</string>
+    <string name="moments_tablayout_all">所有人</string>
+    <string name="moments_tablayout_concerned">已关注的人</string>
 </resources>
