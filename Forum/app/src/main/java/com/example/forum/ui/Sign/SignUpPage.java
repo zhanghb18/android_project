@@ -76,14 +76,13 @@ public class SignUpPage extends Fragment {
         editTexts.add(view.findViewById(R.id.editTextNickname));
         editTexts.add(view.findViewById(R.id.editTextPassword));
         editTexts.add(view.findViewById(R.id.editTextVerifyPassword));
-        //Button verifyButton = view.findViewById(R.id.verify_button);
-//        view.findViewById(R.id.SignUp_return).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                NavHostFragment.findNavController(SignUpPage.this)
-//                        .navigate(R.id.action_SignUpFragment_to_InitFragment);
-//            }
-//        });
+        view.findViewById(R.id.SignUp_return).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(SignUpPage.this)
+                        .navigate(R.id.action_SignUpFragment_to_InitFragment);
+            }
+        });
         boolean[] isVerified = {false};
         view.findViewById(R.id.rightarrow_Icon).setOnClickListener(new View.OnClickListener() {
             @Override
