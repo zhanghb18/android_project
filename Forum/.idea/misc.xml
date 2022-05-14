@@ -14,6 +14,7 @@
         <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/layout/fragment_signuppage.xml" value="0.1" />
         <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1125" />
         <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/menu/menu_main.xml" value="0.1125" />
+        <entry key="..\:/android_project/Forum/app/src/main/res/drawable/back_gradient.xml" value="0.2985" />
         <entry key="..\:/android_project/Forum/app/src/main/res/drawable/ic_before.xml" value="0.2985" />
         <entry key="..\:/android_project/Forum/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.2985" />
         <entry key="..\:/android_project/Forum/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.2985" />
@@ -26,6 +27,7 @@
         <entry key="..\:/android_project/Forum/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
         <entry key="..\:/android_project/Forum/app/src/main/res/layout/content_main.xml" value="0.358695652173913" />
         <entry key="..\:/android_project/Forum/app/src/main/res/layout/fragment_dashboard.xml" value="0.358695652173913" />
+        <entry key="..\:/android_project/Forum/app/src/main/res/layout/fragment_home.xml" value="0.358695652173913" />
         <entry key="..\:/android_project/Forum/app/src/main/res/layout/fragment_initpage.xml" value="0.358695652173913" />
         <entry key="..\:/android_project/Forum/app/src/main/res/layout/fragment_notifications.xml" value="0.14722222222222223" />
         <entry key="..\:/android_project/Forum/app/src/main/res/layout/fragment_signinpage.xml" value="0.1" />
@@ -35,7 +37,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

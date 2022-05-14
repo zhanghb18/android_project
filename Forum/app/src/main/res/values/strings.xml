@@ -16,4 +16,5 @@
     <string name="title_moments">动态</string>
     <string name="IdHint">ID</string>
     <string name="NicknameHint">昵称</string>
+    <string name="user_info_background_image">User Info Background Image</string>
 </resources>
