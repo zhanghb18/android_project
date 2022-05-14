@@ -56,6 +56,7 @@ public class UserController {
     /** 用户注册业务 */
     @BizType(BizTypeEnum.USER_SIGNUP)
     public CommonOutParams userSignUp(SignUpParams inParams) throws Exception {
+        System.out.println("userSignUp");
         String email = inParams.getEmail();
         if (email == null) {
             throw new CourseWarn(UserWarnEnum.SIGNUP_FAILED);

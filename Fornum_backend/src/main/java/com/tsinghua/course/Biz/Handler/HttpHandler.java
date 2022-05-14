@@ -153,6 +153,19 @@ public class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
         return params;
     }
 
+    /** 根据httpPath获取对应的业务 */
+    private BizTypeEnum getBizTypeByPath(String httpPath) {
+        BizTypeEnum[] bizTypeEnums = BizTypeEnum.values();
+        BizTypeEnum ret = null;
+        for (BizTypeEnum bizTypeEnum:bizTypeEnums) {
+            if (httpPath.equals(bizTypeEnum.getHttpPath())) {
+                ret = bizTypeEnum;
+                break;
+            }
+        }
+        return ret;
+    }
+
     /** 根据请求的cookie获取HttpSession */
     private void getSession(FullHttpRequest msg) {
         hasPreSession = false;

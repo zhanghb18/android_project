@@ -33,6 +33,7 @@ public class UserProcessor {
 
     /** 创建新用户 */
     public void createUser(String email, String userID, String nickname, String password) throws Exception {
+        System.out.println("createUser");
         String encoded_password = passwordEncoder.encode(password);
         Query query = new Query();
         query.addCriteria(Criteria.where(KeyConstant.USERID).is(userID)); // userID查重
