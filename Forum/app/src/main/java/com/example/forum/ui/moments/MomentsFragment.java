@@ -1,4 +1,4 @@
-package com.example.forum.ui.dashboard;
+package com.example.forum.ui.moments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.forum.databinding.FragmentDashboardBinding;
+import com.example.forum.databinding.FragmentMomentsBinding;
 
-public class DashboardFragment extends Fragment {
+public class MomentsFragment extends Fragment {
 
-    private FragmentDashboardBinding binding;
+    private FragmentMomentsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        DashboardViewModel dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+        MomentsViewModel notificationsViewModel =
+                new ViewModelProvider(this).get(MomentsViewModel.class);
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        binding = FragmentMomentsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textDashboard;
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        final TextView textView = binding.textMoments;
+        notificationsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
