@@ -73,7 +73,7 @@ public class UserController {
 //        }
 //        redisUtil.deleteKeys(phoneNumber);
         userProcessor.createUser(email, userID, nickname, inParams.getPassword());
-        // userProcessor.addtime(inParams.getUsername());
+//         userProcessor.addtime(inParams.getUsername());
         return new CommonOutParams(true);
     }
 
