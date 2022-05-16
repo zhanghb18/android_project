@@ -87,6 +87,7 @@ public class Sign {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                System.out.println(t);
                 Snackbar.make(view, "无法连接服务器，请检查网络设置", Snackbar.LENGTH_LONG)
                         .setAction("Action", null)
                         .show();

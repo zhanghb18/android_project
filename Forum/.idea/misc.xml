@@ -10,17 +10,17 @@
         <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/layout/activity_forum.xml" value="0.12512664640324214" />
         <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/layout/fragment_home.xml" value="0.1125" />
         <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/layout/fragment_initpage.xml" value="0.5" />
-        <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/layout/fragment_signinpage.xml" value="0.1" />
-        <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/layout/fragment_signuppage.xml" value="0.1" />
-        <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1125" />
-        <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/menu/menu_main.xml" value="0.1125" />
-        <entry key="..\:/android_project/Forum/app/src/main/res/drawable/back_gradient.xml" value="0.2985" />
         <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/layout/fragment_moment_all.xml" value="0.1" />
         <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/layout/fragment_moments.xml" value="0.1" />
         <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/layout/fragment_moments_all.xml" value="0.2" />
         <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/layout/fragment_moments_concerned.xml" value="0.1" />
+        <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/layout/fragment_signinpage.xml" value="0.1" />
+        <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/layout/fragment_signuppage.xml" value="0.1" />
         <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/layout/moment_list.xml" value="0.1" />
+        <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1125" />
+        <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/menu/menu_main.xml" value="0.1125" />
         <entry key="..\:/Users/hbtve/Desktop/campus_forum/android_project/Forum/app/src/main/res/xml/network_security_config.xml" value="0.1" />
+        <entry key="..\:/android_project/Forum/app/src/main/res/drawable/back_gradient.xml" value="0.2985" />
         <entry key="..\:/android_project/Forum/app/src/main/res/drawable/ic_before.xml" value="0.2985" />
         <entry key="..\:/android_project/Forum/app/src/main/res/drawable/ic_password.xml" value="0.2985" />
         <entry key="..\:/android_project/Forum/app/src/main/res/drawable/ic_rightarrow.xml" value="0.2985" />
@@ -30,7 +30,7 @@
         <entry key="..\:/android_project/Forum/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
         <entry key="..\:/android_project/Forum/app/src/main/res/layout/content_main.xml" value="0.358695652173913" />
         <entry key="..\:/android_project/Forum/app/src/main/res/layout/fragment_dashboard.xml" value="0.358695652173913" />
-        <entry key="..\:/android_project/Forum/app/src/main/res/layout/fragment_home.xml" value="0.358695652173913" />
+        <entry key="..\:/android_project/Forum/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/android_project/Forum/app/src/main/res/layout/fragment_initpage.xml" value="0.358695652173913" />
         <entry key="..\:/android_project/Forum/app/src/main/res/layout/fragment_signinpage.xml" value="0.1" />
         <entry key="..\:/android_project/Forum/app/src/main/res/layout/fragment_signuppage.xml" value="0.23772609819121446" />
