@@ -24,6 +24,7 @@ public class NetApplication extends Application {
     public static final String http_ip = "http://127.0.0.1:9999/";
     //public static final String http_ip = "http://127.0.0.1:7000/";
     public static final String websocket_ip = "ws://127.0.0.1:520/ws";
+//    public static final String websocket_ip = "ws://0:0:0:0:0:0:0:0:520/ws";
     private static WebSocket mwebSocket;
     private static final HashMap<String, List<Cookie>> cookieStore = new HashMap<>();
     private static String cookie;
