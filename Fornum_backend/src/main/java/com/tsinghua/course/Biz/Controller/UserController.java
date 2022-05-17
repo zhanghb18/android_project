@@ -13,6 +13,7 @@ import com.tsinghua.course.Frame.Util.*;
 import io.netty.channel.ChannelHandlerContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  * @描述 用户控制器，用于执行用户相关的业务
@@ -26,17 +27,18 @@ public class UserController {
     @Autowired
     RedisUtil redisUtil;
 
+    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
     /** 用户登录业务 */
     @BizType(BizTypeEnum.USER_LOGIN)
     public CommonOutParams userLogin(LoginInParams inParams) throws Exception {
+        System.out.println("userLogin");
         String email = inParams.getEmail();
         if (email == null)
             throw new CourseWarn(UserWarnEnum.LOGIN_FAILED);
-        String userID = inParams.getUserID();
-        if (userID == null)
-            throw new CourseWarn(UserWarnEnum.LOGIN_FAILED);
+        email = email.replace("@", "%40");
         User user = userProcessor.getUserByEmail(email);
-        if (user == null || !user.getPassword().equals(inParams.getPassword()))
+        if (user == null || !passwordEncoder.matches(inParams.getPassword(), user.getPassword()))
             throw new CourseWarn(UserWarnEnum.LOGIN_FAILED);
 
         /** 登录成功，记录登录状态 */

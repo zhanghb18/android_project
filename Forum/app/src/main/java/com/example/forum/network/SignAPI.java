@@ -11,7 +11,7 @@ import retrofit2.http.Query;
 public interface SignAPI {
     // 用邮箱和密码登录
     @GET("user/login")
-    Call<ResponseBody> SignIn(@Query("userID") String email, @Query("password") String password);
+    Call<ResponseBody> SignIn(@Query("email") String email, @Query("password") String password);
 
     // 注册
     @GET("user/signup")

@@ -46,8 +46,8 @@ public class Moment {
         }
     }
 
-    // 发帖人的用户名
-    String username;
+    // 发帖人的邮箱
+    String email;
 
     // 发帖时间
     String post_time;
@@ -71,8 +71,8 @@ public class Moment {
     // 头像
     String avatar_url;
 
-    public Moment(String username, String post_time) {
-        this.username = username;
+    public Moment(String email, String post_time) {
+        this.email = email;
         this.post_time = post_time;
     }
 
@@ -80,8 +80,8 @@ public class Moment {
         return content;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
     public Comment[] getCommentList() {
