@@ -13,7 +13,7 @@ public class PostMomentInParams extends CommonInParams {
 
     private String content;
 
-    private MixedFileUpload[] images;
+//    private MixedFileUpload[] images;
 
     public String getPost_time() {
         return post_time;
@@ -23,7 +23,7 @@ public class PostMomentInParams extends CommonInParams {
         return content;
     }
 
-    public MixedFileUpload[] getImages() {
-        return images;
-    }
+//    public MixedFileUpload[] getImages() {
+//        return images;
+//    }
 }

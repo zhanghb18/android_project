@@ -6,6 +6,7 @@ import com.tsinghua.course.Base.Error.UserWarnEnum;
 import com.tsinghua.course.Base.Model.Moment;
 import com.tsinghua.course.Base.Model.User;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.*;
+import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserOpt.PostMomentInParams;
 import com.tsinghua.course.Frame.Util.FileUtil;
 import io.netty.handler.codec.http.multipart.MixedFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,17 +33,18 @@ public class MomentProcessor {
     @Autowired
     FileUtil fileUtil;
 
-//    /* 发布动态 */
-//    public void CreateMomentByUser(PostMomentInParams inParams) throws Exception {
-//        String time = URLDecoder.decode(inParams.getPost_time(), "utf-8");
-//        Moment moment = new Moment(inParams.getUsername(), time);
-//        String content = inParams.getContent();
+    /* 发布动态 */
+    public void CreateMomentByUser(PostMomentInParams inParams) throws Exception {
+        System.out.println("CreateMomentByUser");
+        String time = URLDecoder.decode(inParams.getPost_time(), "utf-8");
+        Moment moment = new Moment(inParams.getEmail(), time);
+        String content = inParams.getContent();
 //        MixedFileUpload[] images = inParams.getImages();
 //        moment.setAvatar_url(userProcessor.getAvatarByUsername(inParams.getUsername()));
-//        if(content.length() >= 0 && content != null) {
-//            content = URLDecoder.decode(content, "UTF-8");
-//            moment.setContent(content);
-//        }
+        if(content.length() >= 0 && content != null) {
+            content = URLDecoder.decode(content, "UTF-8");
+            moment.setContent(content);
+        }
 //        if(images != null && images.length > 0)
 //        {
 //            List<String> image_urlList = new ArrayList<>();
@@ -51,8 +53,8 @@ public class MomentProcessor {
 //            }
 //            moment.setImages(image_urlList.toArray(new String[image_urlList.size()]));
 //        }
-//        mongoTemplate.insert(moment);
-//    }
+        mongoTemplate.insert(moment);
+    }
 //    /* 点赞朋友圈 */
 //    public void LikeDiscoverByUsername(LikeDiscoverInParams inParams) throws Exception {
 //        Query query = new Query();
@@ -73,6 +75,7 @@ public class MomentProcessor {
 //            mongoTemplate.updateFirst(query, update, Discover.class);
 //        }
 //    }
+
 //    /* 评论朋友圈或者回复评论 */
 //    public void CommentDiscoverByUsername(CommentDiscoverInParams inParams) throws Exception {
 //        Query query = new Query();
