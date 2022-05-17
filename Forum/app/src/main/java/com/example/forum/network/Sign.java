@@ -74,7 +74,7 @@ public class Sign {
                 try {
                     JSONObject signUpRes = GsonFunction.parseToJsonObject(response.body().string());
                     if (signUpRes.getBoolean("success")) {
-                        //Login(context, view, email, password);
+                        Login(context, view, email, password);
                     } else {
                         Snackbar.make(view, "注册失败，请稍后重试", Snackbar.LENGTH_LONG).show();
                     }
