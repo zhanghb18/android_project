@@ -43,11 +43,11 @@ public class UserProcessor {
         if(mongoTemplate.findOne(query, User.class) != null)
             throw new CourseWarn(UserWarnEnum.EMAIL_DOUBLED);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        User new_user = new User();
-        new_user.setUserID(userID);
-        new_user.setEmail(email);
-        new_user.setNickname(nickname);
-        new_user.setPassword(encoded_password);
+        User new_user = new User(email, userID, nickname, encoded_password);
+//        new_user.setUserID(userID);
+//        new_user.setEmail(email);
+//        new_user.setNickname(nickname);
+//        new_user.setPassword(encoded_password);
 //        User.Avatar avatar = new User.Avatar("default",
 //                "default", 100, "0",
 //                "http://42.193.117.251:80/2021-06-22/8191E0A6-F400-4E53-A6E3-6AAB3AC19A7A.jpeg");
