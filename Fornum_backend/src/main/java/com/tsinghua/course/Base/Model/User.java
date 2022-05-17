@@ -41,6 +41,15 @@ public class User {
         public String getUrl() { return url; }
         public void setUrl(String u) { this.url = u; }
     }
+
+    public User(String email, String userID, String nickname, String password){
+        this.email = email;
+        this.userID = userID;
+        this.nickname = nickname;
+        this.password = password;
+        this.userType = UserType.NORMAL;
+    }
+
     // mongodb唯一id
     String id;
     // 邮箱
