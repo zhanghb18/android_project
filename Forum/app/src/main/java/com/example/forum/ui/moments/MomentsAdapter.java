@@ -2,10 +2,11 @@ package com.example.forum.ui.moments;
 
 import com.example.forum.ForumActivity;
 import com.example.forum.R;
+
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -13,22 +14,20 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.core.app.ShareCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.forum.ui.PersonalPage.OtherHomeActivity;
 import com.example.forum.ui.PersonalPage.PersonHomeActivity;
-import com.example.forum.ui.moments.SingleMoment;
 import com.example.forum.user.UserApplication;
 
-import java.util.LinkedList;
 import java.util.List;
 
 
 public class MomentsAdapter extends
         RecyclerView.Adapter<MomentsAdapter.MomentsViewHolder> {
 
-    private final List<SingleMoment> momment_List;
+    private final List<SingleMoment> moment_list;
     private final LayoutInflater mInflater;
     public Context context;
 
@@ -57,6 +56,7 @@ public class MomentsAdapter extends
             nickname_view=itemView.findViewById(R.id.moment_nickname);
             this.mAdapter = adapter;
             itemView.setOnClickListener(this);
+            //点赞功能
             ImageButton button_like=itemView.findViewById(R.id.button_like);
             TextView text_like=itemView.findViewById(R.id.text_like);
             button_like.setOnClickListener(new View.OnClickListener() {
@@ -75,13 +75,31 @@ public class MomentsAdapter extends
                     }
                 }
             });
+
+            //分享功能
+            ImageButton button_share=itemView.findViewById(R.id.button_share);
+            button_share.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int mPosition = getLayoutPosition();
+                    System.out.println("clicked share");
+                    String share_title= moment_list.get(mPosition).title;
+                    String share_content=moment_list.get(mPosition).content;
+                    String mimeType = "text/plain";
+                    ShareCompat.IntentBuilder
+                            .from((Activity)view.getContext())
+                            .setType(mimeType)
+                            .setText(share_title+'\n'+share_content)
+                            .startChooser();
+                }
+            });
             //点击头像进入个人主页
             ImageView imageView=itemView.findViewById(R.id.moment_all_avator);
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int mPosition = getLayoutPosition();
-                    String cur_email = momment_List.get(mPosition).email;
+                    String cur_email = moment_list.get(mPosition).email;
 //                    System.out.println("**********");
 //                    System.out.println(cur_email);
 //                    System.out.println(UserApplication.getEmail());
@@ -120,7 +138,7 @@ public class MomentsAdapter extends
     public MomentsAdapter(Context context, List<SingleMoment> mommentList) {
         mInflater = LayoutInflater.from(context);
         this.context=context;
-        this.momment_List = mommentList;
+        this.moment_list = mommentList;
     }
 
     /**
@@ -170,7 +188,7 @@ public class MomentsAdapter extends
         // Retrieve the data for that position.
 //        String mCurrent = mWordList.get(position);
         // Add the data to the view holder.
-        SingleMoment moment=momment_List.get(position);
+        SingleMoment moment= moment_list.get(position);
         holder.title_view.setText(moment.title);
         holder.content_view.setText(moment.content);
         holder.nickname_view.setText(UserApplication.getNickname());
@@ -183,7 +201,7 @@ public class MomentsAdapter extends
      */
     @Override
     public int getItemCount() {
-        return momment_List.size();
+        return moment_list.size();
     }
 //    @Override
 //    public int getItemViewType(int position) {
