@@ -82,7 +82,7 @@ public class User {
         });
     }
 
-    public static void ModifyInfo(String email, String userID, String nickname) {
+    public static void ModifyInfo(View view,String email, String userID, String nickname) {
         Retrofit retrofit = RetrofitUtil.getRetrofit();
         UserAPI service = retrofit.create(UserAPI.class);
         Call<ResponseBody> call = service.UserModifyInfo(email, userID, nickname);
@@ -91,13 +91,16 @@ public class User {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
                     JSONObject userInfoRes = GsonFunction.parseToJsonObject(response.body().string());
+                    System.out.println(userInfoRes);
                     if (userInfoRes.getBoolean("success")) {
+                        System.out.println(userInfoRes);
                         UserApplication.setUserID(userID);
                         UserApplication.setNickname(nickname);
+                        Snackbar.make(view, "保存成功", Snackbar.LENGTH_SHORT).show();
                     }
                     else {
-                        String msg = response.message();
-                        System.out.println(msg);
+                        String msg = userInfoRes.getString("msg");
+                        Snackbar.make(view, msg, Snackbar.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

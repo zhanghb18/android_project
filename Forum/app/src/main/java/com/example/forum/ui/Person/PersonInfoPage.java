@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import com.example.forum.user.UserApplication;
+import com.example.forum.network.User;
 import android.widget.Toast;
 
 public class PersonInfoPage extends AppCompatActivity {
@@ -22,6 +23,7 @@ public class PersonInfoPage extends AppCompatActivity {
     private TextView mNicknameContentView;
     private TextView mEmailContentView;
     private Button mChangePwdButton;
+    private Button mContentChangeButton;
     public static final String EXTRA_MESSAGE = "content";
     public ActivityResultLauncher<Intent> intentActivityResultLauncher;
 
@@ -34,6 +36,7 @@ public class PersonInfoPage extends AppCompatActivity {
         mNicknameContentView = findViewById(R.id.nickname_content);
         mEmailContentView = findViewById(R.id.email_content);
         mChangePwdButton = findViewById(R.id.change_pwd);
+        mContentChangeButton = findViewById(R.id.save_button);
         mIdContentView.setText(UserApplication.getUserID());
         mNicknameContentView.setText(UserApplication.getNickname());
         mEmailContentView.setText(UserApplication.getEmail());
@@ -60,6 +63,12 @@ public class PersonInfoPage extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(PersonInfoPage.this, PwdConfirmActivity.class);
                 startActivity(intent);
+            }
+        });
+        mContentChangeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                User.ModifyInfo(view,UserApplication.getEmail(),mIdContentView.getText().toString(),mNicknameContentView.getText().toString());
             }
         });
     }
