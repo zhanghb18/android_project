@@ -81,4 +81,37 @@ public class User {
             }
         });
     }
+
+    public static void ModifyInfo(String email, String userID, String nickname) {
+        Retrofit retrofit = RetrofitUtil.getRetrofit();
+        UserAPI service = retrofit.create(UserAPI.class);
+        Call<ResponseBody> call = service.UserModifyInfo(email, userID, nickname);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    JSONObject userInfoRes = GsonFunction.parseToJsonObject(response.body().string());
+                    if (userInfoRes.getBoolean("success")) {
+                        UserApplication.setUserID(userID);
+                        UserApplication.setNickname(nickname);
+                    }
+                    else {
+                        String msg = response.message();
+                        System.out.println(msg);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                Snackbar.make(view, "修改失败", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null)
+//                        .show();
+            }
+        });
+    }
 }

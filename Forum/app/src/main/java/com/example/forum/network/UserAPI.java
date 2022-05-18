@@ -18,6 +18,9 @@ public interface UserAPI {
     @GET("user/info")
     Call<ResponseBody> UserInfo(@Query("email") String email);
 
+    @GET("user/modify_info")
+    Call<ResponseBody> UserModifyInfo(@Query("email") String email, @Query("userID") String userID, @Query("nickname") String nickname);
+
     @GET("user/nickname")
     Call<ResponseBody> Nickname(@Query("nickname") String nickname);
 

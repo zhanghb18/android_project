@@ -41,7 +41,7 @@ public class Dispatcher {
 
     /**
      * 事件分发器
-     * 所有的业务转入 Controller 内部执行时都需要经过事件分发器
+     * 所有的业务在经过 Handler 处理后转入 Controller 内部执行时都需要经过事件分发器
      * 目前用到分发器的有：①处理web的http请求；②处理socket长连接中客户端发送的请求；③处理定时任务中执行的请求；
      * 由分发器根据业务的参数，决定哪个业务逻辑由哪个类的哪个函数执行
      * 这只是一个最简单的分发器，可以根据业务逻辑的复杂程度定制不同复杂度的分发器
@@ -145,4 +145,6 @@ public class Dispatcher {
         /** 没有找到则认为使用默认入参类 */
         return CommonInParams.class;
     }
+
+
 }
