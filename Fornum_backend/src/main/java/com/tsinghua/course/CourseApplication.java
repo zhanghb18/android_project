@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 
 /** SpringBoot的主启动类 */
-@SpringBootApplication
+@SpringBootApplication()
 public class CourseApplication implements CommandLineRunner {
 
     @Autowired
