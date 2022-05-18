@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import com.example.forum.user.UserApplication;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -70,9 +71,10 @@ public class MomentsAll extends Fragment {
                     SingleMoment moment = new SingleMoment();
                     moment.title = title;
                     moment.content = content;
+                    moment.email = UserApplication.getEmail();
                     momentList.add(0, moment);
                     System.out.println("---------");
-                    System.out.println(momentList.get(0).title);
+                    System.out.println(momentList.get(0).email);
                     mAdapter.notifyDataSetChanged();
                 } else {
                     //Toast.makeText(getApplicationContext(), "回传失败", Toast.LENGTH_LONG).show();
