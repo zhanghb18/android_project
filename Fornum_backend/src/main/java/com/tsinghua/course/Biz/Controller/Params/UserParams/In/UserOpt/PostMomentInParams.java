@@ -11,7 +11,7 @@ public class PostMomentInParams extends CommonInParams {
     // 发布时间 yyyy-MM-dd HH:mm:ss
     @Required
     private String post_time;
-    
+
     private String content;
 
 //    private MixedFileUpload[] images;

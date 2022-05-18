@@ -21,14 +21,8 @@ public interface UserAPI {
     @GET("user/modify_info")
     Call<ResponseBody> UserModifyInfo(@Query("email") String email, @Query("userID") String userID, @Query("nickname") String nickname);
 
-    @GET("user/nickname")
-    Call<ResponseBody> Nickname(@Query("nickname") String nickname);
-
-    @GET("user/phonenumber")
-    Call<ResponseBody> PhoneNumber(@Query("phoneNumber") String phoneNumber);
-
     @GET("user/password")
-    Call<ResponseBody> Password(@Query("password") String password, @Query("new_password") String newPassword);
+    Call<ResponseBody> Password(@Query("email") String email, @Query("password") String password);
 
     @GET
     Call<ResponseBody> Avatar(@Url String url);
