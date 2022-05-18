@@ -15,6 +15,8 @@ public enum UserWarnEnum implements ExceptionInterface {
     USERID_DOUBLED("UserWarn005", "用户ID已存在"),
 
     EMAIL_DOUBLED("UserWarn006", "该邮箱已被注册，请直接登录"),
+
+    EMAIL_FAILED("UserWarn007", "未获取到用户邮箱"),
 //
 //    FILE_INVALID("UserWarn006", "文件不合法"),
 //

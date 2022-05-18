@@ -34,7 +34,7 @@ public enum BizTypeEnum {
     USER_LOGOUT(UserController.class, "/user/logout", "用户注销"),
 
     /*Moment */
-    USER_POSTMOMENT(MomentController.class,"/user/postmoment",  "用户发布动态"),
+    USER_POSTMOMENT(MomentController.class,"/moment/post",  "用户发布动态"),
     USER_GETMOMENT(MomentController.class, "/user/getmoment", "用户获取动态"),
     USER_LIKEMOMENT(MomentController.class, "/user/likemoment", "用户点赞动态"),
     USER_COMMENTMOMENT(MomentController.class, "/user/commentmoment", "用户评论动态/回复评论"),
