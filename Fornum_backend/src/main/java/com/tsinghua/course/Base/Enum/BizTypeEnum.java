@@ -36,6 +36,7 @@ public enum BizTypeEnum {
     /*Moment */
     MOMENT_POST(MomentController.class,"/moment/post",  "用户发布动态"),
     MOMENT_GETPERSONAL(MomentController.class, "/moment/get_personal", "用户个人主页动态的获取"),
+    MOMENT_GET(MomentController.class, "/moment/get", "获取当前所有动态"),
     MOMENT_LIKE(MomentController.class, "/moment/like", "用户点赞动态"),
     MOMENT_COMMENT(MomentController.class, "/moment/comment", "用户评论动态/回复评论"),
     MOMENT_CANCELLIKE(MomentController.class, "/moment/cancellike", "用户取消点赞"),

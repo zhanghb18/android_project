@@ -64,6 +64,17 @@ public class MomentProcessor {
         mongoTemplate.insert(moment);
     }
 
+    /* 获取全部动态 */
+    public String getMoments() throws Exception {
+        Query query = new Query();
+        List<Moment> moments = mongoTemplate.find(query, Moment.class);
+        String res = "";
+        for (Moment moment : moments) {
+            res += moment.toString();
+        }
+        return res;
+    }
+
     /* 获取某用户的动态列表 */
     public String getPersonalMomentByEmail(String email) throws Exception{
         Query query = new Query();
