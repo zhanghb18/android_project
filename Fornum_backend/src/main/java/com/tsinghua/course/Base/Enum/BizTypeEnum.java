@@ -14,8 +14,9 @@ public enum BizTypeEnum {
     // Do Need Login
     USER_PASSWORD(UserController.class, "/user/password", "用户修改密码"),
     USER_INFO(UserController.class, "/user/info", "用户基本信息获取"),
-    USER_NICKNAME(UserController.class, "/user/nickname", "用户昵称修改"),
-    USER_EMAIL(UserController.class, "/user/email", "用户邮箱修改"),
+    USER_MODIFYINFO(UserController.class, "/user/modify_info", "用户基本信息修改"),
+//    USER_NICKNAME(UserController.class, "/user/nickname", "用户昵称修改"),
+//    USER_USERID(UserController.class, "/user/userID", "用户userID修改"),
     USER_AVATAR(UserController.class, "/user/avatar", "用户头像设置"),
     USER_ADDSTAR(UserController.class, "/user/addstar", "用户关注"),
     USER_DELETESTAR(UserController.class, "/user/deletestar", "用户取消关注"),

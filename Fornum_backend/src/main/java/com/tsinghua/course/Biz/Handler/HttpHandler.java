@@ -92,8 +92,10 @@ public class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
             if (hasPreSession.get()
                     && !bizTypeEnum.equals(BizTypeEnum.USER_LOGIN)
                     && !bizTypeEnum.equals(BizTypeEnum.USER_SIGNUP)) {
-                params.setEmail(ThreadUtil.getHttpSession().getUsername());
+                if (ThreadUtil.getHttpSession().getUsername() != null)
+                    params.setEmail(ThreadUtil.getHttpSession().getUsername());
             }
+            System.out.println(params);
 
             /** 使用派发器执行业务并返回业务执行结果 */
             String retStr;
