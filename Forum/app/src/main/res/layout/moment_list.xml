@@ -26,11 +26,13 @@
             android:paddingTop="10dp"
             >
             <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/moment_all_avator"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:src="@drawable/test"
                 app:shapeAppearanceOverlay="@style/RoundStyle"
                 app:strokeColor="#FFFFFF"
+                android:onClick="JumpToPersonalPage"
                 android:layout_gravity="center_horizontal"
                 />
         </LinearLayout>

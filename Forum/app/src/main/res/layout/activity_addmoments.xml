@@ -11,7 +11,7 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_margin="10dp"
         android:hint="标题"
         android:maxLines="2"
         android:textSize="20dp"/>
@@ -20,7 +20,7 @@
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_margin="10dp"
         android:hint="分享新鲜事…"
         android:maxLines="5"
         app:layout_constraintTop_toBottomOf="@+id/title"
@@ -31,17 +31,15 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/content"
         android:gravity="right|bottom"
-        android:layout_marginRight="10dp"
+        android:layout_margin="10dp"
         >
         <Button
-            android:id="@+id/new_button"
+            android:id="@+id/add_moments_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right|bottom"
-            android:layout_marginTop="40dp"
             android:text="发布"
-            android:onClick="returnReply"
-            tools:layout_editor_absoluteX="307dp" />
+            android:backgroundTint="@color/grey"
+            android:onClick="returnReply" />
     </LinearLayout>
 
 

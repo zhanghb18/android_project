@@ -1,18 +1,25 @@
 package com.example.forum.ui.moments;
 
+import com.example.forum.ForumActivity;
 import com.example.forum.R;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.forum.ui.PersonalPage.OtherHomeActivity;
+import com.example.forum.ui.PersonalPage.PersonHomeActivity;
 import com.example.forum.ui.moments.SingleMoment;
+import com.example.forum.user.UserApplication;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -23,6 +30,7 @@ public class MomentsAdapter extends
 
     private final List<SingleMoment> momment_List;
     private final LayoutInflater mInflater;
+    public Context context;
 
     class MomentsViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
@@ -31,6 +39,7 @@ public class MomentsAdapter extends
         final MomentsAdapter mAdapter;
         private AdapterView.OnItemClickListener mOnItemClickListener;
         boolean like_flag=false;
+        public static final String EXTRA_MESSAGE = "content";
 
         /**
          * Creates a new custom view holder to hold the view to display in
@@ -64,6 +73,29 @@ public class MomentsAdapter extends
                     }
                 }
             });
+            //点击头像进入个人主页
+            ImageView imageView=itemView.findViewById(R.id.moment_all_avator);
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int mPosition = getLayoutPosition();
+                    String cur_email = momment_List.get(mPosition).email;
+//                    System.out.println("**********");
+//                    System.out.println(cur_email);
+//                    System.out.println(UserApplication.getEmail());
+                    if(UserApplication.getEmail()==cur_email){
+                        Intent intent=new Intent(context,PersonHomeActivity.class);
+                        intent.putExtra(cur_email,EXTRA_MESSAGE);
+                        context.startActivity(intent);
+                    }
+                    else {
+                        Intent intent=new Intent(context, OtherHomeActivity.class);
+                        intent.putExtra(cur_email,EXTRA_MESSAGE);
+                        context.startActivity(intent);
+                    }
+
+                }
+            });
         }
 
         @Override
@@ -85,6 +117,7 @@ public class MomentsAdapter extends
 
     public MomentsAdapter(Context context, List<SingleMoment> mommentList) {
         mInflater = LayoutInflater.from(context);
+        this.context=context;
         this.momment_List = mommentList;
     }
 
