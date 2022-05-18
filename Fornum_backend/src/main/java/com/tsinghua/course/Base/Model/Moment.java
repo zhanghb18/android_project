@@ -60,6 +60,9 @@ public class Moment {
     // 视频的url
     String[] videos;
 
+    // 动态标题
+    String title;
+
     // 文本内容
     String content;
 
@@ -76,6 +79,8 @@ public class Moment {
         this.email = email;
         this.post_time = post_time;
     }
+
+    public String getTitle() { return title; }
 
     public String getContent() {
         return content;
@@ -100,6 +105,8 @@ public class Moment {
     public String[] getLiked() {
         return liked;
     }
+
+    public void setTitle(String t) { this.title = t; }
 
     public void setContent(String content) {
         this.content = content;

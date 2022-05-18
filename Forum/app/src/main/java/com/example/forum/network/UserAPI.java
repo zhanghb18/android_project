@@ -27,7 +27,10 @@ public interface UserAPI {
 
     // Moment
     @GET("moment/post")
-    Call<ResponseBody> PostMoment(@Query("email") String email, @Query("content") String content, @Query("post_time")String post_time);
+    Call<ResponseBody> PostNewMoment(@Query("email") String email, @Query("title") String title, @Query("content") String content, @Query("post_time")String post_time);
+
+    @GET("moment/like")
+    Call<ResponseBody> LikeMoment(@Query("email") String email, @Query("post_email")String post_email, @Query("time") String time);
 
 
 
@@ -52,8 +55,6 @@ public interface UserAPI {
     @GET("user/getdiscover")
     Call<ResponseBody> GetDiscover();
 
-    @GET("user/likediscover")
-    Call<ResponseBody> LikeDiscover(@Query("post_username")String post_username, @Query("time") String time);
 
     @GET("user/cancellike")
     Call<ResponseBody> UnLikeDiscover(@Query("post_username")String post_username, @Query("time") String time);

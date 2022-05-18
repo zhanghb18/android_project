@@ -40,6 +40,14 @@ public class MomentController {
         momentProcessor.LikeMoment(inParams);
         return new CommonOutParams(true);
     }
+
+//    @NeedLogin
+    @BizType(BizTypeEnum.MOMENT_CANCELLIKE)
+    public CommonOutParams cancelLike(UnlikeMomentInParams inParams) throws Exception {
+        momentProcessor.unlikeMomentByEmail(inParams);
+        return new CommonOutParams(true);
+    }
+
 //
 //    @NeedLogin
 //    @BizType(BizTypeEnum.USER_COMMENTMOMENT)
@@ -48,12 +56,7 @@ public class MomentController {
 //        return new CommonOutParams(true);
 //    }
 //
-//    @NeedLogin
-//    @BizType(BizTypeEnum.USER_CANCELLIKE)
-//    public CommonOutParams cancelLike(UnLikeDiscoverInParams inParams) throws Exception {
-//        momentProcessor.unLikeDiscoverByUsername(inParams);
-//        return new CommonOutParams(true);
-//    }
+
 //
 //    @NeedLogin
 //    @BizType(BizTypeEnum.USER_DELETECOMMENT)
