@@ -17,6 +17,7 @@ import com.example.forum.ForumActivity;
 import com.example.forum.MainActivity;
 import com.example.forum.R;
 //import com.example.forum.network.Sign;
+import com.example.forum.network.Sign;
 import com.google.android.material.snackbar.Snackbar;
 
 public class SignInPage extends Fragment {
@@ -62,9 +63,9 @@ public class SignInPage extends Fragment {
 //                    return;
 //                }
                 // 关闭之前的所有activity 进入Seino主程序
-                Intent intent = new Intent(getContext(), ForumActivity.class);
-                getContext().startActivity(intent);
-                //Sign.Login(getContext(), view, username, pwd);
+//                Intent intent = new Intent(getContext(), ForumActivity.class);
+//                getContext().startActivity(intent);
+                Sign.Login(getContext(), view, username, pwd);
             }
         });
     }
