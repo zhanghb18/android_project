@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back_gradient"
+    tools:context=".ui.Person.PersonInfoChangePage">
+    
+    <TextView
+        android:id="@+id/top_info"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:textSize="20sp"
+        android:text="信息修改"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/change_content"
+        app:layout_constraintTop_toTopOf="@id/top_info"
+        android:background="@color/white"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:textSize="20sp"/>
+
+    <Button
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/change_content"
+        android:id="@+id/save_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:backgroundTint="#61FFFFFF"
+        app:cornerRadius="5dp"
+        app:strokeColor="#FFFFFF"
+        app:strokeWidth="1dp"
+        android:onClick="save_change"
+        android:text="保存修改"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
