@@ -44,7 +44,7 @@ public class Sign {
                         System.out.println("success");
                         Log.d("Login Response", String.valueOf(android.os.Process.myTid()));
                         Thread.sleep(1000);
-                        User.UserInfo();
+                        User.UserInfo(email);
 //                        UserApplication.setUsername(username);
                         UserApplication.setPassword(password);
                         Intent intent = new Intent(context, ForumActivity.class);

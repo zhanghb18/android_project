@@ -143,4 +143,13 @@ public class User {
     public void setSubObj(SubObj subObj) {
         this.subObj = subObj;
     }
+
+    public String infoString() {
+        return "User{" +
+                "email='" + email + '\'' +
+                ", userID='" + userID + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", time='" + time + '\'' +
+                '}';
+    }
 }

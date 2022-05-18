@@ -7,6 +7,7 @@ import com.tsinghua.course.Biz.Controller.Params.CommonInParams;
 import com.tsinghua.course.Biz.Controller.Params.CommonOutParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserOpt.*;
 import com.tsinghua.course.Biz.Processor.MomentProcessor;
+import com.tsinghua.course.Frame.Util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +15,10 @@ public class MomentController {
     @Autowired
     MomentProcessor momentProcessor;
 
-    @NeedLogin
+    @Autowired
+    RedisUtil redisUtil;
+
+//    @NeedLogin
     @BizType(BizTypeEnum.USER_POSTMOMENT)
     public CommonOutParams postMoment(PostMomentInParams inParams) throws Exception {
         System.out.println("postMoment");

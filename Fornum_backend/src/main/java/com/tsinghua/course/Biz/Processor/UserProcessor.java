@@ -4,6 +4,7 @@ import com.tsinghua.course.Base.Constant.KeyConstant;
 import com.tsinghua.course.Base.Error.CourseWarn;
 import com.tsinghua.course.Base.Error.UserWarnEnum;
 import com.tsinghua.course.Base.Model.User;
+import com.tsinghua.course.Biz.Controller.Params.UserParams.Out.UserInfoOutParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -44,10 +45,6 @@ public class UserProcessor {
             throw new CourseWarn(UserWarnEnum.EMAIL_DOUBLED);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         User new_user = new User(email, userID, nickname, encoded_password);
-//        new_user.setUserID(userID);
-//        new_user.setEmail(email);
-//        new_user.setNickname(nickname);
-//        new_user.setPassword(encoded_password);
 //        User.Avatar avatar = new User.Avatar("default",
 //                "default", 100, "0",
 //                "http://42.193.117.251:80/2021-06-22/8191E0A6-F400-4E53-A6E3-6AAB3AC19A7A.jpeg");
@@ -56,5 +53,15 @@ public class UserProcessor {
 //        new_user.setAvatars(tmp.toArray(new User.Avatar[tmp.size()]));
         new_user.setTime(simpleDateFormat.format(new Date()));
         mongoTemplate.insert(new_user);
+    }
+
+    /** 通过邮箱获取用户基本信息 */
+    public UserInfoOutParams getUserInfo(String email) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email));
+        User user = mongoTemplate.findOne(query, User.class);
+        String res = user.infoString();
+        String avatar = "";
+        return new UserInfoOutParams(res, avatar);
     }
 }

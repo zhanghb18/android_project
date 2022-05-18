@@ -16,10 +16,7 @@ import retrofit2.http.Url;
 
 public interface UserAPI {
     @GET("user/info")
-    Call<ResponseBody> UserInfo();
-
-    @GET("user/info")
-    Call<ResponseBody> UserInfo(@Query("friend_username") String friend_username);
+    Call<ResponseBody> UserInfo(@Query("email") String email);
 
     @GET("user/nickname")
     Call<ResponseBody> Nickname(@Query("nickname") String nickname);

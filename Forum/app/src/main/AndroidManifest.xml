@@ -21,6 +21,9 @@
         android:theme="@style/Theme.Forum"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.Person.PersonInfoChangePage"
+            android:exported="false" />
+        <activity
             android:name=".ui.Person.PersonInfoPage"
             android:exported="false" />
         <activity
