@@ -3,8 +3,11 @@ package com.example.forum.ui.moments;
 import com.example.forum.R;
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,6 +28,8 @@ public class MomentsAdapter extends
             implements View.OnClickListener {
         public final TextView content_view;
         final MomentsAdapter mAdapter;
+        private AdapterView.OnItemClickListener mOnItemClickListener;
+        boolean like_flag=false;
 
         /**
          * Creates a new custom view holder to hold the view to display in
@@ -39,6 +44,37 @@ public class MomentsAdapter extends
             content_view = itemView.findViewById(R.id.content);
             this.mAdapter = adapter;
             itemView.setOnClickListener(this);
+            ImageButton button_like=itemView.findViewById(R.id.button_like);
+            TextView text_like=itemView.findViewById(R.id.text_like);
+            button_like.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    System.out.println("clicked like");
+                    if(like_flag==false){
+                        text_like.setText("取消点赞");
+                        button_like.setImageDrawable(button_like.getResources().getDrawable(R.drawable.ic_liked));
+                        like_flag=true;
+                    }
+                    else {
+                        text_like.setText("点赞");
+                        button_like.setImageDrawable(button_like.getResources().getDrawable(R.drawable.ic_like));
+                        like_flag=false;
+                    }
+                }
+            });
+//            button_like.setOnTouchListener(new View.OnTouchListener(){
+//            public boolean onTouch(View v, MotionEvent event) {
+//                //点击
+//                if(event.getAction() == MotionEvent.ACTION_DOWN){
+//                    //重新设置按下时的背景图片
+//                    ((ImageButton)v).setImageDrawable(button_like.getResources().getDrawable(R.drawable.ic_liked));
+//                }else if(event.getAction() == MotionEvent.ACTION_UP){ //松开
+//                    //再修改为抬起时的正常图片
+//                    ((ImageButton)v).setImageDrawable(button_like.getResources().getDrawable(R.drawable.ic_like));
+//                }
+//                return false;
+//            }
+        //});
         }
 
         @Override
@@ -54,6 +90,7 @@ public class MomentsAdapter extends
 //            // Notify the adapter, that the data has changed so it can
 //            // update the RecyclerView to display the data.
 //            mAdapter.notifyDataSetChanged();
+
         }
     }
 
@@ -87,6 +124,9 @@ public class MomentsAdapter extends
         // Inflate an item view.
         View mItemView = mInflater.inflate(
                 R.layout.moment_list, parent, false);
+
+        //MomentsViewHolder momentsViewHolder=new MomentsViewHolder(mItemView,mOnItemClickListener)
+
         return new MomentsViewHolder(mItemView, this);
     }
 
@@ -122,7 +162,7 @@ public class MomentsAdapter extends
 //    @Override
 //    public int getItemViewType(int position) {
 //        return momment_List.get(position) != null ? VIEW_ITEM : VIEW_PROG;
-//    }
-
 }
+
+
 
