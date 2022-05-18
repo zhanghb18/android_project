@@ -12,12 +12,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import com.example.forum.user.UserApplication;
 import android.widget.Toast;
 
 public class PersonInfoPage extends AppCompatActivity {
 
     private TextView mIdContentView;
     private TextView mNicknameContentView;
+    private TextView mEmailContentView;
     public static final String EXTRA_MESSAGE = "content";
     public ActivityResultLauncher<Intent> intentActivityResultLauncher;
 
@@ -28,6 +30,10 @@ public class PersonInfoPage extends AppCompatActivity {
         setContentView(R.layout.activity_person_info_page);
         mIdContentView = findViewById(R.id.ID_content);
         mNicknameContentView = findViewById(R.id.nickname_content);
+        mEmailContentView = findViewById(R.id.email_content);
+        mIdContentView.setText(UserApplication.getUserID());
+        mNicknameContentView.setText(UserApplication.getNickname());
+        mEmailContentView.setText(UserApplication.getEmail());
         intentActivityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
             public void onActivityResult(ActivityResult result) {
