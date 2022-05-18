@@ -8,6 +8,7 @@ import com.tsinghua.course.Base.Model.User;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.*;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserOpt.LikeMomentInParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserOpt.PostMomentInParams;
+import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserOpt.UnlikeMomentInParams;
 import com.tsinghua.course.Frame.Util.FileUtil;
 import io.netty.handler.codec.http.multipart.MixedFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,12 +41,17 @@ public class MomentProcessor {
         System.out.println("CreateMomentByUser");
         String time = URLDecoder.decode(inParams.getPost_time(), "utf-8");
         Moment moment = new Moment(inParams.getEmail(), time);
+        String title = inParams.getTitle();
         String content = inParams.getContent();
 //        MixedFileUpload[] images = inParams.getImages();
 //        moment.setAvatar_url(userProcessor.getAvatarByUsername(inParams.getUsername()));
         if(content.length() >= 0 && content != null) {
             content = URLDecoder.decode(content, "UTF-8");
             moment.setContent(content);
+        }
+        if(title.length() >= 0 && title != null) {
+            title = URLDecoder.decode(title, "UTF-8");
+            moment.setTitle(title);
         }
 //        if(images != null && images.length > 0)
 //        {
@@ -92,6 +98,21 @@ public class MomentProcessor {
         }
     }
 
+    /* 动态取消点赞 */
+    public void unlikeMomentByEmail(UnlikeMomentInParams inParams) throws Exception {
+        Query query = new Query();
+        String time = URLDecoder.decode(inParams.getTime(), "utf-8");
+        query.addCriteria(Criteria.where("email").is(inParams.getPost_email())
+                .and("post_time").is(time));
+        Moment discover = mongoTemplate.findOne(query, Moment.class);
+        if (discover == null) {
+            throw new CourseWarn(UserWarnEnum.MOMENT_FAILED);
+        }
+        Update update = new Update();
+        update.pull("liked", inParams.getEmail());
+        mongoTemplate.updateFirst(query, update, Moment.class);
+    }
+
 //    /* 评论朋友圈或者回复评论 */
 //    public void CommentDiscoverByUsername(CommentDiscoverInParams inParams) throws Exception {
 //        Query query = new Query();
@@ -119,20 +140,7 @@ public class MomentProcessor {
 //        mongoTemplate.updateFirst(query, update, Discover.class);
 //    }
 //
-//    /* 取消朋友圈点赞 */
-//    public void unLikeDiscoverByUsername(UnLikeDiscoverInParams inParams) throws Exception {
-//        Query query = new Query();
-//        String time = URLDecoder.decode(inParams.getTime(), "utf-8");
-//        query.addCriteria(Criteria.where("username").is(inParams.getPost_username())
-//                .and("post_time").is(time));
-//        Discover discover = mongoTemplate.findOne(query, Discover.class);
-//        if (discover == null) {
-//            throw new CourseWarn(UserWarnEnum.INVALID_OPTION);
-//        }
-//        Update update = new Update();
-//        update.pull("liked", inParams.getUsername());
-//        mongoTemplate.updateFirst(query, update, Discover.class);
-//    }
+
 //    /* 删除评论/回复 */
 //    public void deleteCommentByUsername(DeleteCommentInParams inParams) throws Exception {
 //        Query query = new Query();

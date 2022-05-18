@@ -8,7 +8,9 @@ import android.widget.EditText;
 
 import com.example.forum.ForumActivity;
 import com.example.forum.R;
+import com.example.forum.network.User;
 import com.example.forum.ui.Person.PersonInfoPage;
+import com.example.forum.user.UserApplication;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -40,6 +42,7 @@ public class AddMomentsActivity extends AppCompatActivity {
         Intent intent = new Intent();
         String inputTitle = title.getText().toString();
         String inputContent = content.getText().toString();
+        User.PostMoment(view, UserApplication.getEmail(), inputTitle, inputContent);
         Bundle bundle = new Bundle();
         bundle.putString("title", inputTitle);
         bundle.putString("content", inputContent);

@@ -11,6 +11,8 @@ public class PostMomentInParams extends CommonInParams {
     @Required
     private String post_time;
 
+    private String title;
+
     private String content;
 
 //    private MixedFileUpload[] images;
@@ -22,6 +24,8 @@ public class PostMomentInParams extends CommonInParams {
     public String getContent() {
         return content;
     }
+
+    public String getTitle() { return title; }
 
 //    public MixedFileUpload[] getImages() {
 //        return images;
