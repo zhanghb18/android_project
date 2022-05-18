@@ -80,21 +80,25 @@
             android:layout_gravity="bottom|right"
             android:orientation="horizontal">
             <ImageButton
+                android:id="@+id/button_like"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/ic_like"
-                android:background="@color/white"/>
+                android:background="@color/white" />
             <TextView
+                android:id="@+id/text_like"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="点赞"/>
             <ImageButton
+                android:id="@+id/button_comment"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginLeft="15dp"
                 android:src="@drawable/ic_comment"
                 android:background="@color/white"/>
             <TextView
+                android:id="@+id/text_comment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="评论"/>
