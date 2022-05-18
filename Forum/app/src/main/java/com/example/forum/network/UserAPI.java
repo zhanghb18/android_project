@@ -15,6 +15,7 @@ import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 public interface UserAPI {
+    // User
     @GET("user/info")
     Call<ResponseBody> UserInfo(@Query("email") String email);
 
@@ -23,6 +24,14 @@ public interface UserAPI {
 
     @GET("user/password")
     Call<ResponseBody> Password(@Query("email") String email, @Query("password") String password);
+
+    // Moment
+    @GET("moment/post")
+    Call<ResponseBody> PostMoment(@Query("email") String email, @Query("content") String content, @Query("post_time")String post_time);
+
+
+
+
 
     @GET
     Call<ResponseBody> Avatar(@Url String url);
@@ -39,8 +48,6 @@ public interface UserAPI {
     @GET("test/file")
     Call<ResponseBody> FileTest(@Query("file") File file);
 
-    @GET("user/postdiscover")
-    Call<ResponseBody> PostDiscover(@Query("content") String content, @Query("post_time")String post_time);
 
     @GET("user/getdiscover")
     Call<ResponseBody> GetDiscover();

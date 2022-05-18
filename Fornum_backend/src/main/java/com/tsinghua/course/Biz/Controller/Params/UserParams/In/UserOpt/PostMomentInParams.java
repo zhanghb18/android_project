@@ -4,9 +4,8 @@ import com.tsinghua.course.Base.Annotation.BizType;
 import com.tsinghua.course.Base.Annotation.Required;
 import com.tsinghua.course.Base.Enum.BizTypeEnum;
 import com.tsinghua.course.Biz.Controller.Params.CommonInParams;
-import io.netty.handler.codec.http.multipart.MixedFileUpload;
 
-@BizType(BizTypeEnum.USER_POSTMOMENT)
+@BizType(BizTypeEnum.MOMENT_POST)
 public class PostMomentInParams extends CommonInParams {
     // 发布时间 yyyy-MM-dd HH:mm:ss
     @Required
