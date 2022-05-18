@@ -29,11 +29,11 @@ public class User {
 
     }
 
-    public static void UserInfo() {
+    public static void UserInfo(String email) {
         Retrofit retrofit = RetrofitUtil.getRetrofit();
         UserAPI service = retrofit.create(UserAPI.class);
         Log.d("User Info", "start");
-        Call<ResponseBody> call = service.UserInfo();
+        Call<ResponseBody> call = service.UserInfo(email);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
