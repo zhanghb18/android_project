@@ -1,14 +1,15 @@
 package com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserOpt;
 
 import com.tsinghua.course.Base.Annotation.BizType;
+import com.tsinghua.course.Base.Annotation.Required;
 import com.tsinghua.course.Base.Enum.BizTypeEnum;
 import com.tsinghua.course.Biz.Controller.Params.CommonInParams;
 import io.netty.handler.codec.http.multipart.MixedFileUpload;
-import org.springframework.beans.factory.annotation.Required;
 
 @BizType(BizTypeEnum.USER_POSTMOMENT)
 public class PostMomentInParams extends CommonInParams {
     // 发布时间 yyyy-MM-dd HH:mm:ss
+    @Required
     private String post_time;
 
     private String content;

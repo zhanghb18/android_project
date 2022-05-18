@@ -11,6 +11,7 @@ import com.tsinghua.course.Frame.Util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+@Component
 public class MomentController {
     @Autowired
     MomentProcessor momentProcessor;
