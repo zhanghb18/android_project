@@ -49,7 +49,8 @@ public class UserProcessor {
         if(mongoTemplate.findOne(query, User.class) != null)
             throw new CourseWarn(UserWarnEnum.EMAIL_DOUBLED);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        User new_user = new User(email, userID, nickname, encoded_password);
+        String aboutMe = "这个人很懒，什么也没有留下";
+        User new_user = new User(email, userID, nickname, encoded_password, aboutMe);
 //        User.Avatar avatar = new User.Avatar("default",
 //                "default", 100, "0",
 //                "http://42.193.117.251:80/2021-06-22/8191E0A6-F400-4E53-A6E3-6AAB3AC19A7A.jpeg");
@@ -83,7 +84,7 @@ public class UserProcessor {
     }
 
     /** 用户修改基本信息 */
-    public void modifyInfo(String email, String userID, String nickname) throws Exception {
+    public void modifyInfo(String email, String userID, String nickname, String aboutMe) throws Exception {
         // userID查重
         email = email.replace("@", "%40");
         Query query0 = new Query();
@@ -100,12 +101,14 @@ public class UserProcessor {
         User user = getUserByEmail(email);
         user.setUserID(userID);
         user.setNickname(nickname);
+        user.setAboutMe(aboutMe);
 
         Query query = new Query();
         query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email));
         Update update = new Update();
         update.set("userID", userID);
         update.set("nickname", nickname);
+        update.set("aboutMe", aboutMe);
         mongoTemplate.updateFirst(query, update, User.class);
     }
 }

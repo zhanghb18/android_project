@@ -42,12 +42,13 @@ public class User {
         public void setUrl(String u) { this.url = u; }
     }
 
-    public User(String email, String userID, String nickname, String password){
+    public User(String email, String userID, String nickname, String password, String aboutMe){
         this.email = email;
         this.userID = userID;
         this.nickname = nickname;
         this.password = password;
         this.userType = UserType.NORMAL;
+        this.aboutMe = aboutMe;
     }
 
     // mongodb唯一id
@@ -62,6 +63,8 @@ public class User {
     String password;
     // 用户类型
     UserType userType;
+    // 个人简介
+    String aboutMe;
     // 测试数组
     String[] testArr;
     // 测试对象
@@ -120,6 +123,10 @@ public class User {
         this.userType = userType;
     }
 
+    public String getAboutMe() { return aboutMe; }
+
+    public void setAboutMe(String a) { this.aboutMe = a; }
+
     public String[] getTestArr() {
         return testArr;
     }
@@ -150,6 +157,7 @@ public class User {
                 "email='" + decoded_email + '\'' +
                 ", userID='" + userID + '\'' +
                 ", nickname='" + nickname + '\'' +
+                ", aboutMe='" + aboutMe + '\'' +
                 ", time='" + time + '\'' +
                 '}';
     }

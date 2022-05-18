@@ -120,7 +120,7 @@ public class UserController {
         if (email == null) {
             throw new CourseWarn(UserWarnEnum.EMAIL_FAILED);
         }
-        userProcessor.modifyInfo(email, inParams.getUserID(), inParams.getNickname());
+        userProcessor.modifyInfo(email, inParams.getUserID(), inParams.getNickname(), inParams.getAboutMe());
         return new CommonOutParams(true);
     }
 }
