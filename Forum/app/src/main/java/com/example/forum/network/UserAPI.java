@@ -25,6 +25,7 @@ public interface UserAPI {
     @GET("user/password")
     Call<ResponseBody> Password(@Query("email") String email, @Query("password") String password);
 
+
     // Moment
     @GET("moment/post")
     Call<ResponseBody> PostNewMoment(@Query("email") String email, @Query("title") String title, @Query("content") String content, @Query("post_time")String post_time);
@@ -32,6 +33,8 @@ public interface UserAPI {
     @GET("moment/like")
     Call<ResponseBody> LikeMoment(@Query("email") String email, @Query("post_email")String post_email, @Query("time") String time);
 
+    @GET("moment/get")
+    Call<ResponseBody> GetMoments();
 
 
 
@@ -52,8 +55,7 @@ public interface UserAPI {
     Call<ResponseBody> FileTest(@Query("file") File file);
 
 
-    @GET("user/getdiscover")
-    Call<ResponseBody> GetDiscover();
+
 
 
     @GET("user/cancellike")

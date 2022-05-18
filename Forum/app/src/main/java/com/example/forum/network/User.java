@@ -21,6 +21,7 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -154,6 +155,51 @@ public class User {
             }
         });
     }
+
+    // 获取全部动态
+    public static String getMoments(View v) {
+        Retrofit retrofit = RetrofitUtil.getRetrofit();
+        UserAPI service = retrofit.create(UserAPI.class);
+        Call<ResponseBody> call = service.GetMoments();
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    JSONObject userInfoRes = GsonFunction.parseToJsonObject(response.body().string());
+                    if (userInfoRes.getBoolean("success")) {
+                        String tmp = userInfoRes.getString("discover");
+                        
+                        String[] discovers = tmp.split("Discover");
+//                        return discovers;
+                        LinkedList<DiscoverItem> items = new LinkedList<DiscoverItem>();
+                        for(String discover : discovers) {
+                            if(discover.endsWith(",")) discover = discover.substring(0, discover.length()-1);
+                            if(!discover.contains("{")) continue;
+                            DiscoverItem discoverItem = parser(discover);
+                            items.addFirst(discoverItem);
+                        }
+                        mData.setValue(items);
+                    }
+                    else {
+                        Snackbar.make(v, "Update Failed!", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                        return;
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Snackbar.make(v, "添加失败", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null)
+                        .show();
+            }
+        });
+    }
+
 
     // 用户发布动态
     public static void PostMoment(View v, String email, String title, String content) {

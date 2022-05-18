@@ -82,7 +82,12 @@ public class MomentProcessor {
         List<Moment> moments = mongoTemplate.find(query, Moment.class);
         String res = "";
         for (Moment moment : moments) {
-            res += moment.toString();
+            String cur_email = moment.getEmail();
+            Query query1 = new Query();
+            query1.addCriteria(Criteria.where(KeyConstant.EMAIL).is(cur_email));
+            String nickname = mongoTemplate.findOne(query1, User.class).getNickname();
+            String aboutMe = mongoTemplate.findOne(query1, User.class).getAboutMe();
+            res += moment.momentString(nickname, aboutMe);
         }
         return res;
     }
