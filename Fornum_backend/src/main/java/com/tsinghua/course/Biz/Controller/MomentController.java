@@ -48,6 +48,12 @@ public class MomentController {
         return new CommonOutParams(true);
     }
 
+    @BizType(BizTypeEnum.MOMENT_GET)
+    public CommonOutParams getMoments(CommonInParams inParams) throws Exception {
+        System.out.println("getMoments");
+        return new MomentOutParams(momentProcessor.getMoments());
+    }
+
 //
 //    @NeedLogin
 //    @BizType(BizTypeEnum.USER_COMMENTMOMENT)

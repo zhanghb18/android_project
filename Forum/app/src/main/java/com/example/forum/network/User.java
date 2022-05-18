@@ -192,6 +192,36 @@ public class User {
     // 用户点赞动态
     public static void likeMoment(View v, String email, String post_email, String time) {
 
+//        Retrofit retrofit = RetrofitUtil.getRetrofit();
+//        UserAPI service = retrofit.create(UserAPI.class);
+//        Call<ResponseBody> call = service.LikeMoment(email, post_email, time);
+//        call.enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                try {
+//                    JSONObject userInfoRes = GsonFunction.parseToJsonObject(response.body().string());
+//                    if (userInfoRes.getBoolean("success")) {
+//                        return;
+//                    }
+//                    else {
+//                        Snackbar.make(v, "Like Failed!", Snackbar.LENGTH_LONG)
+//                                .setAction("Action", null).show();
+//                        return;
+//                    }
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                Snackbar.make(v, "添加失败", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null)
+//                        .show();
+//            }
+//        });
+//
 //
 //        discover.setStarred();
 //        if(discover.getStarred()){
@@ -200,32 +230,7 @@ public class User {
 //            UserAPI service = retrofit.create(UserAPI.class);
 //            Call<ResponseBody> call = service.LikeMoment(holder.nickname.getText().toString(),
 //                    holder.discover_time.getText().toString());
-//            call.enqueue(new Callback<ResponseBody>() {
-//                @Override
-//                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                    try {
-//                        JSONObject userInfoRes = GsonFunction.parseToJsonObject(response.body().string());
-//                        if (userInfoRes.getBoolean("success")) {
-//                            return;
-//                        }
-//                        else {
-//                            Snackbar.make(v, "Like Failed!", Snackbar.LENGTH_LONG)
-//                                    .setAction("Action", null).show();
-//                            return;
-//                        }
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//                @Override
-//                public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                    Snackbar.make(v, "添加失败", Snackbar.LENGTH_LONG)
-//                            .setAction("Action", null)
-//                            .show();
-//                }
-//            });
+//
 //        }
 //        else{
 //            holder.starred.setImageResource(android.R.drawable.star_big_off);
