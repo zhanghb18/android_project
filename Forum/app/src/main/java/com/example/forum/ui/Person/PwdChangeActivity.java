@@ -44,6 +44,7 @@ public class PwdChangeActivity extends AppCompatActivity {
                     Snackbar.make(view, "密码格式不正确", Snackbar.LENGTH_SHORT).show();
                 }
                 else {
+                    User.Password(UserApplication.getEmail(),mnewPwdText.getText().toString());
                     Intent intent = new Intent(PwdChangeActivity.this, PersonInfoPage.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);

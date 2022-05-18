@@ -138,11 +138,23 @@
                 android:textSize="20sp"
                 android:gravity="center_vertical" />
         </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:textSize="20sp"
+            android:text="个人简介"/>
+
+        <EditText
+            android:id="@+id/person_info"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/white"/>
     </LinearLayout>
 
     <LinearLayout
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="100dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import com.example.forum.user.UserApplication;
+import com.example.forum.network.User;
 import android.widget.Toast;
 
 public class PersonInfoPage extends AppCompatActivity {
@@ -21,7 +22,9 @@ public class PersonInfoPage extends AppCompatActivity {
     private TextView mIdContentView;
     private TextView mNicknameContentView;
     private TextView mEmailContentView;
+    private TextView mPersonInfoView;
     private Button mChangePwdButton;
+    private Button mContentChangeButton;
     public static final String EXTRA_MESSAGE = "content";
     public ActivityResultLauncher<Intent> intentActivityResultLauncher;
 
@@ -33,10 +36,13 @@ public class PersonInfoPage extends AppCompatActivity {
         mIdContentView = findViewById(R.id.ID_content);
         mNicknameContentView = findViewById(R.id.nickname_content);
         mEmailContentView = findViewById(R.id.email_content);
+        mPersonInfoView = findViewById(R.id.person_info);
         mChangePwdButton = findViewById(R.id.change_pwd);
+        mContentChangeButton = findViewById(R.id.save_button);
         mIdContentView.setText(UserApplication.getUserID());
         mNicknameContentView.setText(UserApplication.getNickname());
         mEmailContentView.setText(UserApplication.getEmail());
+        
         intentActivityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
             public void onActivityResult(ActivityResult result) {
@@ -60,6 +66,13 @@ public class PersonInfoPage extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(PersonInfoPage.this, PwdConfirmActivity.class);
                 startActivity(intent);
+            }
+        });
+        mContentChangeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                User.ModifyInfo(view,UserApplication.getEmail(),mIdContentView.getText().toString(),mNicknameContentView.getText().toString());
+                User.UserInfo(UserApplication.getEmail());
             }
         });
     }
