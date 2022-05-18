@@ -41,13 +41,18 @@ public class User {
                     JSONObject userInfoRes = GsonFunction.parseToJsonObject(response.body().string());
                     Log.d("nickname", "success");
                     if(userInfoRes.getBoolean("success")) {
+                        System.out.println("userInfo");
+                        System.out.println(userInfoRes.getString("userInfo"));
                         String str = userInfoRes.getString("userInfo").substring(4);
+                        System.out.println(str);
                         JSONObject userInfo = GsonFunction.parseToJsonObject(str);
+                        System.out.println(userInfo);
                         UserApplication.setUserID(userInfo.getString("userID"));
                         UserApplication.setNickname(userInfo.getString("nickname"));
                         UserApplication.setEmail(userInfo.getString("email"));
                         UserApplication.setAvatar_url(userInfoRes.getString("avatar"));
                         UserApplication.setAboutMe(userInfoRes.getString("aboutMe"));
+                        System.out.println(userInfoRes.getString("aboutMe"));
                         String avatar_url = userInfoRes.getString("avatar");
                         Call<ResponseBody> avatar_call = service.Avatar(avatar_url);
                         avatar_call.enqueue(new Callback<ResponseBody>() {

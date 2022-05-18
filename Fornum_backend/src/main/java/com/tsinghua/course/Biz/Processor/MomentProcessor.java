@@ -6,6 +6,7 @@ import com.tsinghua.course.Base.Error.UserWarnEnum;
 import com.tsinghua.course.Base.Model.Moment;
 import com.tsinghua.course.Base.Model.User;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.*;
+import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserOpt.LikeMomentInParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserOpt.PostMomentInParams;
 import com.tsinghua.course.Frame.Util.FileUtil;
 import io.netty.handler.codec.http.multipart.MixedFileUpload;
@@ -56,26 +57,40 @@ public class MomentProcessor {
 //        }
         mongoTemplate.insert(moment);
     }
-//    /* 点赞朋友圈 */
-//    public void LikeDiscoverByUsername(LikeDiscoverInParams inParams) throws Exception {
-//        Query query = new Query();
-//        String time = URLDecoder.decode(inParams.getTime(), "utf-8");
-//        query.addCriteria(Criteria.where("username").is(inParams.getPost_username())
-//                .and("post_time").is(time));
-//        Discover discover = mongoTemplate.findOne(query, Discover.class);
-//        if (discover == null) {
-//            throw new CourseWarn(UserWarnEnum.INVALID_OPTION);
-//        }
-//        // 检查是否已经点赞
-//        if( discover.ifliked(inParams.getUsername())) {
-//            return;
-//        }
-//        else {
-//            Update update = new Update();
-//            update.push("liked", inParams.getUsername());
-//            mongoTemplate.updateFirst(query, update, Discover.class);
-//        }
-//    }
+
+    /* 获取某用户的动态列表 */
+    public String getPersonalMomentByEmail(String email) throws Exception{
+        Query query = new Query();
+        query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email));
+        List<Moment> moments = mongoTemplate.find(query, Moment.class);
+        String res = "";
+        for (Moment moment : moments) {
+            res += moment.toString();
+        }
+        return res;
+    }
+
+    /* 动态点赞 */
+    public void LikeMoment(LikeMomentInParams inParams) throws Exception {
+        System.out.println("LikeMoment");
+        Query query = new Query();
+        String time = URLDecoder.decode(inParams.getTime(), "utf-8");
+        query.addCriteria(Criteria.where("email").is(inParams.getPost_email())
+                .and("post_time").is(time));
+        Moment moment = mongoTemplate.findOne(query, Moment.class);
+        if (moment == null) {
+            throw new CourseWarn(UserWarnEnum.MOMENT_FAILED);
+        }
+        // 检查是否已经点赞
+        if( moment.ifliked(inParams.getEmail())) {
+            return;
+        }
+        else {
+            Update update = new Update();
+            update.push("liked", inParams.getEmail());
+            mongoTemplate.updateFirst(query, update, Moment.class);
+        }
+    }
 
 //    /* 评论朋友圈或者回复评论 */
 //    public void CommentDiscoverByUsername(CommentDiscoverInParams inParams) throws Exception {
@@ -137,17 +152,5 @@ public class MomentProcessor {
 //        mongoTemplate.updateFirst(query, update, Discover.class);
 //    }
 //
-//    /* 获取用户的好友朋友圈 */
-//    public String getDiscoverByUsername(String username) throws Exception{
-//        String[] contacts = userProcessor.getContactsByUsername(username);
-//        Criteria criteria = new Criteria();
-//        criteria.orOperator(Criteria.where(KeyConstant.USERNAME).is(username), Criteria.where(KeyConstant.USERNAME).in(contacts));
-//        Query query = new Query(criteria);
-//        List<Discover> discovers = mongoTemplate.find(query, Discover.class);
-//        String res = "";
-//        for (Discover discover : discovers) {
-//            res += discover.toString();
-//        }
-//        return res;
-//    }
+//
 }

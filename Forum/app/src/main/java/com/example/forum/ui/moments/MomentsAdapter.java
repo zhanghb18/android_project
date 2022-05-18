@@ -27,6 +27,7 @@ public class MomentsAdapter extends
     class MomentsViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
         public final TextView content_view;
+        public final TextView title_view;
         final MomentsAdapter mAdapter;
         private AdapterView.OnItemClickListener mOnItemClickListener;
         boolean like_flag=false;
@@ -42,6 +43,7 @@ public class MomentsAdapter extends
         public MomentsViewHolder(View itemView, MomentsAdapter adapter) {
             super(itemView);
             content_view = itemView.findViewById(R.id.content);
+            title_view = itemView.findViewById(R.id.title);
             this.mAdapter = adapter;
             itemView.setOnClickListener(this);
             ImageButton button_like=itemView.findViewById(R.id.button_like);
@@ -62,19 +64,6 @@ public class MomentsAdapter extends
                     }
                 }
             });
-//            button_like.setOnTouchListener(new View.OnTouchListener(){
-//            public boolean onTouch(View v, MotionEvent event) {
-//                //点击
-//                if(event.getAction() == MotionEvent.ACTION_DOWN){
-//                    //重新设置按下时的背景图片
-//                    ((ImageButton)v).setImageDrawable(button_like.getResources().getDrawable(R.drawable.ic_liked));
-//                }else if(event.getAction() == MotionEvent.ACTION_UP){ //松开
-//                    //再修改为抬起时的正常图片
-//                    ((ImageButton)v).setImageDrawable(button_like.getResources().getDrawable(R.drawable.ic_like));
-//                }
-//                return false;
-//            }
-        //});
         }
 
         @Override
@@ -146,8 +135,9 @@ public class MomentsAdapter extends
         // Retrieve the data for that position.
 //        String mCurrent = mWordList.get(position);
         // Add the data to the view holder.
-        SingleMoment momment=momment_List.get(position);
-        holder.content_view.setText(momment.content);
+        SingleMoment moment=momment_List.get(position);
+        holder.title_view.setText(moment.title);
+        holder.content_view.setText(moment.content);
     }
 
     /**

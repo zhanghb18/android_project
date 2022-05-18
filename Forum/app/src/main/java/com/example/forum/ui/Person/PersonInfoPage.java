@@ -42,6 +42,7 @@ public class PersonInfoPage extends AppCompatActivity {
         mIdContentView.setText(UserApplication.getUserID());
         mNicknameContentView.setText(UserApplication.getNickname());
         mEmailContentView.setText(UserApplication.getEmail());
+        System.out.println(UserApplication.getAboutMe());
         mPersonInfoView.setText(UserApplication.getAboutMe());
         
         intentActivityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {

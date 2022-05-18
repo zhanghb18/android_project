@@ -2,6 +2,7 @@ package com.tsinghua.course.Base.Model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Arrays;
 import java.util.Map;
 
 public class Moment {
@@ -62,7 +63,7 @@ public class Moment {
     // 文本内容
     String content;
 
-    // 点赞的用户
+    // 点赞的用户（邮箱列表）
     String[] liked;
 
     // 评论记录
@@ -108,10 +109,10 @@ public class Moment {
         this.images = images;
     }
 
-    public boolean ifliked(String username) {
+    public boolean ifliked(String email) {
         if(liked != null) {
             for(int i = 0; i < liked.length; i++) {
-                if (liked[i].equals(username)) return true;
+                if (liked[i].equals(email)) return true;
             }
         }
         return false;
@@ -125,16 +126,16 @@ public class Moment {
         return avatar_url;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Discover{" +
-//                "username='" + username + '\'' +
-//                ", post_time='" + post_time + '\'' +
-//                ", images=" + Arrays.toString(images) +
-//                ", content='" + content + '\'' +
-//                ", liked=" + Arrays.toString(liked) +
-//                ", commentList=" + Arrays.toString(commentList) +
-//                ", avatar_url='" + avatar_url + '\'' +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "Moment{" +
+                "email='" + email + '\'' +
+                ", post_time='" + post_time + '\'' +
+                ", images=" + Arrays.toString(images) +
+                ", content='" + content + '\'' +
+                ", liked=" + Arrays.toString(liked) +
+                ", commentList=" + Arrays.toString(commentList) +
+                ", avatar_url='" + avatar_url + '\'' +
+                '}';
+    }
 }
