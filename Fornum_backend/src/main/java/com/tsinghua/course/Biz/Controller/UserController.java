@@ -1,13 +1,16 @@
 package com.tsinghua.course.Biz.Controller;
 
 import com.tsinghua.course.Base.Annotation.BizType;
+import com.tsinghua.course.Base.Annotation.NeedLogin;
 import com.tsinghua.course.Base.Enum.BizTypeEnum;
 import com.tsinghua.course.Base.Error.CourseWarn;
 import com.tsinghua.course.Base.Error.UserWarnEnum;
 import com.tsinghua.course.Base.Model.User;
+import com.tsinghua.course.Biz.Controller.Params.CommonInParams;
 import com.tsinghua.course.Biz.Controller.Params.CommonOutParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.LoginInParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserUtil.SignUpParams;
+import com.tsinghua.course.Biz.Controller.Params.UserParams.Out.UserInfoOutParams;
 import com.tsinghua.course.Biz.Processor.UserProcessor;
 import com.tsinghua.course.Frame.Util.*;
 import io.netty.channel.ChannelHandlerContext;
@@ -79,4 +82,20 @@ public class UserController {
         return new CommonOutParams(true);
     }
 
+    /** 获取用户信息 */
+//    @NeedLogin
+    @BizType(BizTypeEnum.USER_INFO)
+    public UserInfoOutParams userInfo(CommonInParams inParams) throws Exception {
+        System.out.println("userInfo");
+        UserInfoOutParams res = null;
+        if (inParams.getEmail() != null) {
+            System.out.println(inParams.getEmail());
+            res = userProcessor.getUserInfo(inParams.getEmail());
+            return res;
+        }
+        else {
+            System.out.println("null");
+            throw new CourseWarn(UserWarnEnum.EMAIL_FAILED);
+        }
+    }
 }
