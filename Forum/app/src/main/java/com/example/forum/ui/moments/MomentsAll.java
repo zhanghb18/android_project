@@ -3,16 +3,10 @@ package com.example.forum.ui.moments;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Layout;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.forum.user.UserApplication;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -22,11 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.forum.ForumActivity;
 import com.example.forum.R;
-import com.example.forum.ui.Person.PersonInfoChangePage;
-import com.example.forum.ui.Person.PersonInfoPage;
-import com.example.forum.ui.Person.PwdConfirmActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -60,11 +50,8 @@ public class MomentsAll extends Fragment {
                 if (result.getData() != null && result.getResultCode() == Activity.RESULT_OK) {
                     Bundle message = result.getData().getExtras();
                     System.out.println(message);
-                    //Bundle bundle = intent.getExtras();
                     String title = message.getString("title");
-                    //Log.d(LOG_TAG, title);
                     String content = message.getString("content");
-                    //Log.d(LOG_TAG, content);
                     System.out.println("bundle");
                     System.out.println(title);
                     System.out.println(content);

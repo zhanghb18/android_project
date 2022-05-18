@@ -36,6 +36,7 @@ public class MomentsAdapter extends
             implements View.OnClickListener {
         public final TextView content_view;
         public final TextView title_view;
+        public final TextView nickname_view;
         final MomentsAdapter mAdapter;
         private AdapterView.OnItemClickListener mOnItemClickListener;
         boolean like_flag=false;
@@ -51,8 +52,9 @@ public class MomentsAdapter extends
          */
         public MomentsViewHolder(View itemView, MomentsAdapter adapter) {
             super(itemView);
-            content_view = itemView.findViewById(R.id.content);
-            title_view = itemView.findViewById(R.id.title);
+            content_view = itemView.findViewById(R.id.moment_content);
+            title_view = itemView.findViewById(R.id.moment_title);
+            nickname_view=itemView.findViewById(R.id.moment_nickname);
             this.mAdapter = adapter;
             itemView.setOnClickListener(this);
             ImageButton button_like=itemView.findViewById(R.id.button_like);
@@ -171,6 +173,7 @@ public class MomentsAdapter extends
         SingleMoment moment=momment_List.get(position);
         holder.title_view.setText(moment.title);
         holder.content_view.setText(moment.content);
+        holder.nickname_view.setText(UserApplication.getNickname());
     }
 
     /**
