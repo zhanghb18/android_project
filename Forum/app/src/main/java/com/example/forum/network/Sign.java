@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 
 //import com.example.forum.ui.SeinoActivity;
+import com.example.forum.ForumActivity;
 import com.example.forum.user.UserApplication;
 import com.example.forum.bean.GsonFunction;
 import com.google.android.material.snackbar.Snackbar;
@@ -29,20 +30,25 @@ public class Sign {
         Retrofit retrofit = RetrofitUtil.getRetrofit();
         SignAPI service = retrofit.create(SignAPI.class);
 //        Log.d("Login", String.valueOf(android.os.Process.myTid()));
+//        System.out.println(email);
+//        System.out.println(password);
         Call<ResponseBody> call = service.SignIn(email, password);
+//        System.out.println(call);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
                     JSONObject signInRes = GsonFunction.parseToJsonObject(response.body().string());
+                    System.out.println(signInRes);
                     if (signInRes.getBoolean("success")) {
+                        System.out.println("success");
                         Log.d("Login Response", String.valueOf(android.os.Process.myTid()));
                         Thread.sleep(1000);
                         User.UserInfo(email);
 //                        UserApplication.setUsername(username);
                         UserApplication.setPassword(password);
-//                        Intent intent = new Intent(context, SeinoActivity.class);
-//                        context.startActivity(intent);
+                        Intent intent = new Intent(context, ForumActivity.class);
+                        context.startActivity(intent);
                     } else {
                         Snackbar.make(view, "账户不存在或密码错误", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null)
@@ -74,6 +80,7 @@ public class Sign {
                 try {
                     JSONObject signUpRes = GsonFunction.parseToJsonObject(response.body().string());
                     if (signUpRes.getBoolean("success")) {
+                        System.out.println("注册成功");
                         Login(context, view, email, password);
                     } else {
                         Snackbar.make(view, "注册失败，请稍后重试", Snackbar.LENGTH_LONG).show();
