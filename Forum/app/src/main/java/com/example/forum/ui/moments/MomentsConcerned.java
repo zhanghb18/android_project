@@ -35,8 +35,8 @@ public class MomentsConcerned extends Fragment {
             SingleMoment moment = new SingleMoment();
             moment.content = "内容" + i;
             momentList.add(moment);
-            System.out.println("?????????????????????????");
-            System.out.println(moment.content);
+            //System.out.println("?????????????????????????");
+            //System.out.println(moment.content);
         }
         // Inflate the layout for this fragment.
         return view;
