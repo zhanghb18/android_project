@@ -9,19 +9,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-//import androidx.viewpager.widget.PagerAdapter;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.forum.databinding.FragmentMomentsBinding;
 import com.google.android.material.tabs.TabLayout;
 
 import com.example.forum.R;
-import com.example.forum.ui.moments.PagerAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MomentsFragment extends Fragment {
 
@@ -64,6 +57,8 @@ public class MomentsFragment extends Fragment {
                     public void onTabReselected(TabLayout.Tab tab) {
                     }
                 });
+
+
 
         return root;
     }
