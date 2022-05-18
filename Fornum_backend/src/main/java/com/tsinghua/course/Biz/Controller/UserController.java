@@ -9,6 +9,8 @@ import com.tsinghua.course.Base.Model.User;
 import com.tsinghua.course.Biz.Controller.Params.CommonInParams;
 import com.tsinghua.course.Biz.Controller.Params.CommonOutParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.LoginInParams;
+import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserInfo.InfoParams;
+import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserInfo.PasswordParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserUtil.SignUpParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.Out.UserInfoOutParams;
 import com.tsinghua.course.Biz.Processor.UserProcessor;
@@ -39,7 +41,6 @@ public class UserController {
         String email = inParams.getEmail();
         if (email == null)
             throw new CourseWarn(UserWarnEnum.LOGIN_FAILED);
-        email = email.replace("@", "%40");
         User user = userProcessor.getUserByEmail(email);
         if (user == null || !passwordEncoder.matches(inParams.getPassword(), user.getPassword()))
             throw new CourseWarn(UserWarnEnum.LOGIN_FAILED);
@@ -97,5 +98,29 @@ public class UserController {
             System.out.println("null");
             throw new CourseWarn(UserWarnEnum.EMAIL_FAILED);
         }
+    }
+
+    /** 用户修改密码 */
+    @BizType(BizTypeEnum.USER_PASSWORD)
+    public CommonOutParams userPassword(PasswordParams inParams) throws Exception {
+        System.out.println("userPassword");
+        String email = inParams.getEmail();
+        if (email == null) {
+            throw new CourseWarn(UserWarnEnum.EMAIL_FAILED);
+        }
+        userProcessor.modifyPassword(email, inParams.getPassword());
+        return new CommonOutParams(true);
+    }
+
+    /** 用户修改基本信息 */
+    @BizType(BizTypeEnum.USER_MODIFYINFO)
+    public CommonOutParams userModifyInfo(InfoParams inParams) throws Exception {
+        System.out.println("userModifyInfo");
+        String email = inParams.getEmail();
+        if (email == null) {
+            throw new CourseWarn(UserWarnEnum.EMAIL_FAILED);
+        }
+        userProcessor.modifyInfo(email, inParams.getUserID(), inParams.getNickname());
+        return new CommonOutParams(true);
     }
 }

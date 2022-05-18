@@ -145,8 +145,9 @@ public class User {
     }
 
     public String infoString() {
+        String decoded_email = email.replace("%40", "@");
         return "User{" +
-                "email='" + email + '\'' +
+                "email='" + decoded_email + '\'' +
                 ", userID='" + userID + '\'' +
                 ", nickname='" + nickname + '\'' +
                 ", time='" + time + '\'' +
