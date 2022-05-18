@@ -55,7 +55,7 @@
             android:textColor="#1d9bf0"
             android:text="关注"
             app:cornerRadius="20dp"
-            app:backgroundTint="@color/white"
+            app:backgroundTint="#ffffff"
             app:strokeColor="#1d9bf0"
             app:strokeWidth="1dp"/>
 
