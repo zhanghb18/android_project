@@ -21,6 +21,12 @@
         android:theme="@style/Theme.Forum"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.Person.PwdChangeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Person.PwdConfirmActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.Person.PersonInfoChangePage"
             android:exported="false" />
         <activity
