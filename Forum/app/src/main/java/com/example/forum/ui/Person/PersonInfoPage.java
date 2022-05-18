@@ -42,7 +42,8 @@ public class PersonInfoPage extends AppCompatActivity {
         mIdContentView.setText(UserApplication.getUserID());
         mNicknameContentView.setText(UserApplication.getNickname());
         mEmailContentView.setText(UserApplication.getEmail());
-
+        mPersonInfoView.setText(UserApplication.getAboutMe());
+        
         intentActivityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
             public void onActivityResult(ActivityResult result) {
@@ -71,7 +72,7 @@ public class PersonInfoPage extends AppCompatActivity {
         mContentChangeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                User.ModifyInfo(view,UserApplication.getEmail(),mIdContentView.getText().toString(),mNicknameContentView.getText().toString());
+                User.ModifyInfo(view,UserApplication.getEmail(),mIdContentView.getText().toString(),mNicknameContentView.getText().toString(), mPersonInfoView.getText().toString());
                 User.UserInfo(UserApplication.getEmail());
             }
         });

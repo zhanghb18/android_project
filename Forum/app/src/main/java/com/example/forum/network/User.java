@@ -47,6 +47,7 @@ public class User {
                         UserApplication.setNickname(userInfo.getString("nickname"));
                         UserApplication.setEmail(userInfo.getString("email"));
                         UserApplication.setAvatar_url(userInfoRes.getString("avatar"));
+                        UserApplication.setAboutMe(userInfoRes.getString("aboutMe"));
                         String avatar_url = userInfoRes.getString("avatar");
                         Call<ResponseBody> avatar_call = service.Avatar(avatar_url);
                         avatar_call.enqueue(new Callback<ResponseBody>() {
@@ -82,7 +83,7 @@ public class User {
         });
     }
 
-    public static void ModifyInfo(View view,String email, String userID, String nickname) {
+    public static void ModifyInfo(View view,String email, String userID, String nickname, String aboutMe) {
         Retrofit retrofit = RetrofitUtil.getRetrofit();
         UserAPI service = retrofit.create(UserAPI.class);
         Call<ResponseBody> call = service.UserModifyInfo(email, userID, nickname);

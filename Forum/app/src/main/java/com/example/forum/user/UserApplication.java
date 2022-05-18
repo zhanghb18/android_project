@@ -14,6 +14,7 @@ public class UserApplication extends Application {
     private static String nickname;
     private static String signinfo;
     private static String password;
+    private static String aboutMe;
     private static String avatar_url;
     private static Bitmap avatar;
 
@@ -34,6 +35,8 @@ public class UserApplication extends Application {
     public static String getNickname() {
         return nickname;
     }
+
+    public static String getAboutMe() { return aboutMe; }
 
     public static String getAvatar_url() {
         return avatar_url;
@@ -60,6 +63,8 @@ public class UserApplication extends Application {
     public static void setNickname(String nickname) {
         UserApplication.nickname = nickname;
     }
+
+    public static void setAboutMe(String a) { UserApplication.aboutMe = a; }
 
     public static void setAvatar_url(String url) {
         UserApplication.avatar_url = url;

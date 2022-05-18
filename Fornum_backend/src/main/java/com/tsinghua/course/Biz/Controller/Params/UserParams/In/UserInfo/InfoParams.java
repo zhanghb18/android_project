@@ -10,7 +10,12 @@ public class InfoParams extends CommonInParams {
     @Required
     private String nickname;
 
+    private String aboutMe;
+
     public String getNickname() { return nickname; }
     public void setNickname(String n) { this.nickname = n; }
+
+    public String getAboutMe() { return aboutMe; }
+    public void setAboutMe(String a) { this.aboutMe = a; }
 
 }
