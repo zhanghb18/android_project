@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.forum.databinding.FragmentHomeBinding;
+import com.example.forum.ui.PersonalPage.PersonHomeActivity;
 
 public class HomeFragment extends Fragment {
 
@@ -46,6 +47,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), PersonInfoPage.class);
+                getContext().startActivity(intent);
+            }
+        });
+        view.findViewById(R.id.person_activity).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), PersonHomeActivity.class);
                 getContext().startActivity(intent);
             }
         });
