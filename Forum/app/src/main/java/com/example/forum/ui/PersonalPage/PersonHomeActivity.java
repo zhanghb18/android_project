@@ -34,7 +34,6 @@ public class PersonHomeActivity extends AppCompatActivity {
             SingleMoment moment = new SingleMoment();
             moment.content = "内容" + i;
             momentList.add(moment);
-            System.out.println("?????????????????????????");
             System.out.println(moment.content);
         }
     }
