@@ -22,9 +22,9 @@ import com.example.forum.ui.PersonalPage.OtherHomeActivity;
 import com.example.forum.ui.PersonalPage.PersonHomeActivity;
 import com.example.forum.user.UserApplication;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import kotlin.io.LineReader;
 
 
 public class MomentsAdapter extends
@@ -45,9 +45,14 @@ public class MomentsAdapter extends
         public static final String EXTRA_MESSAGE = "content";
         LinearLayout box_like;
         LinearLayout box_share;
+        LinearLayout box_like_list=itemView.findViewById(R.id.like_list_box);
         ImageButton button_like=itemView.findViewById(R.id.button_like);
         TextView text_like=itemView.findViewById(R.id.text_like);
         ImageButton button_share=itemView.findViewById(R.id.button_share);
+        ImageView img_like_list=itemView.findViewById(R.id.img_like_list);
+        TextView text_like_list=itemView.findViewById(R.id.like_list);
+//        List like_list=new ArrayList<String>();
+        String like_list="";
 
         /**
          * Creates a new custom view holder to hold the view to display in
@@ -81,9 +86,6 @@ public class MomentsAdapter extends
                 public void onClick(View view) {
                     int mPosition = getLayoutPosition();
                     String cur_email = moment_list.get(mPosition).email;
-//                    System.out.println("**********");
-//                    System.out.println(cur_email);
-//                    System.out.println(UserApplication.getEmail());
                     if(UserApplication.getEmail()==cur_email){
                         Intent intent=new Intent(context,PersonHomeActivity.class);
                         intent.putExtra(cur_email,EXTRA_MESSAGE);
@@ -105,13 +107,29 @@ public class MomentsAdapter extends
             public void onClick(View view) {
                 System.out.println("clicked like");
                 if(like_flag==false){
+                    String cur_email;
+                    cur_email=UserApplication.getEmail();
                     text_like.setText("取消点赞");
                     button_like.setImageDrawable(button_like.getResources().getDrawable(R.drawable.ic_liked));
+                    if(like_list.length()==0){
+                        System.out.println("list有了");
+                        box_like_list.setVisibility(View.VISIBLE);
+                    }
+                    like_list=like_list+"enenen";
+                    System.out.println(like_list);
+                    text_like_list.setText(like_list);
                     like_flag=true;
                 }
                 else {
                     text_like.setText("点赞");
                     button_like.setImageDrawable(button_like.getResources().getDrawable(R.drawable.ic_like));
+                    like_list=like_list.replaceAll("enenen","");
+                    System.out.println("取消点赞");
+                    System.out.println(like_list);
+                    if(like_list.length()==0){
+                        System.out.println("list空了");
+                        box_like_list.setVisibility(View.GONE);
+                    }
                     like_flag=false;
                 }
             }
