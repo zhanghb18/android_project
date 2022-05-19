@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.core.app.ShareCompat;
@@ -22,6 +23,8 @@ import com.example.forum.ui.PersonalPage.PersonHomeActivity;
 import com.example.forum.user.UserApplication;
 
 import java.util.List;
+
+import kotlin.io.LineReader;
 
 
 public class MomentsAdapter extends
@@ -40,6 +43,11 @@ public class MomentsAdapter extends
         private AdapterView.OnItemClickListener mOnItemClickListener;
         boolean like_flag=false;
         public static final String EXTRA_MESSAGE = "content";
+        LinearLayout box_like;
+        LinearLayout box_share;
+        ImageButton button_like=itemView.findViewById(R.id.button_like);
+        TextView text_like=itemView.findViewById(R.id.text_like);
+        ImageButton button_share=itemView.findViewById(R.id.button_share);
 
         /**
          * Creates a new custom view holder to hold the view to display in
@@ -56,43 +64,16 @@ public class MomentsAdapter extends
             nickname_view=itemView.findViewById(R.id.moment_nickname);
             this.mAdapter = adapter;
             itemView.setOnClickListener(this);
-            //点赞功能
-            ImageButton button_like=itemView.findViewById(R.id.button_like);
-            TextView text_like=itemView.findViewById(R.id.text_like);
-            button_like.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    System.out.println("clicked like");
-                    if(like_flag==false){
-                        text_like.setText("取消点赞");
-                        button_like.setImageDrawable(button_like.getResources().getDrawable(R.drawable.ic_liked));
-                        like_flag=true;
-                    }
-                    else {
-                        text_like.setText("点赞");
-                        button_like.setImageDrawable(button_like.getResources().getDrawable(R.drawable.ic_like));
-                        like_flag=false;
-                    }
-                }
-            });
+            box_like=itemView.findViewById(R.id.box_like);
+            box_like.setClickable(true);
+            box_like.setOnClickListener(like_click);
 
-            //分享功能
-            ImageButton button_share=itemView.findViewById(R.id.button_share);
-            button_share.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int mPosition = getLayoutPosition();
-                    System.out.println("clicked share");
-                    String share_title= moment_list.get(mPosition).title;
-                    String share_content=moment_list.get(mPosition).content;
-                    String mimeType = "text/plain";
-                    ShareCompat.IntentBuilder
-                            .from((Activity)view.getContext())
-                            .setType(mimeType)
-                            .setText(share_title+'\n'+share_content)
-                            .startChooser();
-                }
-            });
+            box_share=itemView.findViewById(R.id.box_share);
+            box_share.setClickable(true);
+            box_share.setOnClickListener(share_click);
+
+            //评论功能
+
             //点击头像进入个人主页
             ImageView imageView=itemView.findViewById(R.id.moment_all_avator);
             imageView.setOnClickListener(new View.OnClickListener() {
@@ -117,6 +98,41 @@ public class MomentsAdapter extends
                 }
             });
         }
+
+        //点赞
+        public View.OnClickListener like_click=new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("clicked like");
+                if(like_flag==false){
+                    text_like.setText("取消点赞");
+                    button_like.setImageDrawable(button_like.getResources().getDrawable(R.drawable.ic_liked));
+                    like_flag=true;
+                }
+                else {
+                    text_like.setText("点赞");
+                    button_like.setImageDrawable(button_like.getResources().getDrawable(R.drawable.ic_like));
+                    like_flag=false;
+                }
+            }
+        };
+
+        //分享
+        public View.OnClickListener share_click=new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int mPosition = getLayoutPosition();
+                System.out.println("clicked share");
+                String share_title= moment_list.get(mPosition).title;
+                String share_content=moment_list.get(mPosition).content;
+                String mimeType = "text/plain";
+                ShareCompat.IntentBuilder
+                        .from((Activity)view.getContext())
+                        .setType(mimeType)
+                        .setText(share_title+'\n'+share_content)
+                        .startChooser();
+            }
+        };
 
         @Override
         public void onClick(View view) {
