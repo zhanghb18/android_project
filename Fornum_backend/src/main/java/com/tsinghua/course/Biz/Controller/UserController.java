@@ -11,6 +11,7 @@ import com.tsinghua.course.Biz.Controller.Params.CommonOutParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.LoginInParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserInfo.InfoParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserInfo.PasswordParams;
+import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserOpt.StarAddInParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserUtil.SignUpParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.Out.UserInfoOutParams;
 import com.tsinghua.course.Biz.Processor.UserProcessor;
@@ -121,6 +122,14 @@ public class UserController {
             throw new CourseWarn(UserWarnEnum.EMAIL_FAILED);
         }
         userProcessor.modifyInfo(email, inParams.getUserID(), inParams.getNickname(), inParams.getAboutMe());
+        return new CommonOutParams(true);
+    }
+
+    /** 用户关注 */
+//    @NeedLogin
+    @BizType(BizTypeEnum.USER_ADDSTAR)
+    public CommonOutParams userAddContact(StarAddInParams inParams) throws Exception {
+        userProcessor.addStar(inParams.getEmail(), inParams.getStar_email());
         return new CommonOutParams(true);
     }
 }

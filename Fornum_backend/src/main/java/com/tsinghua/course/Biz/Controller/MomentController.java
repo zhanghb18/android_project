@@ -54,22 +54,19 @@ public class MomentController {
         return new MomentOutParams(momentProcessor.getMoments());
     }
 
-//
 //    @NeedLogin
-//    @BizType(BizTypeEnum.USER_COMMENTMOMENT)
-//    public CommonOutParams commentDiscover(CommentDiscoverInParams inParams) throws Exception {
-//        momentProcessor.CommentDiscoverByUsername(inParams);
-//        return new CommonOutParams(true);
-//    }
-//
+    @BizType(BizTypeEnum.MOMENT_COMMENT)
+    public CommonOutParams commentMoment(CommentMomentInParams inParams) throws Exception {
+        momentProcessor.CommentMoment(inParams);
+        return new CommonOutParams(true);
+    }
 
-//
 //    @NeedLogin
-//    @BizType(BizTypeEnum.USER_DELETECOMMENT)
-//    public CommonOutParams deleteComment(DeleteCommentInParams inParams) throws Exception {
-//        momentProcessor.deleteCommentByUsername(inParams);
-//        return new CommonOutParams(true);
-//    }
+    @BizType(BizTypeEnum.MOMENT_DELETECOMMENT)
+    public CommonOutParams deleteComment(DeleteCommentInParams inParams) throws Exception {
+        momentProcessor.DeleteComment(inParams);
+        return new CommonOutParams(true);
+    }
 //
 //    @NeedLogin
 //    @BizType(BizTypeEnum.USER_GETDISCOVER)

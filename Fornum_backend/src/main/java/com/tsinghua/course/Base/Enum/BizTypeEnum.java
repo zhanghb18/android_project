@@ -10,14 +10,13 @@ public enum BizTypeEnum {
     // Not Need Login
     USER_LOGIN(UserController.class, "/user/login", "用户登录"),
     USER_SIGNUP(UserController.class, "/user/signup", "用户注册"),
-//    USER_VERFIEDCODE(UserController.class, "获取验证码"),
     // Do Need Login
     USER_PASSWORD(UserController.class, "/user/password", "用户修改密码"),
     USER_INFO(UserController.class, "/user/info", "用户基本信息获取"),
     USER_MODIFYINFO(UserController.class, "/user/modify_info", "用户基本信息修改"),
+    USER_ADDSTAR(UserController.class, "/user/add_star", "用户关注"),
 
     USER_AVATAR(UserController.class, "/user/avatar", "用户头像设置"),
-    USER_ADDSTAR(UserController.class, "/user/addstar", "用户关注"),
     USER_DELETESTAR(UserController.class, "/user/deletestar", "用户取消关注"),
     USER_REMARK(UserController.class, "/user/remark", "修改用户备注"),
     USER_CONTACT(UserController.class, "/user/contact", "用户获取通讯录"),
@@ -38,9 +37,9 @@ public enum BizTypeEnum {
     MOMENT_GETPERSONAL(MomentController.class, "/moment/get_personal", "用户个人主页动态的获取"),
     MOMENT_GET(MomentController.class, "/moment/get", "获取当前所有动态"),
     MOMENT_LIKE(MomentController.class, "/moment/like", "用户点赞动态"),
-    MOMENT_COMMENT(MomentController.class, "/moment/comment", "用户评论动态/回复评论"),
     MOMENT_CANCELLIKE(MomentController.class, "/moment/cancellike", "用户取消点赞"),
-    MOMENT_DELETECOMMENT(MomentController.class, "/moment/deletecomment", "用户删除评论/回复"),
+    MOMENT_COMMENT(MomentController.class, "/moment/comment", "用户评论动态/回复评论"),
+    MOMENT_DELETECOMMENT(MomentController.class, "/moment/delete_comment", "用户删除评论/回复"),
 
     /** 定时任务业务测试 */
     LOG_TEST(TimerController.class, null, "定时日志测试"),

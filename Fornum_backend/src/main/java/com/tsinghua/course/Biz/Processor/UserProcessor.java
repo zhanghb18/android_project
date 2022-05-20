@@ -35,6 +35,12 @@ public class UserProcessor {
         query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email));
         return mongoTemplate.findOne(query, User.class);
     }
+    public String getAvatarByEmail(String email) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email));
+//        return mongoTemplate.findOne(query, User.class).getAvatar_url();
+        return "";
+    }
 
     /** 创建新用户 */
     public void createUser(String email, String userID, String nickname, String password) throws Exception {
@@ -110,5 +116,24 @@ public class UserProcessor {
         update.set("nickname", nickname);
         update.set("aboutMe", aboutMe);
         mongoTemplate.updateFirst(query, update, User.class);
+    }
+
+    /** 用户新增关注 */
+    public void addStar(String email, String star_email) throws Exception {
+        Query query = new Query();
+        query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email).and("star.email").is(star_email));
+        if(mongoTemplate.findOne(query, User.class) != null) {
+            throw new CourseWarn(UserWarnEnum.STAR_FAILED);
+        }
+        Query query1 = new Query();
+        query1.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email));
+        Query query2 = new Query();
+        query2.addCriteria(Criteria.where(KeyConstant.EMAIL).is(star_email));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String friend_avatar = getAvatarByEmail(star_email);
+        User.Stars star = new User.Stars(star_email, simpleDateFormat.format(new Date()), friend_avatar);
+        Update update = new Update();
+        update.push("contact", star);
+        mongoTemplate.updateFirst(query1, update, User.class);
     }
 }

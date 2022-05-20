@@ -2,6 +2,7 @@ package com.tsinghua.course.Base.Model;
 
 import com.tsinghua.course.Base.Enum.UserType;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.lang.NonNull;
 
 import java.util.Map;
 
@@ -51,6 +52,53 @@ public class User {
         this.aboutMe = aboutMe;
     }
 
+    /* 关注的用户 */
+    public static class Stars {
+        // 用户
+        private String email;
+
+        // 添加时间
+        private String time;
+
+        // 用户头像url
+        private String avatar_url;
+
+        public String getAvatar_url() { return this.avatar_url; }
+
+        public void setAvatar_url(String av) { this.avatar_url = av; }
+
+        public Stars(@NonNull String email, @NonNull String time, String avatar_url) {
+            this.email = email;
+            this.time = time;
+            this.avatar_url = avatar_url;
+        }
+
+        public void setTime(String time) {
+            this.time = time;
+        }
+
+        public String getTime() {
+            return time;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String e) {
+            this.email = e;
+        }
+
+        @Override
+        public String toString() {
+            return "Contacts{" +
+                    "email='" + email + '\'' +
+                    ", time='" + time + '\'' +
+                    ", avatar_url='" + avatar_url + '\'' +
+                    '}';
+        }
+    }
+
     // mongodb唯一id
     String id;
     // 邮箱
@@ -74,6 +122,13 @@ public class User {
 
     // 账号创建时间
     String time;
+
+    // 关注的用户
+    Stars[] star;
+
+    public Stars[] getStar() { return star; }
+
+    public void setStar(Stars[] s) { this.star = s; }
 
     public String getTime() {
         return time;
