@@ -16,7 +16,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import javax.jws.soap.SOAPBinding;
 import java.security.Key;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @描述 用户原子处理器，所有与用户相关的原子操作都在此处理器中执行
@@ -120,6 +122,8 @@ public class UserProcessor {
 
     /** 用户新增关注 */
     public void addStar(String email, String star_email) throws Exception {
+        email = email.replace("@", "%40");
+        star_email = star_email.replace("@", "%40");
         Query query = new Query();
         query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email).and("star.email").is(star_email));
         if(mongoTemplate.findOne(query, User.class) != null) {
@@ -133,7 +137,60 @@ public class UserProcessor {
         String friend_avatar = getAvatarByEmail(star_email);
         User.Stars star = new User.Stars(star_email, simpleDateFormat.format(new Date()), friend_avatar);
         Update update = new Update();
-        update.push("contact", star);
+        update.push("star", star);
         mongoTemplate.updateFirst(query1, update, User.class);
+    }
+
+    /** 用户取消关注 */
+    public void cancelStar(String email, String cancel_email) throws Exception {
+        email = email.replace("@", "%40");
+        cancel_email = cancel_email.replace("@", "%40");
+        Query query = new Query();
+        query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email)
+                .and("star.email").is(cancel_email));
+        User.Stars[] stars = mongoTemplate.findOne(query, User.class).getStar();
+        for (User.Stars star : stars) {
+            if (star.getEmail().equals(cancel_email)) {
+                Update update = new Update();
+                update.pull("star", star);
+                mongoTemplate.updateFirst(query, update, User.class);
+                return;
+            }
+        }
+    }
+
+    /** 判断user_email用户是否是email用户关注的用户 */
+    public boolean isStar(String email, String user_email) throws Exception {
+        email = email.replace("@", "%40");
+        user_email = user_email.replace("@", "%40");
+        Query query = new Query();
+        query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email));
+        User user = mongoTemplate.findOne(query, User.class);
+        if(user == null) throw new CourseWarn(UserWarnEnum.USER_FAILED);
+        User.Stars[] stars = user.getStar();
+        for (User.Stars star : stars) {
+            if (star.getEmail().equals(user_email)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /* 获取关注列表 */
+    public String getStars(String email) throws Exception {
+        email = email.replace("@", "%40");
+        Query query = new Query();
+        query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email));
+        User user = mongoTemplate.findOne(query, User.class);
+        if (user == null)
+            throw new CourseWarn(UserWarnEnum.USER_FAILED);
+        User.Stars[] stars = user.getStar();
+        String res = "";
+        if (stars != null) {
+            for(User.Stars star: stars) {
+                res = res + star.toString() + ",";
+            }
+        }
+        return res;
     }
 }

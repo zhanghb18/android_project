@@ -91,10 +91,8 @@ public class User {
 
         @Override
         public String toString() {
-            return "Contacts{" +
+            return "Stars{" +
                     "email='" + email + '\'' +
-                    ", time='" + time + '\'' +
-                    ", avatar_url='" + avatar_url + '\'' +
                     '}';
         }
     }

@@ -15,11 +15,12 @@ public enum BizTypeEnum {
     USER_INFO(UserController.class, "/user/info", "用户基本信息获取"),
     USER_MODIFYINFO(UserController.class, "/user/modify_info", "用户基本信息修改"),
     USER_ADDSTAR(UserController.class, "/user/add_star", "用户关注"),
+    USER_CANCELSTAR(UserController.class, "/user/cancel_star", "用户取消关注"),
+    USER_ISSTAR(UserController.class, "/user/is_star", "判断用户是否为自己关注的用户"),
+    USER_STARS(UserController.class, "/user/stars", "用户获取关注列表"),
 
     USER_AVATAR(UserController.class, "/user/avatar", "用户头像设置"),
-    USER_DELETESTAR(UserController.class, "/user/deletestar", "用户取消关注"),
     USER_REMARK(UserController.class, "/user/remark", "修改用户备注"),
-    USER_CONTACT(UserController.class, "/user/contact", "用户获取通讯录"),
     USER_CHATLIST(UserController.class, "/user/chatlist", "用户获取会话列表"),
     USER_OPENCHAT(UserController.class, "/user/openchat", "用户打开新的会话列表"),
     USER_CREATEGROUP(UserController.class, "/user/creategroup", "创建群组"),
@@ -28,7 +29,7 @@ public enum BizTypeEnum {
     USER_SENDMESSAGE(UserController.class, "/user/sendMessage", "用户发送信息"),
 //    USER_GETCHAT(ChatController.class, "/user/getchat", "根据chat_id获取单个对话框的消息流"),
 //    USER_GETCHATID(ChatController.class, "/user/getchatid", "用户获取chat_id"),
-    USER_ISSTAR(UserController.class, "/user/isstar", "判断用户是否为自己关注的用户"),
+
     USER_ISFRIEND(UserController.class, "/user/isfriend", "判断用户是否为自己的好友"),
     USER_LOGOUT(UserController.class, "/user/logout", "用户注销"),
 
