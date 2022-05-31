@@ -97,7 +97,7 @@ public class MomentsAll extends Fragment {
         System.out.println("获取动态");
         Retrofit retrofit = RetrofitUtil.getRetrofit();
         UserAPI service = retrofit.create(UserAPI.class);
-        Call<ResponseBody> call = service.GetMoments();
+        Call<ResponseBody> call = service.GetMoments(UserApplication.getEmail());
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
