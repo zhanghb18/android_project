@@ -50,6 +50,8 @@ public class User {
         this.password = password;
         this.userType = UserType.NORMAL;
         this.aboutMe = aboutMe;
+        this.star = null;
+        this.black = null;
     }
 
     /* 关注的用户 */
