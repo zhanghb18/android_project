@@ -23,6 +23,8 @@ public enum UserWarnEnum implements ExceptionInterface {
     STAR_FAILED("UserWarn009", "已经关注该用户，请勿重复关注"),
 
     USER_FAILED("UserWarn010", "用户不存在"),
+
+    BLOCK_FAILED("UserWarn011", "已经屏蔽该用户，请勿重复屏蔽")
 //
 //    FILE_INVALID("UserWarn006", "文件不合法"),
 //

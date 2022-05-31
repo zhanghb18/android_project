@@ -1,5 +1,6 @@
 package com.tsinghua.course.Biz.Processor;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.tsinghua.course.Base.Constant.KeyConstant;
 import com.tsinghua.course.Base.Error.CourseWarn;
 import com.tsinghua.course.Base.Error.UserWarnEnum;
@@ -62,14 +63,18 @@ public class MomentProcessor {
         mongoTemplate.insert(moment);
     }
 
-    /* 获取全部动态 */
-    public String getMoments() throws Exception {
+    /* 获取除屏蔽用户外的全部动态 */
+    public String getMoments(String email) throws Exception {
         Query query = new Query();
         List<Moment> moments = mongoTemplate.find(query, Moment.class);
         String res = "";
         for (Moment moment : moments) {
             String cur_email = moment.getEmail();
             cur_email = cur_email.replace("@", "%40");
+            if (userProcessor.isBlock(email, cur_email) == true) {
+                continue;
+            }
+
             Query query1 = new Query();
             query1.addCriteria(Criteria.where(KeyConstant.EMAIL).is(cur_email));
             String nickname = mongoTemplate.findOne(query1, User.class).getNickname();

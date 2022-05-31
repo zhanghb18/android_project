@@ -51,7 +51,7 @@ public class MomentController {
     @BizType(BizTypeEnum.MOMENT_GET)
     public CommonOutParams getMoments(CommonInParams inParams) throws Exception {
         System.out.println("getMoments");
-        return new MomentOutParams(momentProcessor.getMoments());
+        return new MomentOutParams(momentProcessor.getMoments(inParams.getEmail()));
     }
 
 //    @NeedLogin

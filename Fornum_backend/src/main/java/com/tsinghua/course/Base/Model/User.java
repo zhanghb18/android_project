@@ -97,6 +97,31 @@ public class User {
         }
     }
 
+    /* 屏蔽的用户 */
+    public static class Blacks {
+        // 用户
+        private String email;
+
+        public Blacks(@NonNull String email) {
+            this.email = email;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String e) {
+            this.email = e;
+        }
+
+        @Override
+        public String toString() {
+            return "Blacks{" +
+                    "email='" + email + '\'' +
+                    '}';
+        }
+    }
+
     // mongodb唯一id
     String id;
     // 邮箱
@@ -123,10 +148,16 @@ public class User {
 
     // 关注的用户
     Stars[] star;
+    // 屏蔽的用户
+    Blacks[] black;
 
     public Stars[] getStar() { return star; }
 
     public void setStar(Stars[] s) { this.star = s; }
+
+    public Blacks[] getBlack() { return black; }
+
+    public void setBlack(Blacks[] b) { this.black = b; }
 
     public String getTime() {
         return time;

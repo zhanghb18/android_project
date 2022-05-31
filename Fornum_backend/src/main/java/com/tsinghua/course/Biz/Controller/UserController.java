@@ -11,9 +11,7 @@ import com.tsinghua.course.Biz.Controller.Params.CommonOutParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.LoginInParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserInfo.InfoParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserInfo.PasswordParams;
-import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserOpt.IsStarInParams;
-import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserOpt.StarAddInParams;
-import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserOpt.StarCancelInParams;
+import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserOpt.*;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserUtil.SignUpParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.Out.BoolOutParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.Out.StarsOutParams;
@@ -158,5 +156,25 @@ public class UserController {
     public StarsOutParams getStars(CommonInParams inParams) throws Exception {
         String res = userProcessor.getStars(inParams.getEmail());
         return new StarsOutParams(res);
+    }
+
+    /** 用户屏蔽 */
+    @BizType(BizTypeEnum.USER_BL0CK)
+    public CommonOutParams blockUser(BlockInParams inParams) throws Exception {
+        userProcessor.blockUser(inParams.getEmail(), inParams.getBlock_email());
+        return new CommonOutParams(true);
+    }
+
+    /** 用户取消屏蔽 */
+    @BizType(BizTypeEnum.USER_CANCELBL0CK)
+    public CommonOutParams userCancelBlock(BlockCancelInParams inParams) throws Exception {
+        userProcessor.cancelBlock(inParams.getEmail(), inParams.getCancel_email());
+        return new CommonOutParams(true);
+    }
+
+    /** 判断是否为用户屏蔽的人 */
+    @BizType(BizTypeEnum.USER_ISBLOCK)
+    public BoolOutParams isBlock(IsBlockInParams inParams) throws Exception {
+        return new BoolOutParams(userProcessor.isBlock(inParams.getEmail(), inParams.getUser_email()));
     }
 }

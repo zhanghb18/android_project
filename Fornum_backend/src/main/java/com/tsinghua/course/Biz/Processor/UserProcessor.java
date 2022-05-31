@@ -139,6 +139,11 @@ public class UserProcessor {
         Update update = new Update();
         update.push("star", star);
         mongoTemplate.updateFirst(query1, update, User.class);
+
+        // 对关注的用户取消屏蔽
+        if (isBlock(email, star_email) == true) {
+            cancelBlock(email, star_email);
+        }
     }
 
     /** 用户取消关注 */
@@ -192,5 +197,64 @@ public class UserProcessor {
             }
         }
         return res;
+    }
+
+    /* 屏蔽用户 */
+    public void blockUser(String email, String block_email) throws Exception {
+        email = email.replace("@", "%40");
+        block_email = block_email.replace("@", "%40");
+        Query query = new Query();
+        query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email).and("black.email").is(block_email));
+        if(mongoTemplate.findOne(query, User.class) != null) {
+            throw new CourseWarn(UserWarnEnum.BLOCK_FAILED);
+        }
+        Query query1 = new Query();
+        query1.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email));
+        Query query2 = new Query();
+        query2.addCriteria(Criteria.where(KeyConstant.EMAIL).is(block_email));
+        User.Blacks black = new User.Blacks(block_email);
+        Update update = new Update();
+        update.push("black", black);
+        mongoTemplate.updateFirst(query1, update, User.class);
+
+        // 对屏蔽的用户取消关注
+        if (isStar(email, block_email) == true) {
+            cancelStar(email, block_email);
+        }
+    }
+
+    /** 用户取消屏蔽 */
+    public void cancelBlock(String email, String cancel_email) throws Exception {
+        email = email.replace("@", "%40");
+        cancel_email = cancel_email.replace("@", "%40");
+        Query query = new Query();
+        query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email)
+                .and("black.email").is(cancel_email));
+        User.Blacks[] blacks = mongoTemplate.findOne(query, User.class).getBlack();
+        for (User.Blacks black : blacks) {
+            if (black.getEmail().equals(cancel_email)) {
+                Update update = new Update();
+                update.pull("black", black);
+                mongoTemplate.updateFirst(query, update, User.class);
+                return;
+            }
+        }
+    }
+
+    /** 判断user_email用户是否是email用户屏蔽的用户 */
+    public boolean isBlock(String email, String user_email) throws Exception {
+        email = email.replace("@", "%40");
+        user_email = user_email.replace("@", "%40");
+        Query query = new Query();
+        query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email));
+        User user = mongoTemplate.findOne(query, User.class);
+        if(user == null) throw new CourseWarn(UserWarnEnum.USER_FAILED);
+        User.Blacks[] blacks = user.getBlack();
+        for (User.Blacks black : blacks) {
+            if (black.getEmail().equals(user_email)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
