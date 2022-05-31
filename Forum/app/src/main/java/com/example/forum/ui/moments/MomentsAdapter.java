@@ -86,9 +86,9 @@ public class MomentsAdapter extends
                 @Override
                 public void onClick(View view) {
                     int mPosition = getLayoutPosition();
-                    String cur_email = momment_List.get(mPosition).email;
-                    String cur_nickname = momment_List.get(mPosition).nickname;
-                    String cur_aboutMe = momment_List.get(mPosition).aboutMe;
+                    String cur_email = moment_list.get(mPosition).email;
+                    String cur_nickname = moment_list.get(mPosition).nickname;
+                    String cur_aboutMe = moment_list.get(mPosition).aboutMe;
 //                    System.out.println("**********");
 //                    System.out.println(cur_email);
 //                    System.out.println(UserApplication.getEmail());
