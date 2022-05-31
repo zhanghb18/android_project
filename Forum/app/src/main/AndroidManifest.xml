@@ -21,6 +21,9 @@
         android:theme="@style/Theme.Forum"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.ConcernPage.ConcernActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.PersonalPage.OtherHomeActivity"
             android:exported="false" />
         <activity

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.example.forum.R;
+import com.example.forum.ui.ConcernPage.ConcernActivity;
 import com.example.forum.ui.Person.PersonInfoPage;
 import android.content.Intent;
 
@@ -54,6 +55,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), PersonHomeActivity.class);
+                getContext().startActivity(intent);
+            }
+        });
+        view.findViewById(R.id.favourite_list).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), ConcernActivity.class);
                 getContext().startActivity(intent);
             }
         });

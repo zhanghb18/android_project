@@ -77,6 +77,7 @@ public class PersonInfoPage extends AppCompatActivity {
                 User.UserInfo(UserApplication.getEmail());
             }
         });
+
     }
     public void ID_change(View view) {
         Intent intent = new Intent(this, PersonInfoChangePage.class);

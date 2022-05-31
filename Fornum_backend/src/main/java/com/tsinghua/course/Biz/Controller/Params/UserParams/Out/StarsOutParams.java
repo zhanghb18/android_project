@@ -10,6 +10,7 @@ public class StarsOutParams extends CommonOutParams {
 
     public StarsOutParams(String stars) {
         this.stars = stars;
+        this.success = true;
     }
 
     public String getStars() {

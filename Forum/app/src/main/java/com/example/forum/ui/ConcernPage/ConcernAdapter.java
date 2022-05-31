@@ -1,11 +1,10 @@
-package com.example.forum.ui.PersonalPage;
+package com.example.forum.ui.ConcernPage;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,24 +12,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.forum.R;
 import com.example.forum.ui.moments.SingleMoment;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 
-public class PersonHomeAdapter extends
-        RecyclerView.Adapter<PersonHomeAdapter.PersonHomeViewHolder> {
+public class ConcernAdapter extends
+        RecyclerView.Adapter<ConcernAdapter.ConcernViewHolder> {
 
     private final List<SingleMoment> moment_List;
     private final LayoutInflater mInflater;
 
-    class PersonHomeViewHolder extends RecyclerView.ViewHolder
+    class ConcernViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
-        final PersonHomeAdapter mAdapter;
+        public final TextView mNickname;
+        public final TextView maboutMe;
+        final ConcernAdapter mAdapter;
         private AdapterView.OnItemClickListener mOnItemClickListener;
-        public final TextView mNicknameView;
-        public final TextView mTitleView;
-        public final TextView mContentView;
 
         /**
          * Creates a new custom view holder to hold the view to display in
@@ -40,11 +36,10 @@ public class PersonHomeAdapter extends
          * @param adapter The adapter that manages the the data and views
          *                for the RecyclerView.
          */
-        public PersonHomeViewHolder(View itemView, PersonHomeAdapter adapter) {
+        public ConcernViewHolder(View itemView, ConcernAdapter adapter) {
             super(itemView);
-            mNicknameView = itemView.findViewById(R.id.person_nickname);
-            mTitleView = itemView.findViewById(R.id.person_title);
-            mContentView = itemView.findViewById(R.id.person_content);
+            mNickname = itemView.findViewById(R.id.concern_nickname);
+            maboutMe = itemView.findViewById(R.id.concern_aboutme);
             this.mAdapter = adapter;
             itemView.setOnClickListener(this);
         }
@@ -66,7 +61,7 @@ public class PersonHomeAdapter extends
         }
     }
 
-    public PersonHomeAdapter(Context context, List<SingleMoment> momentList) {
+    public ConcernAdapter(Context context, List<SingleMoment> momentList) {
         mInflater = LayoutInflater.from(context);
         this.moment_List = momentList;
     }
@@ -91,15 +86,15 @@ public class PersonHomeAdapter extends
      *                 that holds a View of the given view type.
      */
     @Override
-    public PersonHomeAdapter.PersonHomeViewHolder onCreateViewHolder(ViewGroup parent,
+    public ConcernAdapter.ConcernViewHolder onCreateViewHolder(ViewGroup parent,
                                                                   int viewType) {
         // Inflate an item view.
         View mItemView = mInflater.inflate(
-                R.layout.person_moment_list, parent, false);
+                R.layout.concern_list, parent, false);
 
         //MomentsViewHolder momentsViewHolder=new MomentsViewHolder(mItemView,mOnItemClickListener)
 
-        return new PersonHomeViewHolder(mItemView, this);
+        return new ConcernViewHolder(mItemView, this);
     }
 
     /**
@@ -113,15 +108,14 @@ public class PersonHomeAdapter extends
      * @param position The position of the item within the adapter's data set.
      */
     @Override
-    public void onBindViewHolder(PersonHomeAdapter.PersonHomeViewHolder holder,
+    public void onBindViewHolder(ConcernAdapter.ConcernViewHolder holder,
                                  int position) {
         // Retrieve the data for that position.
 //        String mCurrent = mWordList.get(position);
         // Add the data to the view holder.
         SingleMoment moment=moment_List.get(position);
-        holder.mContentView.setText(moment.content);
-        holder.mNicknameView.setText(moment.nickname);
-        holder.mTitleView.setText(moment.title);
+        holder.mNickname.setText(moment.nickname);
+        holder.maboutMe.setText(moment.aboutMe);
     }
 
     /**

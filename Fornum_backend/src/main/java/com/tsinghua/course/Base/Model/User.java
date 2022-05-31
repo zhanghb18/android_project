@@ -50,6 +50,8 @@ public class User {
         this.password = password;
         this.userType = UserType.NORMAL;
         this.aboutMe = aboutMe;
+        this.star = null;
+        this.black = null;
     }
 
     /* 关注的用户 */
@@ -67,7 +69,7 @@ public class User {
 
         public void setAvatar_url(String av) { this.avatar_url = av; }
 
-        public Stars(@NonNull String email, @NonNull String time, String avatar_url) {
+        public Stars(@NonNull String email, String time, String avatar_url) {
             this.email = email;
             this.time = time;
             this.avatar_url = avatar_url;

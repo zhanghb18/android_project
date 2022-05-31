@@ -27,6 +27,7 @@ public class OtherHomeActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private PersonHomeAdapter mAdapter;
     private Button mConcernButton;
+    private Button mBlockButton;
     private TextView otherNicknameView;
     private TextView otherAboutMeView;
     List<SingleMoment> momentList=new ArrayList<>();
@@ -39,6 +40,7 @@ public class OtherHomeActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.person_home_recycler_view);
         mConcernButton = findViewById(R.id.concern_button);
+        mBlockButton = findViewById(R.id.block_button);
         mAdapter = new PersonHomeAdapter(OtherHomeActivity.this,momentList);
         recyclerView.setAdapter(mAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(OtherHomeActivity.this));
@@ -66,11 +68,32 @@ public class OtherHomeActivity extends AppCompatActivity {
                     mConcernButton.setText("取消关注");
                     mConcernButton.setBackgroundColor(Color.parseColor("#1d9bf0"));
                     mConcernButton.setTextColor(Color.parseColor("#ffffff"));
+                    mBlockButton.setText("屏蔽");
+                    mBlockButton.setBackgroundColor(Color.parseColor("#ffffff"));
+                    mBlockButton.setTextColor(Color.parseColor("#1d9bf0"));
                 }
                 if(mConcernButton.getText().toString().equals("取消关注")) {
                     mConcernButton.setText("关注");
                     mConcernButton.setBackgroundColor(Color.parseColor("#ffffff"));
                     mConcernButton.setTextColor(Color.parseColor("#1d9bf0"));
+                }
+            }
+        });
+        mBlockButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mBlockButton.getText().toString().equals("屏蔽")) {
+                    mBlockButton.setText("取消屏蔽");
+                    mBlockButton.setBackgroundColor(Color.parseColor("#1d9bf0"));
+                    mBlockButton.setTextColor(Color.parseColor("#ffffff"));
+                    mConcernButton.setText("关注");
+                    mConcernButton.setBackgroundColor(Color.parseColor("#ffffff"));
+                    mConcernButton.setTextColor(Color.parseColor("#1d9bf0"));
+                }
+                if(mBlockButton.getText().toString().equals("取消屏蔽")) {
+                    mBlockButton.setText("关注");
+                    mBlockButton.setBackgroundColor(Color.parseColor("#ffffff"));
+                    mBlockButton.setTextColor(Color.parseColor("#1d9bf0"));
                 }
             }
         });

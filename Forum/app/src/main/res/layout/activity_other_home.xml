@@ -47,11 +47,24 @@
             android:layout_weight="1"/>
 
         <Button
+            android:id="@+id/block_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginRight="5dp"
+            android:textColor="#1d9bf0"
+            android:text="屏蔽"
+            app:cornerRadius="20dp"
+            app:backgroundTint="#ffffff"
+            app:strokeColor="#1d9bf0"
+            app:strokeWidth="1dp"/>
+
+        <Button
             android:id="@+id/concern_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="5dp"
             android:textColor="#1d9bf0"
             android:text="关注"
             app:cornerRadius="20dp"

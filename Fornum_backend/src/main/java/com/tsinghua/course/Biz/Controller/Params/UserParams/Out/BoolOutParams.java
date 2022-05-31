@@ -7,5 +7,6 @@ public class BoolOutParams extends CommonOutParams {
 
     public BoolOutParams(boolean flag) {
         this.flag = flag;
+        this.success = true;
     }
 }

@@ -97,7 +97,7 @@ public class MomentsAll extends Fragment {
         System.out.println("获取动态");
         Retrofit retrofit = RetrofitUtil.getRetrofit();
         UserAPI service = retrofit.create(UserAPI.class);
-        Call<ResponseBody> call = service.GetMoments();
+        Call<ResponseBody> call = service.GetMoments(UserApplication.getEmail());
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -112,9 +112,9 @@ public class MomentsAll extends Fragment {
                             if(moment.endsWith(",")) moment = moment.substring(0, moment.length()-1);
                             if(!moment.contains("{")) continue;
                             SingleMoment momentItem = parser(moment);
-                            items.addFirst(momentItem);
+                            momentList.add(momentItem);
                         }
-                        momentList = items;
+                        mAdapter.notifyDataSetChanged();
                         System.out.println(momentList);
                     }
                     else {
