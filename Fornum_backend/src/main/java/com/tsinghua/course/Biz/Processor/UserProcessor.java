@@ -250,9 +250,11 @@ public class UserProcessor {
         User user = mongoTemplate.findOne(query, User.class);
         if(user == null) throw new CourseWarn(UserWarnEnum.USER_FAILED);
         User.Blacks[] blacks = user.getBlack();
-        for (User.Blacks black : blacks) {
-            if (black.getEmail().equals(user_email)) {
-                return true;
+        if (blacks != null) {
+            for (User.Blacks black : blacks) {
+                if (black.getEmail().equals(user_email)) {
+                    return true;
+                }
             }
         }
         return false;
