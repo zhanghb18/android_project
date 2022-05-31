@@ -19,6 +19,10 @@ public enum UserWarnEnum implements ExceptionInterface {
     EMAIL_FAILED("UserWarn007", "未获取到用户邮箱"),
 
     MOMENT_FAILED("UserWarn008", "该条动态不存在"),
+
+    STAR_FAILED("UserWarn009", "已经关注该用户，请勿重复关注"),
+
+    USER_FAILED("UserWarn010", "用户不存在"),
 //
 //    FILE_INVALID("UserWarn006", "文件不合法"),
 //

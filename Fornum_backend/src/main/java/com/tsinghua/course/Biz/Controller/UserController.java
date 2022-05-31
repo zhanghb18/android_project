@@ -11,7 +11,12 @@ import com.tsinghua.course.Biz.Controller.Params.CommonOutParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.LoginInParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserInfo.InfoParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserInfo.PasswordParams;
+import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserOpt.IsStarInParams;
+import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserOpt.StarAddInParams;
+import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserOpt.StarCancelInParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserUtil.SignUpParams;
+import com.tsinghua.course.Biz.Controller.Params.UserParams.Out.BoolOutParams;
+import com.tsinghua.course.Biz.Controller.Params.UserParams.Out.StarsOutParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.Out.UserInfoOutParams;
 import com.tsinghua.course.Biz.Processor.UserProcessor;
 import com.tsinghua.course.Frame.Util.*;
@@ -19,6 +24,8 @@ import io.netty.channel.ChannelHandlerContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.util.List;
 
 /**
  * @描述 用户控制器，用于执行用户相关的业务
@@ -122,5 +129,34 @@ public class UserController {
         }
         userProcessor.modifyInfo(email, inParams.getUserID(), inParams.getNickname(), inParams.getAboutMe());
         return new CommonOutParams(true);
+    }
+
+    /** 用户关注 */
+//    @NeedLogin
+    @BizType(BizTypeEnum.USER_ADDSTAR)
+    public CommonOutParams userAddStar(StarAddInParams inParams) throws Exception {
+        userProcessor.addStar(inParams.getEmail(), inParams.getStar_email());
+        return new CommonOutParams(true);
+    }
+
+    /** 用户取消关注 */
+//    @NeedLogin
+    @BizType(BizTypeEnum.USER_CANCELSTAR)
+    public CommonOutParams userCancelStar(StarCancelInParams inParams) throws Exception {
+        userProcessor.cancelStar(inParams.getEmail(), inParams.getCancel_email());
+        return new CommonOutParams(true);
+    }
+
+    /** 判断是否为用户关注的人 */
+    @BizType(BizTypeEnum.USER_ISSTAR)
+    public BoolOutParams isStar(IsStarInParams inParams) throws Exception {
+        return new BoolOutParams(userProcessor.isStar(inParams.getEmail(), inParams.getUser_email()));
+    }
+
+    /** 用户获取关注列表 */
+    @BizType(BizTypeEnum.USER_STARS)
+    public StarsOutParams getStars(CommonInParams inParams) throws Exception {
+        String res = userProcessor.getStars(inParams.getEmail());
+        return new StarsOutParams(res);
     }
 }

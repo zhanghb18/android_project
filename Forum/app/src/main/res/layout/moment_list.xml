@@ -4,128 +4,190 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
     android:layout_margin="1dp"
-    android:paddingBottom="10dp"
-    android:orientation="horizontal"
+    android:background="@color/white"
     android:maxHeight="400dp"
-    >
+    android:orientation="horizontal"
+    android:paddingBottom="10dp">
 
     <LinearLayout
         android:id="@+id/image"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:gravity="center"
         android:layout_marginLeft="10dp"
->
+        android:layout_weight="1"
+        android:gravity="center">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:paddingTop="10dp"
-            >
+            android:paddingTop="10dp">
+
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/moment_all_avator"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
+                android:layout_gravity="center_horizontal"
+                android:onClick="JumpToPersonalPage"
                 android:src="@drawable/test"
                 app:shapeAppearanceOverlay="@style/RoundStyle"
-                app:strokeColor="#FFFFFF"
-                android:onClick="JumpToPersonalPage"
-                android:layout_gravity="center_horizontal"
-                />
+                app:strokeColor="#FFFFFF" />
         </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
         android:layout_weight="7"
-        android:orientation="vertical"
-        android:layout_marginRight="10dp">
+        android:orientation="vertical">
+
         <TextView
-            android:id="@+id/nickname"
+            android:id="@+id/moment_nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="wyx"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:textColor="#2F5597"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:text="wyx"
+            android:textColor="#2F5597"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
         <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="5dp"
-                android:text="日记"
-                android:textColor="@color/black"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-            <TextView
-                android:id="@+id/content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/black"
-                android:text="今天天气真好，我很开心。"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/title" />
+            android:id="@+id/moment_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:text="日记"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/moment_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:text="今天天气真好，我很开心。"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title" />
 
         <LinearLayout
+            android:id="@+id/button_box"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button_box"
             android:layout_gravity="bottom|right"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
-            <ImageButton
-                android:id="@+id/button_like"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_like"
-                android:background="@color/white" />
-            <TextView
-                android:id="@+id/text_like"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="点赞"/>
-            <ImageButton
-                android:id="@+id/button_comment"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="15dp"
-                android:src="@drawable/ic_comment"
-                android:background="@color/white"/>
-            <TextView
-                android:id="@+id/text_comment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="评论"/>
 
+            <LinearLayout
+                android:id="@+id/box_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/button_like"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@color/white"
+                    android:src="@drawable/ic_like" />
+
+                <TextView
+                    android:id="@+id/text_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="点赞" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/button_comment"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:background="@color/white"
+                    android:src="@drawable/ic_comment" />
+
+                <TextView
+                    android:id="@+id/text_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="评论" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/box_share">
+
+                <ImageButton
+                    android:id="@+id/button_share"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:background="@color/white"
+                    android:src="@drawable/ic_share" />
+
+                <TextView
+                    android:id="@+id/text_share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="分享" />
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/like_list_box"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_like"
+            android:visibility="gone">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <ImageView
+                    android:id="@+id/img_like_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_like_list" />
+            </LinearLayout>
+            <TextView
+                android:layout_marginTop="4dp"
+                android:id="@+id/like_list"
+                android:textColor="#2F5597"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
     </LinearLayout>
 
 
-<!--    <TextView-->
-<!--        android:id="@+id/title"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="20dp"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:text="标题"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-<!--    <TextView-->
-<!--        android:id="@+id/content"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="20dp"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:text="内容"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/title" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/title"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="20dp"-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:text="标题"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/content"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="20dp"-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:text="内容"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/title" />-->
 
 </LinearLayout>

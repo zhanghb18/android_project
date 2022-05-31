@@ -133,13 +133,15 @@ public class Moment {
         return avatar_url;
     }
 
-    @Override
-    public String toString() {
+    public String momentString(String nickname, String aboutMe) {
         return "Moment{" +
                 "email='" + email + '\'' +
                 ", post_time='" + post_time + '\'' +
                 ", images=" + Arrays.toString(images) +
+                ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", aboutMe='" + aboutMe + '\'' +
                 ", liked=" + Arrays.toString(liked) +
                 ", commentList=" + Arrays.toString(commentList) +
                 ", avatar_url='" + avatar_url + '\'' +
