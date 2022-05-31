@@ -6,4 +6,8 @@
         <item name="cornerSizeBottomRight">8dp</item>
         <item name="cornerSizeBottomLeft">8dp</item>
     </style>
+    <style name="myEditText" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">#a2a2a2</item>
+        <item name="colorControlActivated">#a2a2a2</item>
+    </style>
 </resources>
