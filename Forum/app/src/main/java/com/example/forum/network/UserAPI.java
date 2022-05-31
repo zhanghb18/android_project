@@ -34,7 +34,7 @@ public interface UserAPI {
     Call<ResponseBody> LikeMoment(@Query("email") String email, @Query("post_email")String post_email, @Query("time") String time);
 
     @GET("moment/get")
-    Call<ResponseBody> GetMoments();
+    Call<ResponseBody> GetMoments(@Query("email") String email);
 
 
 

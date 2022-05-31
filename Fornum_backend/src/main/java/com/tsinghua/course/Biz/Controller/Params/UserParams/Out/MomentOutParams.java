@@ -7,5 +7,6 @@ public class MomentOutParams extends CommonOutParams {
 
     public MomentOutParams(String m) {
         this.moments = m;
+        this.success = true;
     }
 }
