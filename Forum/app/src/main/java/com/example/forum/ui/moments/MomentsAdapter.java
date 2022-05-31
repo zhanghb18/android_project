@@ -7,13 +7,18 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.core.app.ShareCompat;
@@ -44,15 +49,18 @@ public class MomentsAdapter extends
         private AdapterView.OnItemClickListener mOnItemClickListener;
         boolean like_flag=false;
         public static final String EXTRA_MESSAGE = "content";
+
         LinearLayout box_like;
         LinearLayout box_share;
+        LinearLayout box_comment;
         LinearLayout box_like_list=itemView.findViewById(R.id.like_list_box);
+        LinearLayout box_comment_list=itemView.findViewById(R.id.comment_list_box);
+        ListView comment_list;
+        private List<Comment> data;
+        private CommentsAdapter commentsAdapter;
         ImageButton button_like=itemView.findViewById(R.id.button_like);
-        TextView text_like=itemView.findViewById(R.id.text_like);
-        ImageButton button_share=itemView.findViewById(R.id.button_share);
-        ImageView img_like_list=itemView.findViewById(R.id.img_like_list);
+        TextView text_like=itemView.findViewById(R.id.text_like);;
         TextView text_like_list=itemView.findViewById(R.id.like_list);
-//        List like_list=new ArrayList<String>();
         String like_list="";
 
         /**
@@ -70,6 +78,7 @@ public class MomentsAdapter extends
             nickname_view=itemView.findViewById(R.id.moment_nickname);
             this.mAdapter = adapter;
             itemView.setOnClickListener(this);
+
             box_like=itemView.findViewById(R.id.box_like);
             box_like.setClickable(true);
             box_like.setOnClickListener(like_click);
@@ -78,7 +87,33 @@ public class MomentsAdapter extends
             box_share.setClickable(true);
             box_share.setOnClickListener(share_click);
 
-            //评论功能
+
+            box_comment=itemView.findViewById(R.id.box_comment);
+            box_comment.setClickable(true);
+            //box_comment.setOnClickListener(comment_click);
+            box_comment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    System.out.println("clicked comment");
+                    comment_list=itemView.findViewById(R.id.comment_list);
+                    data=new ArrayList<>();
+                    commentsAdapter=new CommentsAdapter(context,data);
+                    comment_list.setAdapter(commentsAdapter);
+                    Comment comment=new Comment();
+                    comment.setName("评论者1");
+                    comment.setContent("内容1");
+                    commentsAdapter.addComment(comment);
+                    box_comment_list.setVisibility(View.VISIBLE);
+                    //view.invalidate();
+//                    LayoutInflater factory=LayoutInflater.from(context);
+//                    View layout_fragment_moment=factory.inflate(R.layout.fragment_moments,null);
+//                    RelativeLayout rl_comment=layout_fragment_moment.findViewById(R.id.rl_comment);
+//                    rl_comment.setVisibility(View.VISIBLE);
+
+
+                }
+            });
+
 
             //点击头像进入个人主页
             ImageView imageView=itemView.findViewById(R.id.moment_all_avator);
@@ -111,6 +146,9 @@ public class MomentsAdapter extends
             });
         }
 
+        //初始化评论列表
+
+
         //点赞
         public View.OnClickListener like_click=new View.OnClickListener() {
             @Override
@@ -142,6 +180,19 @@ public class MomentsAdapter extends
                     }
                     like_flag=false;
                 }
+            }
+        };
+
+        //评论
+        public View.OnClickListener comment_click=new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("clicked comment");
+                //弹出键盘
+//                InputMethodManager inputMethodManager=(InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+//                inputMethodManager.toggleSoftInput(0,InputMethodManager.HIDE_NOT_ALWAYS);
+                //弹出评论框
+                //rl_comment.setVisibility(View.VISIBLE);
             }
         };
 
@@ -179,10 +230,10 @@ public class MomentsAdapter extends
         }
     }
 
-    public MomentsAdapter(Context context, List<SingleMoment> mommentList) {
+    public MomentsAdapter(Context context, List<SingleMoment> momentList) {
         mInflater = LayoutInflater.from(context);
         this.context=context;
-        this.moment_list = mommentList;
+        this.moment_list = momentList;
     }
 
     /**

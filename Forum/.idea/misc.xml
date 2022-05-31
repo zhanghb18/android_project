@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/drawable/background_add_moments_button.xml" value="0.148" />
+        <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/drawable/background_comment.xml" value="0.107" />
+        <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/drawable/background_like.xml" value="0.148" />
+        <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/drawable/ic_before.xml" value="0.107" />
         <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/drawable/ic_id.xml" value="0.1235" />
+        <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/drawable/ic_like_list.xml" value="0.107" />
         <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/drawable/ic_mail.xml" value="0.1235" />
         <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.1235" />
         <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/drawable/ic_user.xml" value="0.1235" />
@@ -12,10 +17,11 @@
         <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/layout/fragment_initpage.xml" value="0.5" />
         <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/layout/fragment_moment_all.xml" value="0.1" />
         <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/layout/fragment_moments.xml" value="0.1" />
-        <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/layout/fragment_moments_all.xml" value="0.2" />
+        <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/layout/fragment_moments_all.xml" value="0.1" />
         <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/layout/fragment_moments_concerned.xml" value="0.1" />
         <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/layout/fragment_signinpage.xml" value="0.1" />
         <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/layout/fragment_signuppage.xml" value="0.1" />
+        <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/layout/item_comment.xml" value="0.12407407407407407" />
         <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/layout/moment_list.xml" value="0.1" />
         <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1125" />
         <entry key="..\:/AndroidStudio/project/SchoolForum/android_project/Forum/app/src/main/res/menu/menu_main.xml" value="0.1125" />
