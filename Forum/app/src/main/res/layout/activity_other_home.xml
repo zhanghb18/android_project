@@ -69,7 +69,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/my_nickname"
+            android:id="@+id/other_my_nickname"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:text="吴雨娴"
@@ -78,6 +78,7 @@
             android:textSize="20dp"
             android:layout_marginLeft="20dp"/>
         <TextView
+            android:id="@+id/other_aboutme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"

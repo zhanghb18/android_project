@@ -6,6 +6,7 @@ import com.example.forum.R;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,14 +87,23 @@ public class MomentsAdapter extends
                 public void onClick(View view) {
                     int mPosition = getLayoutPosition();
                     String cur_email = moment_list.get(mPosition).email;
+                    String cur_nickname = moment_list.get(mPosition).nickname;
+                    String cur_aboutMe = moment_list.get(mPosition).aboutMe;
+//                    System.out.println("**********");
+//                    System.out.println(cur_email);
+//                    System.out.println(UserApplication.getEmail());
                     if(UserApplication.getEmail()==cur_email){
                         Intent intent=new Intent(context,PersonHomeActivity.class);
-                        intent.putExtra(cur_email,EXTRA_MESSAGE);
+                        //intent.putExtra(cur_email,EXTRA_MESSAGE);
                         context.startActivity(intent);
                     }
                     else {
                         Intent intent=new Intent(context, OtherHomeActivity.class);
-                        intent.putExtra(cur_email,EXTRA_MESSAGE);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("email", cur_email);
+                        bundle.putString("nickname", cur_nickname);
+                        bundle.putString("aboutMe",cur_aboutMe);
+                        intent.putExtras(bundle);
                         context.startActivity(intent);
                     }
 

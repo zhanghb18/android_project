@@ -8,9 +8,9 @@ public class SingleMoment {
     public String email;
     public String title;
     public String content;
-    public String post_time;
     public String nickname;
     public String aboutMe;
+    public String post_time;
     public String liked;
 
     public SingleMoment(String email, String title, String content, String post_time, String nickname, String aboutMe, String liked) {
