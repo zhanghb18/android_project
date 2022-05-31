@@ -6,4 +6,6 @@ public class SingleMoment {
     public String title;
     public String content;
     public String email;
+    public String nickname;
+    public String aboutMe;
 }

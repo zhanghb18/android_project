@@ -9,19 +9,26 @@ import com.example.forum.R;
 import com.example.forum.ui.PersonalPage.PersonHomeAdapter;
 import com.example.forum.ui.moments.SingleMoment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class OtherHomeActivity extends AppCompatActivity {
 
+    private String email;
+    private String nickname;
+    private String aboutMe;
     private RecyclerView recyclerView;
     private PersonHomeAdapter mAdapter;
     private Button mConcernButton;
+    private TextView otherNicknameView;
+    private TextView otherAboutMeView;
     List<SingleMoment> momentList=new ArrayList<>();
 
     @Override
@@ -42,6 +49,15 @@ public class OtherHomeActivity extends AppCompatActivity {
             momentList.add(moment);
             System.out.println(moment.content);
         }
+
+        otherNicknameView = findViewById(R.id.other_my_nickname);
+        otherAboutMeView = findViewById(R.id.other_aboutme);
+        Intent intent = new Intent();
+        Bundle message = intent.getExtras();
+        email = message.getString("email");
+        nickname = message.getString("nickname");
+        aboutMe = message.getString("aboutMe");
+        otherNicknameView.setText(nickname);
 
         mConcernButton.setOnClickListener(new View.OnClickListener() {
             @Override

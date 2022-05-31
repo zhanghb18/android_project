@@ -40,11 +40,6 @@
             app:civ_border_color="@color/white"
             app:civ_border_width="2dp"
             android:layout_marginStart="20dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
     </LinearLayout>
 
     <LinearLayout
@@ -55,7 +50,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/my_nickname"
+            android:id="@+id/person_home_my_nickname"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:text="吴雨娴"
@@ -64,6 +59,7 @@
             android:textSize="20dp"
             android:layout_marginLeft="20dp"/>
         <TextView
+            android:id="@+id/person_aboutme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
