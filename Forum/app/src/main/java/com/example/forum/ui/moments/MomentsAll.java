@@ -112,9 +112,9 @@ public class MomentsAll extends Fragment {
                             if(moment.endsWith(",")) moment = moment.substring(0, moment.length()-1);
                             if(!moment.contains("{")) continue;
                             SingleMoment momentItem = parser(moment);
-                            items.addFirst(momentItem);
+                            momentList.add(momentItem);
                         }
-                        momentList = items;
+                        mAdapter.notifyDataSetChanged();
                         System.out.println(momentList);
                     }
                     else {
