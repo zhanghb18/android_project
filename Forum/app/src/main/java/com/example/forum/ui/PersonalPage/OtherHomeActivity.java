@@ -38,7 +38,7 @@ public class OtherHomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_other_home);
         getSupportActionBar().hide();
 
-        recyclerView = findViewById(R.id.person_home_recycler_view);
+        recyclerView = findViewById(R.id.other_home_recycler_view);
         mConcernButton = findViewById(R.id.concern_button);
         mBlockButton = findViewById(R.id.block_button);
         mAdapter = new PersonHomeAdapter(OtherHomeActivity.this,momentList);
@@ -54,17 +54,19 @@ public class OtherHomeActivity extends AppCompatActivity {
 
         otherNicknameView = findViewById(R.id.other_my_nickname);
         otherAboutMeView = findViewById(R.id.other_aboutme);
-        Intent intent = new Intent();
+        Intent intent = getIntent();
         Bundle message = intent.getExtras();
         email = message.getString("email");
         nickname = message.getString("nickname");
         aboutMe = message.getString("aboutMe");
         otherNicknameView.setText(nickname);
+        otherAboutMeView.setText(aboutMe);
 
         mConcernButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(mConcernButton.getText().toString().equals("关注")) {
+                    System.out.println("关注");
                     mConcernButton.setText("取消关注");
                     mConcernButton.setBackgroundColor(Color.parseColor("#1d9bf0"));
                     mConcernButton.setTextColor(Color.parseColor("#ffffff"));
@@ -72,7 +74,8 @@ public class OtherHomeActivity extends AppCompatActivity {
                     mBlockButton.setBackgroundColor(Color.parseColor("#ffffff"));
                     mBlockButton.setTextColor(Color.parseColor("#1d9bf0"));
                 }
-                if(mConcernButton.getText().toString().equals("取消关注")) {
+                else {
+                    System.out.println("取消关注");
                     mConcernButton.setText("关注");
                     mConcernButton.setBackgroundColor(Color.parseColor("#ffffff"));
                     mConcernButton.setTextColor(Color.parseColor("#1d9bf0"));
@@ -90,7 +93,7 @@ public class OtherHomeActivity extends AppCompatActivity {
                     mConcernButton.setBackgroundColor(Color.parseColor("#ffffff"));
                     mConcernButton.setTextColor(Color.parseColor("#1d9bf0"));
                 }
-                if(mBlockButton.getText().toString().equals("取消屏蔽")) {
+                else {
                     mBlockButton.setText("关注");
                     mBlockButton.setBackgroundColor(Color.parseColor("#ffffff"));
                     mBlockButton.setTextColor(Color.parseColor("#1d9bf0"));
