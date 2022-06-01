@@ -47,6 +47,9 @@ public interface UserAPI {
     @GET("moment/get")
     Call<ResponseBody> GetMoments(@Query("email") String email);
 
+    @GET("moment/get_personal")
+    Call<ResponseBody> GetPersonalMoments(@Query("email") String email);
+
 
 
 
