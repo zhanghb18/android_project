@@ -135,7 +135,7 @@ public class MomentsAdapter extends
                     System.out.println("**********");
                     System.out.println(cur_email);
                     System.out.println(UserApplication.getEmail());
-                    if(UserApplication.getEmail()==cur_email){
+                    if(UserApplication.getEmail().equals(cur_email)){
                         Intent intent=new Intent(context,PersonHomeActivity.class);
                         //intent.putExtra(cur_email,EXTRA_MESSAGE);
                         context.startActivity(intent);
