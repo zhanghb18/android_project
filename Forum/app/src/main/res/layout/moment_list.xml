@@ -106,7 +106,8 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/box_comment">
 
                 <ImageButton
                     android:id="@+id/button_comment"
@@ -162,11 +163,25 @@
                     android:src="@drawable/ic_like_list" />
             </LinearLayout>
             <TextView
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="2dp"
                 android:id="@+id/like_list"
                 android:textColor="#2F5597"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="1dp"
+            android:id="@+id/comment_list_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_comment"
+            android:visibility="gone">
+            <ListView
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:id="@+id/comment_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -189,5 +204,6 @@
     <!--        android:text="内容"-->
     <!--        app:layout_constraintStart_toStartOf="parent"-->
     <!--        app:layout_constraintTop_toBottomOf="@id/title" />-->
+
 
 </LinearLayout>

@@ -134,8 +134,9 @@ public class Moment {
     }
 
     public String momentString(String nickname, String aboutMe) {
+        String e = email.replace("%40", "@");
         return "Moment{" +
-                "email='" + email + '\'' +
+                "email='" + e + '\'' +
                 ", post_time='" + post_time + '\'' +
                 ", images=" + Arrays.toString(images) +
                 ", title='" + title + '\'' +

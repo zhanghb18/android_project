@@ -39,7 +39,8 @@ public class MomentProcessor {
     public void CreateMomentByUser(PostMomentInParams inParams) throws Exception {
         System.out.println("CreateMomentByUser");
         String time = URLDecoder.decode(inParams.getPost_time(), "utf-8");
-        Moment moment = new Moment(inParams.getEmail(), time);
+        String email = inParams.getEmail().replace("@", "%40");
+        Moment moment = new Moment(email, time);
         String title = inParams.getTitle();
         String content = inParams.getContent();
 //        MixedFileUpload[] images = inParams.getImages();
@@ -68,7 +69,8 @@ public class MomentProcessor {
         Query query = new Query();
         List<Moment> moments = mongoTemplate.find(query, Moment.class);
         String res = "";
-        for (Moment moment : moments) {
+        for (int i = moments.size()-1; i >= 0; i--) {
+            Moment moment = moments.get(i);
             String cur_email = moment.getEmail();
             cur_email = cur_email.replace("@", "%40");
             if (userProcessor.isBlock(email, cur_email) == true) {
