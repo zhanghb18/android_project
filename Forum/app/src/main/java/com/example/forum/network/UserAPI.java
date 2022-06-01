@@ -25,6 +25,17 @@ public interface UserAPI {
     @GET("user/password")
     Call<ResponseBody> Password(@Query("email") String email, @Query("password") String password);
 
+    @GET("user/add_star")
+    Call<ResponseBody> UserAddStar(@Query("email") String email, @Query("star_email") String star_email);
+
+    @GET("user/cancel_star")
+    Call<ResponseBody> UserCancelStar(@Query("email") String email, @Query("cancel_email") String cancel_email);
+
+    @GET("user/block")
+    Call<ResponseBody> UserBlock(@Query("email") String email, @Query("block_email") String block_email);
+
+    @GET("user/cancel_block")
+    Call<ResponseBody> UserCancelBlock(@Query("email") String email, @Query("cancel_email") String cancel_email);
 
     // Moment
     @GET("moment/post")
@@ -42,8 +53,7 @@ public interface UserAPI {
     @GET
     Call<ResponseBody> Avatar(@Url String url);
 
-    @GET("user/addcontact")
-    Call<ResponseBody> AddContact(@Query("friendUsername") String friend_username);
+
 
     @GET("user/openchat")
     Call<ResponseBody> OpenChat(@Query("id") String id, @Query("type") String type);
