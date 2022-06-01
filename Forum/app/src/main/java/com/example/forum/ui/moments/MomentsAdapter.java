@@ -128,13 +128,13 @@ public class MomentsAdapter extends
                 @Override
                 public void onClick(View view) {
                     int mPosition = getLayoutPosition();
-                    System.out.println(moment_list.get(mPosition).email);
+//                    System.out.println(moment_list.get(mPosition).email);
                     String cur_email = moment_list.get(mPosition).email;
                     String cur_nickname = moment_list.get(mPosition).nickname;
                     String cur_aboutMe = moment_list.get(mPosition).aboutMe;
-                    System.out.println("**********");
-                    System.out.println(cur_email);
-                    System.out.println(UserApplication.getEmail());
+//                    System.out.println("**********");
+//                    System.out.println(cur_email);
+//                    System.out.println(UserApplication.getEmail());
                     if(UserApplication.getEmail().equals(cur_email)){
                         Intent intent=new Intent(context,PersonHomeActivity.class);
                         //intent.putExtra(cur_email,EXTRA_MESSAGE);

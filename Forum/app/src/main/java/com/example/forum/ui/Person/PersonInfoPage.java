@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.example.forum.user.UserApplication;
 import com.example.forum.network.User;
@@ -25,6 +26,7 @@ public class PersonInfoPage extends AppCompatActivity {
     private TextView mPersonInfoView;
     private Button mChangePwdButton;
     private Button mContentChangeButton;
+    private LinearLayout mLinearLayout;
     public static final String EXTRA_MESSAGE = "content";
     public ActivityResultLauncher<Intent> intentActivityResultLauncher;
 
@@ -44,6 +46,8 @@ public class PersonInfoPage extends AppCompatActivity {
         mEmailContentView.setText(UserApplication.getEmail());
         System.out.println(UserApplication.getAboutMe());
         mPersonInfoView.setText(UserApplication.getAboutMe());
+        //设置焦点相关问题
+        mLinearLayout = findViewById(R.id.person_info_page_linearlayout);
         
         intentActivityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
@@ -73,6 +77,7 @@ public class PersonInfoPage extends AppCompatActivity {
         mContentChangeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mLinearLayout.requestFocus(0);
                 User.ModifyInfo(view,UserApplication.getEmail(),mIdContentView.getText().toString(),mNicknameContentView.getText().toString(), mPersonInfoView.getText().toString());
                 User.UserInfo(UserApplication.getEmail());
             }
