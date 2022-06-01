@@ -33,6 +33,21 @@
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/tab_layout"/>
+        android:layout_below="@id/tab_layout" />
+
+    <RelativeLayout
+        android:id="@+id/rl_comment"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:layout_alignBottom="@id/pager"
+        android:layout_marginBottom="200dp"
+        android:visibility="gone">
+        <EditText
+            android:id="@+id/test"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/comment_content"/>
+    </RelativeLayout>
 
 </RelativeLayout>
