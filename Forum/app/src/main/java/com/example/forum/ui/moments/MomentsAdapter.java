@@ -24,6 +24,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -65,7 +66,7 @@ public class MomentsAdapter extends
         LinearLayout box_comment;
         LinearLayout box_like_list=itemView.findViewById(R.id.like_list_box);
         LinearLayout box_comment_list=itemView.findViewById(R.id.comment_list_box);
-        ListView comment_list;
+        ListView comment_list=itemView.findViewById(R.id.comment_list);
         private List<Comment> data;
         private CommentsAdapter commentsAdapter;
         ImageButton button_like=itemView.findViewById(R.id.button_like);
@@ -109,15 +110,14 @@ public class MomentsAdapter extends
             box_comment=itemView.findViewById(R.id.box_comment);
             box_comment.setClickable(true);
             //box_comment.setOnClickListener(comment_click);
+            data=new ArrayList<>();
+            commentsAdapter=new CommentsAdapter(context,data);
+            comment_list.setAdapter(commentsAdapter);
             box_comment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     System.out.println("clicked comment");
                     showPopupComment();
-                    comment_list=itemView.findViewById(R.id.comment_list);
-                    data=new ArrayList<>();
-                    commentsAdapter=new CommentsAdapter(context,data);
-                    comment_list.setAdapter(commentsAdapter);
                 }
             });
 
@@ -229,13 +229,34 @@ public class MomentsAdapter extends
                         String nickname=UserApplication.getNickname();
                         comment.setName(nickname);
                         comment.setContent(nInputContentText);
+                        System.out.println("新评论");
+                        System.out.println(nInputContentText);
                         commentsAdapter.addComment(comment);
+                        setListViewHeightBasedOnChildren(comment_list);
                         box_comment_list.setVisibility(View.VISIBLE);
+                        inputComment.setText("");
                         mInputManager.hideSoftInputFromWindow(inputComment.getWindowToken(),0);
                         popupWindow.dismiss();
                     }
                 });
             }
+
+        public void setListViewHeightBasedOnChildren(ListView listView) {
+            ListAdapter listAdapter = listView.getAdapter(); if (listAdapter == null) { // pre-condition
+                return;
+            }
+            int totalHeight = 0; for (int i = 0; i < listAdapter.getCount(); i++) {
+                View listItem = listAdapter.getView(i, null, listView); // listItem.measure(0, 0);
+                listItem.measure(
+                        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+                totalHeight += listItem.getMeasuredHeight();
+            }
+
+            ViewGroup.LayoutParams params = listView.getLayoutParams();
+            params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+            listView.setLayoutParams(params);
+        }
 
 
         //点赞
