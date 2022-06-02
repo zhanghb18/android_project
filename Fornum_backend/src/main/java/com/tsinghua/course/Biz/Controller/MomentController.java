@@ -28,7 +28,7 @@ public class MomentController {
     }
 
     @BizType(BizTypeEnum.MOMENT_GETPERSONAL)
-    public CommonOutParams getPersonalMoment(CommonInParams inParams) throws Exception {
+    public MomentOutParams getPersonalMoment(CommonInParams inParams) throws Exception {
         System.out.println("getMoment");
         return new MomentOutParams(momentProcessor.getPersonalMomentByEmail(inParams.getEmail()));
     }
@@ -49,9 +49,14 @@ public class MomentController {
     }
 
     @BizType(BizTypeEnum.MOMENT_GET)
-    public CommonOutParams getMoments(CommonInParams inParams) throws Exception {
+    public MomentOutParams getMoments(CommonInParams inParams) throws Exception {
         System.out.println("getMoments");
         return new MomentOutParams(momentProcessor.getMoments(inParams.getEmail()));
+    }
+
+    @BizType(BizTypeEnum.MOMENT_GETBYLIKES)
+    public MomentOutParams getMomentsByLikes(CommonInParams inParams) throws Exception {
+        return new MomentOutParams(momentProcessor.getMomentsByLikes(inParams.getEmail()));
     }
 
 //    @NeedLogin
@@ -67,10 +72,4 @@ public class MomentController {
         momentProcessor.DeleteComment(inParams);
         return new CommonOutParams(true);
     }
-//
-//    @NeedLogin
-//    @BizType(BizTypeEnum.USER_GETDISCOVER)
-//    public DiscoverOutParams getDiscover(CommonInParams inParams) throws Exception {
-//        return new DiscoverOutParams(discoverProcessor.getDiscoverByUsername(inParams.getUsername()));
-//    }
 }

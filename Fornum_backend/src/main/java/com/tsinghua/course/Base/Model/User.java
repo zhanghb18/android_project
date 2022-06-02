@@ -1,5 +1,6 @@
 package com.tsinghua.course.Base.Model;
 
+import com.tsinghua.course.Base.Enum.NoticeType;
 import com.tsinghua.course.Base.Enum.UserType;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.lang.NonNull;
@@ -125,6 +126,62 @@ public class User {
         }
     }
 
+    // 通知
+    public static class Notice {
+        // 通知类型
+        private NoticeType type;
+
+        // 该通知的关联用户
+        private String email;
+
+        // 通知时间
+        private String post_time;
+
+        // 通知内容
+        private String content;
+
+        public String getEmail() { return email; }
+
+        public void setEmail(String e) { this.email = e;}
+
+        public String getPostTime() { return post_time; }
+
+        public void setPostTime(String time) { this.post_time = time; }
+
+        public String getContent() { return content; }
+
+        public void setContent(String c) { this.content = c; }
+
+        public NoticeType getNoticeType() { return type; }
+
+        public void setNoticeType(NoticeType nt) { this.type = nt; }
+
+        public Notice(String email, NoticeType type) {
+            this.email = email;
+            this.type = type;
+        }
+
+        public String noticeString(String nickname) {
+            switch (type) {
+                case LIKE:
+                    return "Notice{" +
+                            "notice='" + "用户" + nickname + "给你点赞啦！" + '\'' +
+                            '}';
+                case COMMENT:
+                    return "Notice{" +
+                            "notice='" + "用户" + nickname + "给你评论啦！" + '\'' +
+                            '}';
+                case UPDATE:
+                    return "Notice{" +
+                            "notice='" + "你关注的用户" + nickname + "发布新动态啦！" + '\'' +
+                            '}';
+                default:
+                    return "error";
+            }
+
+        }
+    }
+
     // mongodb唯一id
     String id;
     // 邮箱
@@ -153,6 +210,13 @@ public class User {
     Stars[] star;
     // 屏蔽的用户
     Blacks[] black;
+
+    // 用户通知
+    Notice[] notice;
+
+    public Notice[] getNotice() { return notice; }
+
+    public void setNotice(Notice[] n) { this.notice = n; }
 
     public Stars[] getStar() { return star; }
 

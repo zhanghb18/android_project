@@ -12,6 +12,7 @@ import com.tsinghua.course.Frame.Util.FileUtil;
 import io.netty.handler.codec.http.multipart.MixedFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -64,7 +65,7 @@ public class MomentProcessor {
         mongoTemplate.insert(moment);
     }
 
-    /* 获取除屏蔽用户外的全部动态 */
+    /* 获取除屏蔽用户外的全部动态--时间顺序 */
     public String getMoments(String email) throws Exception {
         Query query = new Query();
         List<Moment> moments = mongoTemplate.find(query, Moment.class);
@@ -86,9 +87,33 @@ public class MomentProcessor {
         return res;
     }
 
+    /* 获取除屏蔽用户外的全部动态--点赞数顺序 */
+    public String getMomentsByLikes(String email) throws Exception {
+        Query query = new Query();
+        query.with(Sort.by(Sort.Order.desc("likes")));
+        List<Moment> moments = mongoTemplate.find(query, Moment.class);
+        String res = "";
+        for (int i = 0; i < moments.size(); i++) {
+            Moment moment = moments.get(i);
+            String cur_email = moment.getEmail();
+            cur_email = cur_email.replace("@", "%40");
+            if (userProcessor.isBlock(email, cur_email) == true) {
+                continue;
+            }
+
+            Query query1 = new Query();
+            query1.addCriteria(Criteria.where(KeyConstant.EMAIL).is(cur_email));
+            String nickname = mongoTemplate.findOne(query1, User.class).getNickname();
+            String aboutMe = mongoTemplate.findOne(query1, User.class).getAboutMe();
+            res += moment.momentString(nickname, aboutMe);
+        }
+        return res;
+    }
+
     /* 获取某用户的动态列表 */
     public String getPersonalMomentByEmail(String email) throws Exception{
         Query query = new Query();
+        email = email.replace("@", "%40");
         query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email));
         List<Moment> moments = mongoTemplate.find(query, Moment.class);
         String res = "";
@@ -108,8 +133,8 @@ public class MomentProcessor {
         System.out.println("LikeMoment");
         Query query = new Query();
         String time = URLDecoder.decode(inParams.getTime(), "utf-8");
-        query.addCriteria(Criteria.where("email").is(inParams.getPost_email())
-                .and("post_time").is(time));
+        String post_email = inParams.getPost_email().replace("@", "%40");
+        query.addCriteria(Criteria.where("email").is(post_email).and("post_time").is(time));
         Moment moment = mongoTemplate.findOne(query, Moment.class);
         if (moment == null) {
             throw new CourseWarn(UserWarnEnum.MOMENT_FAILED);
@@ -119,8 +144,11 @@ public class MomentProcessor {
             return;
         }
         else {
+            int likes = moment.getLikes();
+            likes += 1;
             Update update = new Update();
             update.push("liked", inParams.getEmail());
+            update.set("likes", likes);
             mongoTemplate.updateFirst(query, update, Moment.class);
         }
     }
@@ -129,14 +157,17 @@ public class MomentProcessor {
     public void unlikeMomentByEmail(UnlikeMomentInParams inParams) throws Exception {
         Query query = new Query();
         String time = URLDecoder.decode(inParams.getTime(), "utf-8");
-        query.addCriteria(Criteria.where("email").is(inParams.getPost_email())
-                .and("post_time").is(time));
-        Moment discover = mongoTemplate.findOne(query, Moment.class);
-        if (discover == null) {
+        String post_email = inParams.getPost_email().replace("@", "%40");
+        query.addCriteria(Criteria.where("email").is(post_email).and("post_time").is(time));
+        Moment moment = mongoTemplate.findOne(query, Moment.class);
+        if (moment == null) {
             throw new CourseWarn(UserWarnEnum.MOMENT_FAILED);
         }
+        int likes = moment.getLikes();
+        likes -= 1;
         Update update = new Update();
         update.pull("liked", inParams.getEmail());
+        update.set("likes", likes);
         mongoTemplate.updateFirst(query, update, Moment.class);
     }
 
@@ -146,7 +177,8 @@ public class MomentProcessor {
         String content = URLDecoder.decode(inParams.getComment(), "utf-8");
         String post_time = URLDecoder.decode(inParams.getPost_time(), "utf-8");
         String comment_time = URLDecoder.decode(inParams.getComment_time(), "utf-8");
-        query.addCriteria(Criteria.where("email").is(inParams.getPost_email()).and("post_time").is(post_time));
+        String post_email = inParams.getPost_email().replace("@", "%40");
+        query.addCriteria(Criteria.where("email").is(post_email).and("post_time").is(post_time));
         Moment moment = mongoTemplate.findOne(query, Moment.class);
         if (moment == null) {
             throw new CourseWarn(UserWarnEnum.MOMENT_FAILED);
@@ -173,8 +205,8 @@ public class MomentProcessor {
         String post_time = URLDecoder.decode(inParams.getPost_time(), "utf-8");
         String content = URLDecoder.decode(inParams.getComment(), "utf-8");
         String comment_time = URLDecoder.decode(inParams.getComment_time(), "utf-8");
-        query.addCriteria(Criteria.where("email").is(inParams.getPost_email())
-                .and("post_time").is(post_time));
+        String post_email = inParams.getPost_email().replace("@", "%40");
+        query.addCriteria(Criteria.where("email").is(post_email).and("post_time").is(post_time));
         Moment moment = mongoTemplate.findOne(query, Moment.class);
         if (moment == null) {
             throw new CourseWarn(UserWarnEnum.MOMENT_FAILED);

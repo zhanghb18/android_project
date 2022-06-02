@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Arrays;
 import java.util.Map;
 
+@Document("Moment")
 public class Moment {
     public static class Comment {
         String username;
@@ -75,10 +76,16 @@ public class Moment {
     // 头像
     String avatar_url;
 
+    // 获赞数
+    int likes;
+
     public Moment(String email, String post_time) {
         this.email = email;
         this.post_time = post_time;
+        this.likes = 0;
     }
+
+    public int getLikes() { return likes; }
 
     public String getTitle() { return title; }
 
