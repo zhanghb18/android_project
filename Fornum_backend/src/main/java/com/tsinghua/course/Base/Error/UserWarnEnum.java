@@ -24,7 +24,9 @@ public enum UserWarnEnum implements ExceptionInterface {
 
     USER_FAILED("UserWarn010", "用户不存在"),
 
-    BLOCK_FAILED("UserWarn011", "已经屏蔽该用户，请勿重复屏蔽")
+    BLOCK_FAILED("UserWarn011", "已经屏蔽该用户，请勿重复屏蔽"),
+
+    NOTICE_FAILED("UserWarn012", "该条通知不存在")
 //
 //    FILE_INVALID("UserWarn006", "文件不合法"),
 //

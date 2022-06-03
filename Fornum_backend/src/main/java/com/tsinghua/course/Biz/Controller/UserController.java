@@ -14,6 +14,7 @@ import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserInfo.Password
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserOpt.*;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserUtil.SignUpParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.Out.BoolOutParams;
+import com.tsinghua.course.Biz.Controller.Params.UserParams.Out.NoticeOutParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.Out.StarsOutParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.Out.UserInfoOutParams;
 import com.tsinghua.course.Biz.Processor.UserProcessor;
@@ -176,5 +177,19 @@ public class UserController {
     @BizType(BizTypeEnum.USER_ISBLOCK)
     public BoolOutParams isBlock(IsBlockInParams inParams) throws Exception {
         return new BoolOutParams(userProcessor.isBlock(inParams.getEmail(), inParams.getUser_email()));
+    }
+
+    /** 获取用户通知列表 */
+    @BizType(BizTypeEnum.USER_NOTICE)
+    public NoticeOutParams getNotice(CommonInParams inParams) throws Exception {
+        String res = userProcessor.getNotice(inParams.getEmail());
+        return new NoticeOutParams(res);
+    }
+
+    /** 将通知设置为已读 */
+    @BizType(BizTypeEnum.USER_NOTICEREAD)
+    public CommonOutParams setNoticeRead(NoticeReadInParams inParams) throws Exception {
+        userProcessor.setNoticeRead(inParams.getEmail(), inParams.getNotice_time());
+        return new CommonOutParams(true);
     }
 }

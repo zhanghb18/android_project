@@ -53,6 +53,7 @@ public class User {
         this.aboutMe = aboutMe;
         this.star = null;
         this.black = null;
+        this.fan = null;
     }
 
     /* 关注的用户 */
@@ -101,6 +102,24 @@ public class User {
         }
     }
 
+    /* 粉丝用户 */
+    public static class Fans {
+        // 用户
+        private String email;
+
+        public Fans(@NonNull String email) {
+            this.email = email;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String e) {
+            this.email = e;
+        }
+    }
+
     /* 屏蔽的用户 */
     public static class Blacks {
         // 用户
@@ -140,6 +159,13 @@ public class User {
         // 通知内容
         private String content;
 
+        // 是否已读
+        private boolean ifRead;
+
+        public boolean getIfRead() { return ifRead; }
+
+        public void setIfRead(boolean i) { this.ifRead = i; }
+
         public String getEmail() { return email; }
 
         public void setEmail(String e) { this.email = e;}
@@ -156,9 +182,11 @@ public class User {
 
         public void setNoticeType(NoticeType nt) { this.type = nt; }
 
-        public Notice(String email, NoticeType type) {
+        public Notice(String email, NoticeType type, String time) {
             this.email = email;
             this.type = type;
+            this.ifRead =false;
+            this.post_time = time;
         }
 
         public String noticeString(String nickname) {
@@ -166,14 +194,20 @@ public class User {
                 case LIKE:
                     return "Notice{" +
                             "notice='" + "用户" + nickname + "给你点赞啦！" + '\'' +
+                            "ifRead='" + ifRead +
+                            "time='" + post_time +
                             '}';
                 case COMMENT:
                     return "Notice{" +
-                            "notice='" + "用户" + nickname + "给你评论啦！" + '\'' +
+                            "notice='" + "用户" + nickname + "评论了你！" + '\'' +
+                            "ifRead='" + ifRead +
+                            "time='" + post_time +
                             '}';
                 case UPDATE:
                     return "Notice{" +
                             "notice='" + "你关注的用户" + nickname + "发布新动态啦！" + '\'' +
+                            "ifRead='" + ifRead +
+                            "time='" + post_time +
                             '}';
                 default:
                     return "error";
@@ -208,11 +242,17 @@ public class User {
 
     // 关注的用户
     Stars[] star;
+    // 粉丝用户
+    Fans[] fan;
     // 屏蔽的用户
     Blacks[] black;
 
     // 用户通知
     Notice[] notice;
+
+    public Fans[] getFan() { return fan; }
+
+    public void setFan(Fans[] f) { this.fan = f; }
 
     public Notice[] getNotice() { return notice; }
 

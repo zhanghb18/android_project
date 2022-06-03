@@ -21,17 +21,10 @@ public enum BizTypeEnum {
     USER_BL0CK(UserController.class, "/user/block", "用户屏蔽"),
     USER_CANCELBL0CK(UserController.class, "/user/cancel_block", "用户取消屏蔽"),
     USER_ISBLOCK(UserController.class, "/user/is_block", "判断用户是否为自己屏蔽的用户"),
+    USER_NOTICE(UserController.class, "/user/notice", "获取用户的通知列表"),
+    USER_NOTICEREAD(UserController.class, "/user/notice_read", "将通知设为已读"),
 
-    USER_AVATAR(UserController.class, "/user/avatar", "用户头像设置"),
-    USER_REMARK(UserController.class, "/user/remark", "修改用户备注"),
-    USER_CHATLIST(UserController.class, "/user/chatlist", "用户获取会话列表"),
-    USER_OPENCHAT(UserController.class, "/user/openchat", "用户打开新的会话列表"),
-    USER_CREATEGROUP(UserController.class, "/user/creategroup", "创建群组"),
-//    USER_INVITEGROUP(GroupController.class, "/user/invitegroup", "邀请好友入群"),
-//    USER_DELETEMEMBER(GroupController.class, "/user/deletemember", "将指定好友踢出群聊"),
-    USER_SENDMESSAGE(UserController.class, "/user/sendMessage", "用户发送信息"),
-//    USER_GETCHAT(ChatController.class, "/user/getchat", "根据chat_id获取单个对话框的消息流"),
-//    USER_GETCHATID(ChatController.class, "/user/getchatid", "用户获取chat_id"),
+
     USER_LOGOUT(UserController.class, "/user/logout", "用户注销"),
 
     /*Moment */

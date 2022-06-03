@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.jws.soap.SOAPBinding;
+import java.net.URLDecoder;
 import java.security.Key;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -131,8 +132,6 @@ public class UserProcessor {
         }
         Query query1 = new Query();
         query1.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email));
-        Query query2 = new Query();
-        query2.addCriteria(Criteria.where(KeyConstant.EMAIL).is(star_email));
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String friend_avatar = getAvatarByEmail(star_email);
         User.Stars star = new User.Stars(star_email, simpleDateFormat.format(new Date()), friend_avatar);
@@ -144,6 +143,14 @@ public class UserProcessor {
         if (isBlock(email, star_email) == true) {
             cancelBlock(email, star_email);
         }
+
+        // 成为关注用户的粉丝
+        User.Fans fan = new User.Fans(email);
+        Update update_fan = new Update();
+        update_fan.push("fan", fan);
+        Query query_fan = new Query();
+        query_fan.addCriteria(Criteria.where(KeyConstant.EMAIL).is(star_email));
+        mongoTemplate.updateFirst(query_fan, update_fan, User.class);
     }
 
     /** 用户取消关注 */
@@ -159,6 +166,20 @@ public class UserProcessor {
                 Update update = new Update();
                 update.pull("star", star);
                 mongoTemplate.updateFirst(query, update, User.class);
+                break;
+            }
+        }
+
+        // 取消关注用户的粉丝
+        Query query_fan = new Query();
+        query_fan.addCriteria(Criteria.where(KeyConstant.EMAIL).is(cancel_email)
+                .and("fan.email").is(email));
+        User.Fans[] fans = mongoTemplate.findOne(query_fan, User.class).getFan();
+        for (User.Fans fan : fans) {
+            if (fan.getEmail().equals(email)) {
+                Update update_fan = new Update();
+                update_fan.pull("fan", fan);
+                mongoTemplate.updateFirst(query_fan, update_fan, User.class);
                 return;
             }
         }
@@ -199,6 +220,34 @@ public class UserProcessor {
             }
         }
         return res;
+    }
+
+    /* 获取通知列表 */
+    public String getNotice(String email) throws Exception {
+        email = email.replace("@", "%40");
+        Query query = new Query();
+        query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email));
+        User user = mongoTemplate.findOne(query, User.class);
+        if (user == null)
+            throw new CourseWarn(UserWarnEnum.USER_FAILED);
+        User.Notice[] notices = user.getNotice();
+        String res = "";
+        if (notices != null) {
+            for(User.Notice notice: notices) {
+                String notice_email = notice.getEmail();
+                String notice_nickname = getNickname(notice_email);
+                res = res + notice.noticeString(notice_nickname) + ",";
+            }
+        }
+        return res;
+    }
+
+    // 通过email获得nickname
+    private String getNickname(String email) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email));
+        User user = mongoTemplate.findOne(query, User.class);
+        return user.getNickname();
     }
 
     /* 屏蔽用户 */
@@ -260,5 +309,34 @@ public class UserProcessor {
             }
         }
         return false;
+    }
+
+    /** 将通知设置为已读 */
+    public void setNoticeRead(String email, String time) throws Exception {
+        email = email.replace("@", "%40");
+        time = URLDecoder.decode(time, "utf-8");
+        Query query = new Query();
+        query.addCriteria(Criteria.where("time").is(time));
+        if (mongoTemplate.findOne(query, User.Notice.class) == null) {
+            throw new CourseWarn(UserWarnEnum.NOTICE_FAILED);
+        }
+        Update update = new Update();
+        update.set("ifRead", true);
+        mongoTemplate.updateFirst(query, update, User.Notice.class);
+//        Query query = new Query();
+//        query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email).and("notice.time").is(time));
+//        User user = mongoTemplate.findOne(query, User.class);
+//        if (user == null) {
+//            throw new CourseWarn(UserWarnEnum.NOTICE_FAILED);
+//        }
+//        User.Notice[] notices = user.getNotice();
+//        for (User.Notice notice : notices) {
+//            if (notice.getPostTime().equals(time)) {
+//                Query notice_query = new Query();
+//                mongoTemplate.findOne(query, User.Notice.class);
+//                return;
+//            }
+//        }
+
     }
 }

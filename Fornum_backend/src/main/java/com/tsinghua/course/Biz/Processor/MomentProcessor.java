@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static com.tsinghua.course.Base.Enum.NoticeType.*;
+
 @Component
 public class MomentProcessor {
     @Autowired
@@ -44,8 +46,6 @@ public class MomentProcessor {
         Moment moment = new Moment(email, time);
         String title = inParams.getTitle();
         String content = inParams.getContent();
-//        MixedFileUpload[] images = inParams.getImages();
-//        moment.setAvatar_url(userProcessor.getAvatarByUsername(inParams.getUsername()));
         if(content.length() >= 0 && content != null) {
             content = URLDecoder.decode(content, "UTF-8");
             moment.setContent(content);
@@ -54,15 +54,22 @@ public class MomentProcessor {
             title = URLDecoder.decode(title, "UTF-8");
             moment.setTitle(title);
         }
-//        if(images != null && images.length > 0)
-//        {
-//            List<String> image_urlList = new ArrayList<>();
-//            for(MixedFileUpload item: images) {
-//                image_urlList.add(fileUtil.saveFile(item));
-//            }
-//            moment.setImages(image_urlList.toArray(new String[image_urlList.size()]));
-//        }
         mongoTemplate.insert(moment);
+
+        // 给粉丝发送通知
+        Query fan_query = new Query();
+        fan_query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email));
+        User.Fans[] fans = mongoTemplate.findOne(fan_query, User.class).getFan();
+        User.Notice notice = new User.Notice(email, UPDATE, time);
+        for (User.Fans fan : fans) {
+            String fan_email = fan.getEmail();
+            Query notice_query = new Query();
+            notice_query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(fan_email));
+            Update fan_update = new Update();
+            fan_update.push("notice", notice);
+            mongoTemplate.updateFirst(notice_query, fan_update, User.class);
+        }
+
     }
 
     /* 获取除屏蔽用户外的全部动态--时间顺序 */
@@ -133,6 +140,7 @@ public class MomentProcessor {
         System.out.println("LikeMoment");
         Query query = new Query();
         String time = URLDecoder.decode(inParams.getTime(), "utf-8");
+        String email = inParams.getEmail().replace("@", "%40");
         String post_email = inParams.getPost_email().replace("@", "%40");
         query.addCriteria(Criteria.where("email").is(post_email).and("post_time").is(time));
         Moment moment = mongoTemplate.findOne(query, Moment.class);
@@ -140,7 +148,7 @@ public class MomentProcessor {
             throw new CourseWarn(UserWarnEnum.MOMENT_FAILED);
         }
         // 检查是否已经点赞
-        if( moment.ifliked(inParams.getEmail())) {
+        if( moment.ifliked(email)) {
             return;
         }
         else {
@@ -151,6 +159,15 @@ public class MomentProcessor {
             update.set("likes", likes);
             mongoTemplate.updateFirst(query, update, Moment.class);
         }
+
+        // 给被点赞用户发送通知
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        User.Notice notice = new User.Notice(email, LIKE, simpleDateFormat.format(new Date()));
+        Query user_query = new Query();
+        user_query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(post_email));
+        Update user_update = new Update();
+        user_update.push("notice", notice);
+        mongoTemplate.updateFirst(user_query, user_update, User.class);
     }
 
     /* 动态取消点赞 */
@@ -178,6 +195,7 @@ public class MomentProcessor {
         String post_time = URLDecoder.decode(inParams.getPost_time(), "utf-8");
         String comment_time = URLDecoder.decode(inParams.getComment_time(), "utf-8");
         String post_email = inParams.getPost_email().replace("@", "%40");
+        String email = inParams.getEmail().replace("@", "%40");
         query.addCriteria(Criteria.where("email").is(post_email).and("post_time").is(post_time));
         Moment moment = mongoTemplate.findOne(query, Moment.class);
         if (moment == null) {
@@ -185,19 +203,35 @@ public class MomentProcessor {
         }
         Update update = new Update();
         if (inParams.getReply_email() == null ){ // 评论动态
-            Moment.Comment comment = new Moment.Comment(inParams.getEmail(), inParams.getPost_email(),
+            Moment.Comment comment = new Moment.Comment(email, post_email,
                     content, comment_time);
             update.push("commentList", comment);
-
         }
         else { // 回复评论
-            Moment.Comment comment = new Moment.Comment(inParams.getEmail(), inParams.getReply_email(),
-                    content, comment_time);
+            String reply_email = inParams.getReply_email().replace("@", "%40");
+            Moment.Comment comment = new Moment.Comment(email, reply_email, content, comment_time);
             update.push("commentList", comment);
+
+            // 给被评论者发送通知
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            User.Notice com_notice = new User.Notice(email, COMMENT, simpleDateFormat.format(new Date()));
+            Query com_query = new Query();
+            com_query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(reply_email));
+            Update com_update = new Update();
+            com_update.push("notice", com_notice);
+            mongoTemplate.updateFirst(com_query, com_update, User.class);
         }
         mongoTemplate.updateFirst(query, update, Moment.class);
-    }
 
+        // 给动态发布者发送通知
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        User.Notice notice = new User.Notice(email, COMMENT, simpleDateFormat.format(new Date()));
+        Query user_query = new Query();
+        user_query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(post_email));
+        Update user_update = new Update();
+        user_update.push("notice", notice);
+        mongoTemplate.updateFirst(user_query, user_update, User.class);
+    }
 
     /* 删除评论或回复 */
     public void DeleteComment(DeleteCommentInParams inParams) throws Exception {
