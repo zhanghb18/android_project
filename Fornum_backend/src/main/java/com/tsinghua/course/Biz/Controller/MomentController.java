@@ -54,9 +54,19 @@ public class MomentController {
         return new MomentOutParams(momentProcessor.getMoments(inParams.getEmail()));
     }
 
+    @BizType(BizTypeEnum.MOMENT_GETSTARS)
+    public MomentOutParams getStarMoments(CommonInParams inParams) throws Exception {
+        return new MomentOutParams(momentProcessor.getStarMoments(inParams.getEmail()));
+    }
+
     @BizType(BizTypeEnum.MOMENT_GETBYLIKES)
     public MomentOutParams getMomentsByLikes(CommonInParams inParams) throws Exception {
         return new MomentOutParams(momentProcessor.getMomentsByLikes(inParams.getEmail()));
+    }
+
+    @BizType(BizTypeEnum.MOMENT_GETSTARSBYLIKES)
+    public MomentOutParams getStarMomentsByLikes(CommonInParams inParams) throws Exception {
+        return new MomentOutParams(momentProcessor.getStarMomentsByLikes(inParams.getEmail()));
     }
 
 //    @NeedLogin

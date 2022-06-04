@@ -61,21 +61,25 @@ public class MomentProcessor {
         fan_query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email));
         User.Fans[] fans = mongoTemplate.findOne(fan_query, User.class).getFan();
         User.Notice notice = new User.Notice(email, UPDATE, time);
-        for (User.Fans fan : fans) {
-            String fan_email = fan.getEmail();
-            Query notice_query = new Query();
-            notice_query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(fan_email));
-            Update fan_update = new Update();
-            fan_update.push("notice", notice);
-            mongoTemplate.updateFirst(notice_query, fan_update, User.class);
+        if (fans != null) {
+            for (User.Fans fan : fans) {
+                String fan_email = fan.getEmail();
+                Query notice_query = new Query();
+                notice_query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(fan_email));
+                Update fan_update = new Update();
+                fan_update.push("notice", notice);
+                mongoTemplate.updateFirst(notice_query, fan_update, User.class);
+            }
         }
-
     }
 
     /* 获取除屏蔽用户外的全部动态--时间顺序 */
     public String getMoments(String email) throws Exception {
         Query query = new Query();
         List<Moment> moments = mongoTemplate.find(query, Moment.class);
+        if (moments == null) {
+            return "null";
+        }
         String res = "";
         for (int i = moments.size()-1; i >= 0; i--) {
             Moment moment = moments.get(i);
@@ -94,11 +98,40 @@ public class MomentProcessor {
         return res;
     }
 
+    /* 获取关注用户的全部动态--时间顺序 */
+    public String getStarMoments(String email) throws Exception {
+        email = email.replace("@", "%40");
+        Query query = new Query();
+        List<Moment> moments = mongoTemplate.find(query, Moment.class);
+        if (moments == null) {
+            return "null";
+        }
+        String res = "";
+        for (int i = moments.size()-1; i >= 0; i--) {
+            Moment moment = moments.get(i);
+            String cur_email = moment.getEmail();
+            cur_email = cur_email.replace("@", "%40");
+            if (userProcessor.isStar(email, cur_email) == false) {
+                continue;
+            }
+
+            Query query1 = new Query();
+            query1.addCriteria(Criteria.where(KeyConstant.EMAIL).is(cur_email));
+            String nickname = mongoTemplate.findOne(query1, User.class).getNickname();
+            String aboutMe = mongoTemplate.findOne(query1, User.class).getAboutMe();
+            res += moment.momentString(nickname, aboutMe);
+        }
+        return res;
+    }
+
     /* 获取除屏蔽用户外的全部动态--点赞数顺序 */
     public String getMomentsByLikes(String email) throws Exception {
         Query query = new Query();
         query.with(Sort.by(Sort.Order.desc("likes")));
         List<Moment> moments = mongoTemplate.find(query, Moment.class);
+        if (moments == null) {
+            return "null";
+        }
         String res = "";
         for (int i = 0; i < moments.size(); i++) {
             Moment moment = moments.get(i);
@@ -117,12 +150,42 @@ public class MomentProcessor {
         return res;
     }
 
+    /* 获取关注用户的全部动态--点赞数顺序 */
+    public String getStarMomentsByLikes(String email) throws Exception {
+        email = email.replace("@", "%40");
+        Query query = new Query();
+        query.with(Sort.by(Sort.Order.desc("likes")));
+        List<Moment> moments = mongoTemplate.find(query, Moment.class);
+        if (moments == null) {
+            return "null";
+        }
+        String res = "";
+        for (int i = 0; i < moments.size(); i++) {
+            Moment moment = moments.get(i);
+            String cur_email = moment.getEmail();
+            cur_email = cur_email.replace("@", "%40");
+            if (userProcessor.isStar(email, cur_email) == false) {
+                continue;
+            }
+
+            Query query1 = new Query();
+            query1.addCriteria(Criteria.where(KeyConstant.EMAIL).is(cur_email));
+            String nickname = mongoTemplate.findOne(query1, User.class).getNickname();
+            String aboutMe = mongoTemplate.findOne(query1, User.class).getAboutMe();
+            res += moment.momentString(nickname, aboutMe);
+        }
+        return res;
+    }
+
     /* 获取某用户的动态列表 */
     public String getPersonalMomentByEmail(String email) throws Exception{
         Query query = new Query();
         email = email.replace("@", "%40");
         query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email));
         List<Moment> moments = mongoTemplate.find(query, Moment.class);
+        if (moments == null) {
+            return "null";
+        }
         String res = "";
         for (Moment moment : moments) {
             String cur_email = moment.getEmail();

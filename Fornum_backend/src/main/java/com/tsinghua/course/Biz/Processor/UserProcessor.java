@@ -110,7 +110,7 @@ public class UserProcessor {
         email = email.replace("@", "%40");
         Query query0 = new Query();
         query0.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email));
-        if(mongoTemplate.findOne(query0, User.class).getUserID() != userID) {
+        if(mongoTemplate.findOne(query0, User.class).getUserID().equals(userID) == false) {
             Query query1 = new Query();
             query1.addCriteria(Criteria.where(KeyConstant.USERID).is(userID));
             if (mongoTemplate.findOne(query1, User.class) != null)
