@@ -44,6 +44,18 @@ public class UserProcessor {
 //        return mongoTemplate.findOne(query, User.class).getAvatar_url();
         return "";
     }
+    private String getNickname(String email) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email));
+        User user = mongoTemplate.findOne(query, User.class);
+        return user.getNickname();
+    }
+    private String getAboutMe(String email) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email));
+        User user = mongoTemplate.findOne(query, User.class);
+        return user.getAboutMe();
+    }
 
     /** 创建新用户 */
     public void createUser(String email, String userID, String nickname, String password) throws Exception {
@@ -216,7 +228,10 @@ public class UserProcessor {
         String res = "";
         if (stars != null) {
             for(User.Stars star: stars) {
-                res = res + star.toString() + ",";
+                String star_email = star.getEmail();
+                String nickname = getNickname(star_email);
+                String aboutMe = getAboutMe(star_email);
+                res = res + star.starString(nickname, aboutMe) + ",";
             }
         }
         return res;
@@ -240,14 +255,6 @@ public class UserProcessor {
             }
         }
         return res;
-    }
-
-    // 通过email获得nickname
-    private String getNickname(String email) {
-        Query query = new Query();
-        query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email));
-        User user = mongoTemplate.findOne(query, User.class);
-        return user.getNickname();
     }
 
     /* 屏蔽用户 */
