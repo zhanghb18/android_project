@@ -93,11 +93,12 @@ public class User {
             this.email = e;
         }
 
-        @Override
-        public String toString() {
+        public String starString(String nickname, String aboutMe) {
             String e = email.replace("%40", "@");
             return "Stars{" +
                     "email='" + e + '\'' +
+                    "nickname='" + nickname + '\'' +
+                    "aboutMe='" + aboutMe + '\'' +
                     '}';
         }
     }
