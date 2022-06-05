@@ -31,11 +31,17 @@ public interface UserAPI {
     @GET("user/cancel_star")
     Call<ResponseBody> UserCancelStar(@Query("email") String email, @Query("cancel_email") String cancel_email);
 
+    @GET("user/is_star")
+    Call<ResponseBody> UserIsStar(@Query("email") String email, @Query("user_email") String user_email);
+
     @GET("user/block")
     Call<ResponseBody> UserBlock(@Query("email") String email, @Query("block_email") String block_email);
 
     @GET("user/cancel_block")
     Call<ResponseBody> UserCancelBlock(@Query("email") String email, @Query("cancel_email") String cancel_email);
+
+    @GET("user/is_block")
+    Call<ResponseBody> UserIsBlock(@Query("email") String email, @Query("user_email") String user_email);
 
     @GET("user/stars")
     Call<ResponseBody> UserStars(@Query("email") String email);
@@ -43,42 +49,42 @@ public interface UserAPI {
     @GET("user/blocks")
     Call<ResponseBody> UserBlocks(@Query("email") String email);
 
+    @GET("user/notice")
+    Call<ResponseBody> UserNotice(@Query("email") String email);
+
+    @GET("user/notice_read")
+    Call<ResponseBody> UserNoticeRead(@Query("email") String email, @Query("time") String time);
+
     // Moment
     @GET("moment/post")
     Call<ResponseBody> PostNewMoment(@Query("email") String email, @Query("title") String title, @Query("content") String content, @Query("post_time")String post_time);
 
-    @GET("moment/like")
-    Call<ResponseBody> LikeMoment(@Query("email") String email, @Query("post_email")String post_email, @Query("time") String time);
-
     @GET("moment/get")
     Call<ResponseBody> GetMoments(@Query("email") String email);
+
+    @GET("moment/get_by_likes")
+    Call<ResponseBody> GetMomentsByLikes(@Query("email") String email);
+
+    @GET("moment/get_stars")
+    Call<ResponseBody> GetStarMoments(@Query("email") String email);
+
+    @GET("moment/get_stars_by_likes")
+    Call<ResponseBody> GetStarMomentsByLikes(@Query("email") String email);
 
     @GET("moment/get_personal")
     Call<ResponseBody> GetPersonalMoments(@Query("user_email") String email);
 
+    @GET("moment/like")
+    Call<ResponseBody> LikeMoment(@Query("email") String email, @Query("post_email")String post_email, @Query("time") String time);
 
+    @GET("moment/cancel_like")
+    Call<ResponseBody> CancelLikeMoment(@Query("email") String email, @Query("post_email")String post_email, @Query("time") String time);
 
+    @GET("moment/comment")
+    Call<ResponseBody> CommentMoment(@Query("email") String email, @Query("post_email")String post_email, @Query("post_time") String post_time
+                                    , @Query("comment") String comment, @Query("reply_email") String reply_email, @Query("comment_time") String comment_time);
 
-    @GET
-    Call<ResponseBody> Avatar(@Url String url);
-
-
-
-    @GET("user/openchat")
-    Call<ResponseBody> OpenChat(@Query("id") String id, @Query("type") String type);
-
-    @GET("user/deletecontact")
-    Call<ResponseBody> DeleteContact(@Query("friend_username") String friend_username);
-
-    @GET("test/file")
-    Call<ResponseBody> FileTest(@Query("file") File file);
-
-
-
-
-
-    @GET("user/cancellike")
-    Call<ResponseBody> UnLikeDiscover(@Query("post_username")String post_username, @Query("time") String time);
-
-
+    @GET("moment/delete_comment")
+    Call<ResponseBody> DeleteComment(@Query("email") String email, @Query("post_email")String post_email, @Query("post_time") String post_time
+            , @Query("comment") String comment, @Query("reply_email") String reply_email, @Query("comment_time") String comment_time);
 }

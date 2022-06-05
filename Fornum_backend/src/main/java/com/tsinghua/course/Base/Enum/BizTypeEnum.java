@@ -7,10 +7,9 @@ import com.tsinghua.course.Biz.Controller.*;
  **/
 public enum BizTypeEnum {
     /** 以下为用户业务类型 */
-    // Not Need Login
     USER_LOGIN(UserController.class, "/user/login", "用户登录"),
     USER_SIGNUP(UserController.class, "/user/signup", "用户注册"),
-    // Do Need Login
+
     USER_PASSWORD(UserController.class, "/user/password", "用户修改密码"),
     USER_INFO(UserController.class, "/user/info", "用户基本信息获取"),
     USER_MODIFYINFO(UserController.class, "/user/modify_info", "用户基本信息修改"),
@@ -24,6 +23,11 @@ public enum BizTypeEnum {
     USER_ISBLOCK(UserController.class, "/user/is_block", "判断用户是否为自己屏蔽的用户"),
     USER_NOTICE(UserController.class, "/user/notice", "获取用户的通知列表"),
     USER_NOTICEREAD(UserController.class, "/user/notice_read", "将通知设为已读"),
+    USER_ADDDRAFT(UserController.class, "/user/add_draft", "用户新增草稿"),
+    USER_MODIFYDRAFT(UserController.class, "/user/modify_draft", "用户修改草稿"),
+    USER_DELETEDRAFT(UserController.class, "/user/delete_draft", "用户删除草稿"),
+    USER_POSTDRAFT(UserController.class, "/user/post_draft", "用户发布草稿"),
+    USER_DRAFTS(UserController.class, "/user/drafts", "用户获取草稿箱列表"),
 
 
     USER_LOGOUT(UserController.class, "/user/logout", "用户注销"),
@@ -34,7 +38,7 @@ public enum BizTypeEnum {
     MOMENT_GET(MomentController.class, "/moment/get", "根据时间顺序获取当前所有动态"),
     MOMENT_GETBYLIKES(MomentController.class, "/moment/get_by_likes", "根据点赞数获取当前所有动态"),
     MOMENT_LIKE(MomentController.class, "/moment/like", "用户点赞动态"),
-    MOMENT_CANCELLIKE(MomentController.class, "/moment/cancellike", "用户取消点赞"),
+    MOMENT_CANCELLIKE(MomentController.class, "/moment/cancel_like", "用户取消点赞"),
     MOMENT_COMMENT(MomentController.class, "/moment/comment", "用户评论动态/回复评论"),
     MOMENT_DELETECOMMENT(MomentController.class, "/moment/delete_comment", "用户删除评论/回复"),
     MOMENT_GETSTARS(MomentController.class, "/moment/get_stars", "获取关注用户的动态"),
