@@ -97,8 +97,8 @@ public class User {
             String e = email.replace("%40", "@");
             return "Stars{" +
                     "email='" + e + '\'' +
-                    "nickname='" + nickname + '\'' +
-                    "aboutMe='" + aboutMe + '\'' +
+                    ", nickname='" + nickname + '\'' +
+                    ", aboutMe='" + aboutMe + '\'' +
                     '}';
         }
     }
@@ -138,10 +138,12 @@ public class User {
             this.email = e;
         }
 
-        @Override
-        public String toString() {
-            return "Blacks{" +
-                    "email='" + email + '\'' +
+        public String blackString(String nickname, String aboutMe) {
+            String e = email.replace("%40", "@");
+            return "Blocks{" +
+                    "email='" + e + '\'' +
+                    ", nickname='" + nickname + '\'' +
+                    ", aboutMe='" + aboutMe + '\'' +
                     '}';
         }
     }
@@ -195,20 +197,20 @@ public class User {
                 case LIKE:
                     return "Notice{" +
                             "notice='" + "用户" + nickname + "给你点赞啦！" + '\'' +
-                            "ifRead='" + ifRead +
-                            "time='" + post_time +
+                            ", ifRead='" + ifRead +
+                            ", time='" + post_time +
                             '}';
                 case COMMENT:
                     return "Notice{" +
                             "notice='" + "用户" + nickname + "评论了你！" + '\'' +
-                            "ifRead='" + ifRead +
-                            "time='" + post_time +
+                            ", ifRead='" + ifRead +
+                            ", time='" + post_time +
                             '}';
                 case UPDATE:
                     return "Notice{" +
                             "notice='" + "你关注的用户" + nickname + "发布新动态啦！" + '\'' +
-                            "ifRead='" + ifRead +
-                            "time='" + post_time +
+                            ", ifRead='" + ifRead +
+                            ", time='" + post_time +
                             '}';
                 default:
                     return "error";

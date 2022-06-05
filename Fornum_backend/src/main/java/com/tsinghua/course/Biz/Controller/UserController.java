@@ -13,10 +13,7 @@ import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserInfo.InfoPara
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserInfo.PasswordParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserOpt.*;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserUtil.SignUpParams;
-import com.tsinghua.course.Biz.Controller.Params.UserParams.Out.BoolOutParams;
-import com.tsinghua.course.Biz.Controller.Params.UserParams.Out.NoticeOutParams;
-import com.tsinghua.course.Biz.Controller.Params.UserParams.Out.StarsOutParams;
-import com.tsinghua.course.Biz.Controller.Params.UserParams.Out.UserInfoOutParams;
+import com.tsinghua.course.Biz.Controller.Params.UserParams.Out.*;
 import com.tsinghua.course.Biz.Processor.UserProcessor;
 import com.tsinghua.course.Frame.Util.*;
 import io.netty.channel.ChannelHandlerContext;
@@ -177,6 +174,13 @@ public class UserController {
     @BizType(BizTypeEnum.USER_ISBLOCK)
     public BoolOutParams isBlock(IsBlockInParams inParams) throws Exception {
         return new BoolOutParams(userProcessor.isBlock(inParams.getEmail(), inParams.getUser_email()));
+    }
+
+    /** 用户获取黑名单列表 */
+    @BizType(BizTypeEnum.USER_BLOCKS)
+    public BlocksOutParams getBlocks(CommonInParams inParams) throws Exception {
+        String res = userProcessor.getBlocks(inParams.getEmail());
+        return new BlocksOutParams(res);
     }
 
     /** 获取用户通知列表 */

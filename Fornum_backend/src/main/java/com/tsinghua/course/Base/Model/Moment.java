@@ -40,10 +40,10 @@ public class Moment {
         @Override
         public String toString() {
             return "Comment{" +
-                    "username='" + username + '\'' +
+                    "email='" + username + '\'' +
                     ", content='" + content + '\'' +
                     ", time='" + time + '\'' +
-                    ", reply_to_username='" + reply_to_username + '\'' +
+                    ", reply_to_email='" + reply_to_username + '\'' +
                     '}';
         }
     }
