@@ -23,12 +23,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:paddingTop="10dp"
+            android:paddingTop="5dp"
             >
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/test"
+                android:id="@+id/notice_avator"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/like"
                 app:strokeColor="#FFFFFF"
                 android:layout_gravity="center_horizontal"
                 />
@@ -45,7 +46,7 @@
             android:id="@+id/notice_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="wyx"
+            android:text="2022-06-05 19:09:00"
             android:textSize="16dp"
             android:textStyle="bold"
             android:textColor="#2F5597"
