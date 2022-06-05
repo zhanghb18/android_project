@@ -52,31 +52,36 @@ public class User {
                         System.out.println(str);
                         JSONObject userInfo = GsonFunction.parseToJsonObject(str);
                         System.out.println(userInfo);
-                        UserApplication.setUserID(userInfo.getString("userID"));
+                        String tmp = userInfo.getString("userID");
+                        String userID = tmp.split("@")[0];
+                        String aboutMe = tmp.split("@")[1];
+                        System.out.println("userID");
+                        System.out.println(userID);
+                        System.out.println("aboutMe");
+                        System.out.println(aboutMe);
+                        UserApplication.setUserID(userID);
                         UserApplication.setNickname(userInfo.getString("nickname"));
                         UserApplication.setEmail(userInfo.getString("email"));
-                        UserApplication.setAvatar_url(userInfoRes.getString("avatar"));
-                        UserApplication.setAboutMe(userInfoRes.getString("aboutMe"));
-                        System.out.println(userInfoRes.getString("aboutMe"));
-                        String avatar_url = userInfoRes.getString("avatar");
-                        Call<ResponseBody> avatar_call = service.Avatar(avatar_url);
-                        avatar_call.enqueue(new Callback<ResponseBody>() {
-                            @Override
-                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                try {
-                                    byte[] bts = response.body().bytes();
-                                    Bitmap bitmap = BitmapFactory.decodeByteArray(bts,0, bts.length);
-                                    UserApplication.setAvatar(bitmap);
-                                } catch (Exception e) {
-
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call call, Throwable t) {
-
-                            }
-                        });
+                        UserApplication.setAboutMe(aboutMe);
+//                        String avatar_url = userInfoRes.getString("avatar");
+//                        Call<ResponseBody> avatar_call = service.Avatar(avatar_url);
+//                        avatar_call.enqueue(new Callback<ResponseBody>() {
+//                            @Override
+//                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                                try {
+//                                    byte[] bts = response.body().bytes();
+//                                    Bitmap bitmap = BitmapFactory.decodeByteArray(bts,0, bts.length);
+//                                    UserApplication.setAvatar(bitmap);
+//                                } catch (Exception e) {
+//
+//                                }
+//                            }
+//
+//                            @Override
+//                            public void onFailure(Call call, Throwable t) {
+//
+//                            }
+//                        });
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

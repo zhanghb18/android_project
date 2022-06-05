@@ -349,7 +349,7 @@ public class User {
         String decoded_email = email.replace("%40", "@");
         return "User{" +
                 "email='" + decoded_email + '\'' +
-                ", userID='" + userID + '\'' +
+                ", userID='" + userID + '@' + aboutMe + '\'' +
                 ", nickname='" + nickname + '\'' +
                 ", aboutMe='" + aboutMe + '\'' +
                 ", time='" + time + '\'' +
