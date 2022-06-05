@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.DraftPage.ChangeMomentsActivity">
 
     <EditText
-        android:id="@+id/title"
+        android:id="@+id/draft_change_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -19,37 +18,42 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <EditText
-        android:id="@+id/content"
+        android:id="@+id/draft_change_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:hint="分享新鲜事…"
         android:maxLines="5"
-        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@+id/draft_change_title"
         android:layout_marginTop="20dp"
         android:background="@color/white"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/content"
+        app:layout_constraintTop_toBottomOf="@+id/draft_change_content"
         android:gravity="right|bottom"
         android:layout_margin="10dp"
         >
         <Button
-            android:id="@+id/save_moments_to_draft_button"
+            android:id="@+id/save_moments_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="保存至草稿箱"
+            android:text="保存"
             android:layout_marginRight="10dp"
-            android:backgroundTint="@color/grey"/>
+            android:backgroundTint="@color/grey" />
         <Button
-            android:id="@+id/add_moments_button"
+            android:id="@+id/change_moments_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
             android:text="发布"
-            android:backgroundTint="@color/grey"
-            android:onClick="returnReply" />
+            android:backgroundTint="@color/grey" />
+        <Button
+            android:id="@+id/delete_moments_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="删除"
+            android:backgroundTint="@color/grey" />
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

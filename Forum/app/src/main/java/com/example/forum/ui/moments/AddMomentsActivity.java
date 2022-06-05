@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.forum.ForumActivity;
@@ -19,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class AddMomentsActivity extends AppCompatActivity {
     private EditText title;
     private EditText content;
+    private Button save_to_draft_button;
     public static final String REPLY_MESSAGE = "content_change";
     private String[] result;
     private String message;
@@ -36,6 +38,17 @@ public class AddMomentsActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         title = findViewById(R.id.title);
         content = findViewById(R.id.content);
+        save_to_draft_button = findViewById(R.id.save_moments_to_draft_button);
+        save_to_draft_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                String inputTitle = title.getText().toString();
+                String inputContent = content.getText().toString();
+                setResult(RESULT_CANCELED,intent);
+                finish();
+            }
+        });
     }
 
     public void returnReply(View view) {

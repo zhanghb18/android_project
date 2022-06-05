@@ -21,6 +21,12 @@
         android:theme="@style/Theme.Forum"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.DraftPage.ChangeMomentsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.DraftPage.DraftActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.NoticePage.NoticeActivity"
             android:exported="false" />
         <activity
