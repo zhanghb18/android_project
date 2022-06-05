@@ -118,16 +118,12 @@ public class OtherHomeActivity extends AppCompatActivity {
         System.out.println("获取个人动态");
         Retrofit retrofit = RetrofitUtil.getRetrofit();
         UserAPI service = retrofit.create(UserAPI.class);
-        System.out.println(email);
         Call<ResponseBody> call = service.GetPersonalMoments(email);
-        System.out.println(call.toString());
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
                     JSONObject userInfoRes = GsonFunction.parseToJsonObject(response.body().string());
-                    System.out.println(userInfoRes);
-                    System.out.println(email);
                     if (userInfoRes.getBoolean("success")) {
                         System.out.println("success");
                         String tmp = userInfoRes.getString("moments");

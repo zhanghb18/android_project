@@ -21,6 +21,9 @@
         android:theme="@style/Theme.Forum"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.NoticePage.NoticeActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.BlockPage.BlockActivity"
             android:exported="false" />
         <activity
@@ -60,7 +63,7 @@
         </activity>
         <activity
             android:name=".ForumActivity"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>
