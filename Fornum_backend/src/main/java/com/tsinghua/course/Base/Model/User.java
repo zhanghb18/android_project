@@ -200,18 +200,21 @@ public class User {
                             "notice='" + "用户" + nickname + "给你点赞啦！" + '\'' +
                             ", ifRead='" + ifRead +
                             ", time='" + post_time +
+                            ", type='" + type +
                             '}';
                 case COMMENT:
                     return "Notice{" +
                             "notice='" + "用户" + nickname + "评论了你！" + '\'' +
                             ", ifRead='" + ifRead +
                             ", time='" + post_time +
+                            ", type='" + type +
                             '}';
                 case UPDATE:
                     return "Notice{" +
                             "notice='" + "你关注的用户" + nickname + "发布新动态啦！" + '\'' +
                             ", ifRead='" + ifRead +
                             ", time='" + post_time +
+                            ", type='" + type +
                             '}';
                 default:
                     return "error";

@@ -212,7 +212,11 @@ public class UserController {
     }
 
     /** 删除草稿 */
-    // TODO
+    @BizType(BizTypeEnum.USER_DELETEDRAFT)
+    public CommonOutParams deleteDraft(DeleteDraftInParams inParams) throws Exception {
+        userProcessor.deleteDraft(inParams.getEmail(), inParams.getTime());
+        return new CommonOutParams(true);
+    }
 
     /** 发布草稿 */
     @BizType(BizTypeEnum.USER_POSTDRAFT)
