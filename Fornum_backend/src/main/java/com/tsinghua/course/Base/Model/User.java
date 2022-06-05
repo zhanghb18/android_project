@@ -54,6 +54,7 @@ public class User {
         this.star = null;
         this.black = null;
         this.fan = null;
+        this.draft = null;
     }
 
     /* 关注的用户 */
@@ -234,6 +235,15 @@ public class User {
         public String getTitle() { return this.title; }
         public String getContent() { return this.content; }
         public String getTime() { return this.time; }
+
+        @Override
+        public String toString() {
+            return "Draft{" +
+                    "title='" + title + '\'' +
+                    ", content='" + content +
+                    ", time='" + time +
+                    '}';
+        }
     }
 
     // mongodb唯一id
