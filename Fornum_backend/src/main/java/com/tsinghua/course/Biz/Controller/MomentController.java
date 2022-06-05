@@ -28,9 +28,8 @@ public class MomentController {
     }
 
     @BizType(BizTypeEnum.MOMENT_GETPERSONAL)
-    public MomentOutParams getPersonalMoment(CommonInParams inParams) throws Exception {
-        System.out.println("getMoment");
-        return new MomentOutParams(momentProcessor.getPersonalMomentByEmail(inParams.getEmail()));
+    public MomentOutParams getPersonalMoment(PersonalMomentsInParams inParams) throws Exception {
+        return new MomentOutParams(momentProcessor.getPersonalMomentByEmail(inParams.getUser_email()));
     }
 
 //    @NeedLogin
