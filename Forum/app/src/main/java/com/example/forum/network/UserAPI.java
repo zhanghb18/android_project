@@ -37,6 +37,9 @@ public interface UserAPI {
     @GET("user/cancel_block")
     Call<ResponseBody> UserCancelBlock(@Query("email") String email, @Query("cancel_email") String cancel_email);
 
+    @GET("user/stars")
+    Call<ResponseBody> UserStars(@Query("email") String email);
+
     // Moment
     @GET("moment/post")
     Call<ResponseBody> PostNewMoment(@Query("email") String email, @Query("title") String title, @Query("content") String content, @Query("post_time")String post_time);

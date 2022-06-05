@@ -75,6 +75,7 @@ public class MomentsAll extends Fragment {
                     moment.title = title;
                     moment.content = content;
                     moment.email = UserApplication.getEmail();
+                    moment.nickname = UserApplication.getNickname();
                     momentList.add(0, moment);
                     System.out.println("---------");
                     System.out.println(momentList.get(0).email);
