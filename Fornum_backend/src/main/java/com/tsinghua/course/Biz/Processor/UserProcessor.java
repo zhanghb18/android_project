@@ -400,6 +400,25 @@ public class UserProcessor {
         mongoTemplate.updateFirst(query, update, User.Drafts.class);
     }
 
+    /** 删除草稿 */
+    public void deleteDraft(String email, String time) throws Exception {
+        Query user_query = new Query();
+        user_query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email)
+                .and("draft.time").is(time));
+        User.Drafts[] drafts = mongoTemplate.findOne(user_query, User.class).getDraft();
+        if (drafts == null) {
+            throw new CourseWarn(UserWarnEnum.DRAFT_FAILED);
+        }
+        for (User.Drafts draft : drafts) {
+            if (draft.getTime().equals(time)) {
+                Update update = new Update();
+                update.pull("draft", draft);
+                mongoTemplate.updateFirst(user_query, update, User.class);
+                return;
+            }
+        }
+    }
+
     /** 发布草稿 */
     public void postDraft(String email, String title, String content, String old_time, String post_time) throws Exception {
         // 确认草稿存在
@@ -415,18 +434,7 @@ public class UserProcessor {
         MomentProcessor.CreateMomentByUser(email, title, content, post_time);
 
         // 将当前草稿从草稿箱中删除
-        Query user_query = new Query();
-        user_query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email)
-                .and("draft.time").is(old_time));
-        User.Drafts[] drafts = mongoTemplate.findOne(user_query, User.class).getDraft();
-        for (User.Drafts draft : drafts) {
-            if (draft.getTime().equals(old_time)) {
-                Update update = new Update();
-                update.pull("draft", draft);
-                mongoTemplate.updateFirst(user_query, update, User.class);
-                return;
-            }
-        }
+        deleteDraft(email, old_time);
     }
 
     /** 获取草稿箱列表 */
