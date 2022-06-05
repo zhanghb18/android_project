@@ -3,6 +3,7 @@ package com.tsinghua.course.Biz.Processor;
 import com.tsinghua.course.Base.Constant.KeyConstant;
 import com.tsinghua.course.Base.Error.CourseWarn;
 import com.tsinghua.course.Base.Error.UserWarnEnum;
+import com.tsinghua.course.Base.Model.Moment;
 import com.tsinghua.course.Base.Model.User;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.Out.UserInfoOutParams;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
+import static com.tsinghua.course.Base.Enum.NoticeType.UPDATE;
 
 /**
  * @描述 用户原子处理器，所有与用户相关的原子操作都在此处理器中执行
@@ -431,7 +434,35 @@ public class UserProcessor {
         }
 
         // 发布动态
-        MomentProcessor.CreateMomentByUser(email, title, content, post_time);
+        System.out.println("CreateMomentByUser");
+        String time = URLDecoder.decode(post_time, "utf-8");
+        email = email.replace("@", "%40");
+        Moment moment = new Moment(email, time);
+        if(content.length() >= 0 && content != null) {
+            content = URLDecoder.decode(content, "UTF-8");
+            moment.setContent(content);
+        }
+        if(title.length() >= 0 && title != null) {
+            title = URLDecoder.decode(title, "UTF-8");
+            moment.setTitle(title);
+        }
+        mongoTemplate.insert(moment);
+
+        // 给粉丝发送通知
+        Query fan_query = new Query();
+        fan_query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email));
+        User.Fans[] fans = mongoTemplate.findOne(fan_query, User.class).getFan();
+        User.Notices notice = new User.Notices(email, UPDATE, time);
+        if (fans != null) {
+            for (User.Fans fan : fans) {
+                String fan_email = fan.getEmail();
+                Query notice_query = new Query();
+                notice_query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(fan_email));
+                Update fan_update = new Update();
+                fan_update.push("notice", notice);
+                mongoTemplate.updateFirst(notice_query, fan_update, User.class);
+            }
+        }
 
         // 将当前草稿从草稿箱中删除
         deleteDraft(email, old_time);

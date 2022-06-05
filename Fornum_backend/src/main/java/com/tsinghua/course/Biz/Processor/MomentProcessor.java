@@ -25,7 +25,6 @@ import static com.tsinghua.course.Base.Enum.NoticeType.*;
 @Component
 public class MomentProcessor {
     @Autowired
-    static
     MongoTemplate mongoTemplate;
 
     @Autowired
@@ -35,7 +34,7 @@ public class MomentProcessor {
     FileUtil fileUtil;
 
     /* 发布动态 */
-    public static void CreateMomentByUser(String email, String title, String content, String time) throws Exception {
+    public void CreateMomentByUser(String email, String title, String content, String time) throws Exception {
         System.out.println("CreateMomentByUser");
         time = URLDecoder.decode(time, "utf-8");
         email = email.replace("@", "%40");
