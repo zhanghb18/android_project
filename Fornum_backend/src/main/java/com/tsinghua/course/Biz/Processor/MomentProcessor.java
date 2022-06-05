@@ -1,17 +1,13 @@
 package com.tsinghua.course.Biz.Processor;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.tsinghua.course.Base.Constant.KeyConstant;
 import com.tsinghua.course.Base.Error.CourseWarn;
 import com.tsinghua.course.Base.Error.UserWarnEnum;
 import com.tsinghua.course.Base.Model.Moment;
 import com.tsinghua.course.Base.Model.User;
-import com.tsinghua.course.Biz.Controller.Params.UserParams.In.*;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.UserOpt.*;
 import com.tsinghua.course.Frame.Util.FileUtil;
-import io.netty.handler.codec.http.multipart.MixedFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -21,7 +17,6 @@ import org.springframework.stereotype.Component;
 
 import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -60,7 +55,7 @@ public class MomentProcessor {
         Query fan_query = new Query();
         fan_query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email));
         User.Fans[] fans = mongoTemplate.findOne(fan_query, User.class).getFan();
-        User.Notice notice = new User.Notice(email, UPDATE, time);
+        User.Notices notice = new User.Notices(email, UPDATE, time);
         if (fans != null) {
             for (User.Fans fan : fans) {
                 String fan_email = fan.getEmail();
@@ -225,7 +220,7 @@ public class MomentProcessor {
 
         // 给被点赞用户发送通知
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        User.Notice notice = new User.Notice(email, LIKE, simpleDateFormat.format(new Date()));
+        User.Notices notice = new User.Notices(email, LIKE, simpleDateFormat.format(new Date()));
         Query user_query = new Query();
         user_query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(post_email));
         Update user_update = new Update();
@@ -277,7 +272,7 @@ public class MomentProcessor {
 
             // 给被评论者发送通知
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            User.Notice com_notice = new User.Notice(email, COMMENT, simpleDateFormat.format(new Date()));
+            User.Notices com_notice = new User.Notices(email, COMMENT, simpleDateFormat.format(new Date()));
             Query com_query = new Query();
             com_query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(reply_email));
             Update com_update = new Update();
@@ -288,7 +283,7 @@ public class MomentProcessor {
 
         // 给动态发布者发送通知
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        User.Notice notice = new User.Notice(email, COMMENT, simpleDateFormat.format(new Date()));
+        User.Notices notice = new User.Notices(email, COMMENT, simpleDateFormat.format(new Date()));
         Query user_query = new Query();
         user_query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(post_email));
         Update user_update = new Update();

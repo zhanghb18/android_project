@@ -13,13 +13,9 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Component;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import javax.jws.soap.SOAPBinding;
 import java.net.URLDecoder;
-import java.security.Key;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * @描述 用户原子处理器，所有与用户相关的原子操作都在此处理器中执行
@@ -245,10 +241,10 @@ public class UserProcessor {
         User user = mongoTemplate.findOne(query, User.class);
         if (user == null)
             throw new CourseWarn(UserWarnEnum.USER_FAILED);
-        User.Notice[] notices = user.getNotice();
+        User.Notices[] notices = user.getNotice();
         String res = "";
         if (notices != null) {
-            for(User.Notice notice: notices) {
+            for(User.Notices notice: notices) {
                 String notice_email = notice.getEmail();
                 String notice_nickname = getNickname(notice_email);
                 res = res + notice.noticeString(notice_nickname) + ",";
@@ -324,12 +320,12 @@ public class UserProcessor {
         time = URLDecoder.decode(time, "utf-8");
         Query query = new Query();
         query.addCriteria(Criteria.where("time").is(time));
-        if (mongoTemplate.findOne(query, User.Notice.class) == null) {
+        if (mongoTemplate.findOne(query, User.Notices.class) == null) {
             throw new CourseWarn(UserWarnEnum.NOTICE_FAILED);
         }
         Update update = new Update();
         update.set("ifRead", true);
-        mongoTemplate.updateFirst(query, update, User.Notice.class);
+        mongoTemplate.updateFirst(query, update, User.Notices.class);
 //        Query query = new Query();
 //        query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email).and("notice.time").is(time));
 //        User user = mongoTemplate.findOne(query, User.class);
