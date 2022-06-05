@@ -1,4 +1,4 @@
-package com.example.forum.ui.ConcernPage;
+package com.example.forum.ui.BlockPage;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,6 +9,7 @@ import com.example.forum.R;
 import com.example.forum.bean.GsonFunction;
 import com.example.forum.network.RetrofitUtil;
 import com.example.forum.network.UserAPI;
+import com.example.forum.ui.ConcernPage.ConcernActivity;
 import com.example.forum.ui.ConcernPage.ConcernAdapter;
 import com.example.forum.ui.moments.SingleMoment;
 import com.example.forum.user.UserApplication;
@@ -19,7 +20,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -28,7 +28,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class ConcernActivity extends AppCompatActivity {
+public class BlockActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private ConcernAdapter mAdapter;
@@ -37,18 +37,19 @@ public class ConcernActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_concern);
-        getSupportActionBar().hide();
-        recyclerView = findViewById(R.id.concern_recycler_view);
-        mAdapter = new ConcernAdapter(ConcernActivity.this,momentList);
-        recyclerView.setAdapter(mAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(ConcernActivity.this));
+        setContentView(R.layout.activity_block);
 
-        // 获取全部关注列表
-        System.out.println("获取关注列表");
+        getSupportActionBar().hide();
+        recyclerView = findViewById(R.id.block_recycler_view);
+        mAdapter = new ConcernAdapter(BlockActivity.this,momentList);
+        recyclerView.setAdapter(mAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(BlockActivity.this));
+
+        // 获取全部黑名单列表
+        System.out.println("获取黑名单列表");
         Retrofit retrofit = RetrofitUtil.getRetrofit();
         UserAPI service = retrofit.create(UserAPI.class);
-        Call<ResponseBody> call = service.UserStars(UserApplication.getEmail());
+        Call<ResponseBody> call = service.UserBlocks(UserApplication.getEmail());
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -91,13 +92,5 @@ public class ConcernActivity extends AppCompatActivity {
                         .show();
             }
         });
-
-//        for (int i = 1; i <= 10; i++) {
-//            SingleMoment moment = new SingleMoment();
-//            moment.nickname = "wyx" + i;
-//            moment.aboutMe = "这个人很懒，什么都没有留下";
-//            momentList.add(moment);
-//            System.out.println(moment.content);
-//        }
     }
 }

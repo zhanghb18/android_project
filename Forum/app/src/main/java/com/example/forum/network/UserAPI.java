@@ -40,6 +40,9 @@ public interface UserAPI {
     @GET("user/stars")
     Call<ResponseBody> UserStars(@Query("email") String email);
 
+    @GET("user/blocks")
+    Call<ResponseBody> UserBlocks(@Query("email") String email);
+
     // Moment
     @GET("moment/post")
     Call<ResponseBody> PostNewMoment(@Query("email") String email, @Query("title") String title, @Query("content") String content, @Query("post_time")String post_time);

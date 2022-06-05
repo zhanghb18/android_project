@@ -21,6 +21,9 @@
         android:theme="@style/Theme.Forum"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.BlockPage.BlockActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.ConcernPage.ConcernActivity"
             android:exported="false" />
         <activity
@@ -55,9 +58,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ForumActivity"
-            android:windowSoftInputMode="adjustPan">
-        </activity>
+        <activity
+            android:name=".ForumActivity"
+            android:windowSoftInputMode="adjustPan"></activity>
     </application>
 
 </manifest>

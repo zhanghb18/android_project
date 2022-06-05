@@ -157,5 +157,25 @@
                 android:text="关注列表"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/block_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:layout_column="2"
+            android:layout_columnWeight="1"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_block"
+                android:layout_marginTop="20dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="黑名单列表"/>
+        </LinearLayout>
+
     </GridLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
