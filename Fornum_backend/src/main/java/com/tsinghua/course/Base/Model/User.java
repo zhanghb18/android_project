@@ -147,7 +147,7 @@ public class User {
     }
 
     // 通知
-    public static class Notice {
+    public static class Notices {
         // 通知类型
         private NoticeType type;
 
@@ -183,7 +183,7 @@ public class User {
 
         public void setNoticeType(NoticeType nt) { this.type = nt; }
 
-        public Notice(String email, NoticeType type, String time) {
+        public Notices(String email, NoticeType type, String time) {
             this.email = email;
             this.type = type;
             this.ifRead =false;
@@ -249,15 +249,15 @@ public class User {
     Blacks[] black;
 
     // 用户通知
-    Notice[] notice;
+    Notices[] notices;
 
     public Fans[] getFan() { return fan; }
 
     public void setFan(Fans[] f) { this.fan = f; }
 
-    public Notice[] getNotice() { return notice; }
+    public Notices[] getNotice() { return notices; }
 
-    public void setNotice(Notice[] n) { this.notice = n; }
+    public void setNotice(Notices[] n) { this.notices = n; }
 
     public Stars[] getStar() { return star; }
 

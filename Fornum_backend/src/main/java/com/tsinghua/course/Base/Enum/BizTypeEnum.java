@@ -37,7 +37,7 @@ public enum BizTypeEnum {
     MOMENT_COMMENT(MomentController.class, "/moment/comment", "用户评论动态/回复评论"),
     MOMENT_DELETECOMMENT(MomentController.class, "/moment/delete_comment", "用户删除评论/回复"),
     MOMENT_GETSTARS(MomentController.class, "/moment/get_stars", "获取关注用户的动态"),
-    MOMENT_GETSTARSBYLIKES(MomentController.class, "moment/get_stars_by_likes", "根据点赞数获取关注用户的动态"),
+    MOMENT_GETSTARSBYLIKES(MomentController.class, "/moment/get_stars_by_likes", "根据点赞数获取关注用户的动态"),
 
     /** 定时任务业务测试 */
     LOG_TEST(TimerController.class, null, "定时日志测试"),
