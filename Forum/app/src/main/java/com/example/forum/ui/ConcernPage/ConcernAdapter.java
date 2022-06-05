@@ -1,15 +1,19 @@
 package com.example.forum.ui.ConcernPage;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.forum.R;
+import com.example.forum.ui.PersonalPage.OtherHomeActivity;
 import com.example.forum.ui.moments.SingleMoment;
 
 import java.util.List;
@@ -20,6 +24,7 @@ public class ConcernAdapter extends
 
     private final List<SingleMoment> moment_List;
     private final LayoutInflater mInflater;
+    public Context context;
 
     class ConcernViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
@@ -42,6 +47,25 @@ public class ConcernAdapter extends
             maboutMe = itemView.findViewById(R.id.concern_aboutme);
             this.mAdapter = adapter;
             itemView.setOnClickListener(this);
+
+            //点击头像进入个人主页
+            ImageView imageView=itemView.findViewById(R.id.concern_list_avator);
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int mPosition = getLayoutPosition();
+                    String cur_email = moment_List.get(mPosition).email;
+                    String cur_nickname = moment_List.get(mPosition).nickname;
+                    String cur_aboutMe = moment_List.get(mPosition).aboutMe;
+                    Intent intent=new Intent(context, OtherHomeActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("email", cur_email);
+                    bundle.putString("nickname", cur_nickname);
+                    bundle.putString("aboutMe",cur_aboutMe);
+                    intent.putExtras(bundle);
+                    context.startActivity(intent);
+                }
+            });
         }
 
         @Override
@@ -57,13 +81,13 @@ public class ConcernAdapter extends
 //            // Notify the adapter, that the data has changed so it can
 //            // update the RecyclerView to display the data.
 //            mAdapter.notifyDataSetChanged();
-
         }
     }
 
     public ConcernAdapter(Context context, List<SingleMoment> momentList) {
         mInflater = LayoutInflater.from(context);
         this.moment_List = momentList;
+        this.context = context;
     }
 
     /**
