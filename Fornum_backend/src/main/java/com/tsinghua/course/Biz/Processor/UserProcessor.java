@@ -70,7 +70,7 @@ public class UserProcessor {
         if(mongoTemplate.findOne(query, User.class) != null)
             throw new CourseWarn(UserWarnEnum.EMAIL_DOUBLED);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String aboutMe = "这个人很懒，什么也没有留下";
+        String aboutMe = "这个人很懒，什么也没有留下...";
         User new_user = new User(email, userID, nickname, encoded_password, aboutMe);
 //        User.Avatar avatar = new User.Avatar("default",
 //                "default", 100, "0",
@@ -117,7 +117,9 @@ public class UserProcessor {
                 throw new CourseWarn(UserWarnEnum.USERID_DOUBLED);
         }
 
-
+        if (aboutMe.equals("")) {
+            aboutMe = "这个人很懒，什么也没有留下...";
+        }
         // update
         User user = getUserByEmail(email);
         user.setUserID(userID);
