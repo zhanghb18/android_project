@@ -172,7 +172,7 @@ public class MomentProcessor {
         return res;
     }
 
-    /* 获取某用户的动态列表 */
+    /* 获取某用户的动态列表---时间顺序 */
     public String getPersonalMomentByEmail(String email) throws Exception{
         Query query = new Query();
         email = email.replace("@", "%40");
@@ -182,7 +182,8 @@ public class MomentProcessor {
             return "null";
         }
         String res = "";
-        for (Moment moment : moments) {
+        for (int i = moments.size()-1; i >= 0; i--) {
+            Moment moment = moments.get(i);
             String cur_email = moment.getEmail();
             Query query1 = new Query();
             query1.addCriteria(Criteria.where(KeyConstant.EMAIL).is(cur_email));

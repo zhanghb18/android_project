@@ -13,9 +13,13 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Component;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.lang.reflect.Array;
 import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @描述 用户原子处理器，所有与用户相关的原子操作都在此处理器中执行
@@ -233,7 +237,7 @@ public class UserProcessor {
         return res;
     }
 
-    /* 获取通知列表 */
+    /* 获取通知列表---时间顺序 */
     public String getNotice(String email) throws Exception {
         email = email.replace("@", "%40");
         Query query = new Query();
@@ -244,7 +248,8 @@ public class UserProcessor {
         User.Notices[] notices = user.getNotice();
         String res = "";
         if (notices != null) {
-            for(User.Notices notice: notices) {
+            for(int i = notices.length-1; i >= 0; i--) {
+                User.Notices notice = notices[i];
                 String notice_email = notice.getEmail();
                 String notice_nickname = getNickname(notice_email);
                 res = res + notice.noticeString(notice_nickname) + ",";
@@ -312,6 +317,27 @@ public class UserProcessor {
             }
         }
         return false;
+    }
+
+    /* 获取黑名单列表 */
+    public String getBlocks(String email) throws Exception {
+        email = email.replace("@", "%40");
+        Query query = new Query();
+        query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email));
+        User user = mongoTemplate.findOne(query, User.class);
+        if (user == null)
+            throw new CourseWarn(UserWarnEnum.USER_FAILED);
+        User.Blacks[] blacks = user.getBlack();
+        String res = "";
+        if (blacks != null) {
+            for(User.Blacks black: blacks) {
+                String star_email = black.getEmail();
+                String nickname = getNickname(star_email);
+                String aboutMe = getAboutMe(star_email);
+                res = res + black.blackString(nickname, aboutMe) + ",";
+            }
+        }
+        return res;
     }
 
     /** 将通知设置为已读 */

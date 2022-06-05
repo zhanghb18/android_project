@@ -20,6 +20,7 @@ public enum BizTypeEnum {
     USER_STARS(UserController.class, "/user/stars", "用户获取关注列表"),
     USER_BL0CK(UserController.class, "/user/block", "用户屏蔽"),
     USER_CANCELBL0CK(UserController.class, "/user/cancel_block", "用户取消屏蔽"),
+    USER_BLOCKS(UserController.class, "/user/blocks", "用户获取黑名单列表"),
     USER_ISBLOCK(UserController.class, "/user/is_block", "判断用户是否为自己屏蔽的用户"),
     USER_NOTICE(UserController.class, "/user/notice", "获取用户的通知列表"),
     USER_NOTICEREAD(UserController.class, "/user/notice_read", "将通知设为已读"),
