@@ -61,13 +61,6 @@ public class OtherHomeActivity extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(OtherHomeActivity.this));
 
-        for (int i = 1; i <= 10; i++) {
-            SingleMoment moment = new SingleMoment();
-            moment.content = "内容" + i;
-            momentList.add(moment);
-            System.out.println(moment.content);
-        }
-
         otherNicknameView = findViewById(R.id.other_my_nickname);
         otherAboutMeView = findViewById(R.id.other_aboutme);
         Intent intent = getIntent();
@@ -125,12 +118,16 @@ public class OtherHomeActivity extends AppCompatActivity {
         System.out.println("获取个人动态");
         Retrofit retrofit = RetrofitUtil.getRetrofit();
         UserAPI service = retrofit.create(UserAPI.class);
+        System.out.println(email);
         Call<ResponseBody> call = service.GetPersonalMoments(email);
+        System.out.println(call.toString());
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
                     JSONObject userInfoRes = GsonFunction.parseToJsonObject(response.body().string());
+                    System.out.println(userInfoRes);
+                    System.out.println(email);
                     if (userInfoRes.getBoolean("success")) {
                         System.out.println("success");
                         String tmp = userInfoRes.getString("moments");
