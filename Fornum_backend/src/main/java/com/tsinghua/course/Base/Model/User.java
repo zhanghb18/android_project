@@ -54,6 +54,7 @@ public class User {
         this.star = null;
         this.black = null;
         this.fan = null;
+        this.draft = null;
     }
 
     /* 关注的用户 */
@@ -219,6 +220,32 @@ public class User {
         }
     }
 
+    // 动态草稿
+    public static class Drafts {
+        private String title;
+        private String content;
+        private String time;
+
+        public Drafts(String title, String content, String time) {
+            this.title = title;
+            this.content = content;
+            this.time = time;
+        }
+
+        public String getTitle() { return this.title; }
+        public String getContent() { return this.content; }
+        public String getTime() { return this.time; }
+
+        @Override
+        public String toString() {
+            return "Draft{" +
+                    "title='" + title + '\'' +
+                    ", content='" + content +
+                    ", time='" + time +
+                    '}';
+        }
+    }
+
     // mongodb唯一id
     String id;
     // 邮箱
@@ -251,15 +278,22 @@ public class User {
     Blacks[] black;
 
     // 用户通知
-    Notices[] notices;
+    Notices[] notice;
+
+    // 草稿箱
+    Drafts[] draft;
+
+    public Drafts[] getDraft() { return draft; }
+
+    public void setDraft(Drafts[] d) { this.draft = d; }
 
     public Fans[] getFan() { return fan; }
 
     public void setFan(Fans[] f) { this.fan = f; }
 
-    public Notices[] getNotice() { return notices; }
+    public Notices[] getNotice() { return notice; }
 
-    public void setNotice(Notices[] n) { this.notices = n; }
+    public void setNotice(Notices[] n) { this.notice = n; }
 
     public Stars[] getStar() { return star; }
 

@@ -23,7 +23,7 @@ public class MomentController {
     @BizType(BizTypeEnum.MOMENT_POST)
     public CommonOutParams postMoment(PostMomentInParams inParams) throws Exception {
         System.out.println("postMoment");
-        momentProcessor.CreateMomentByUser(inParams);
+        momentProcessor.CreateMomentByUser(inParams.getEmail(), inParams.getTitle(), inParams.getContent(), inParams.getPost_time());
         return new CommonOutParams(true);
     }
 

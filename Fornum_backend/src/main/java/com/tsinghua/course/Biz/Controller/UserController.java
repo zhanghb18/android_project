@@ -196,4 +196,35 @@ public class UserController {
         userProcessor.setNoticeRead(inParams.getEmail(), inParams.getNotice_time());
         return new CommonOutParams(true);
     }
+
+    /** 新增草稿 */
+    @BizType(BizTypeEnum.USER_ADDDRAFT)
+    public CommonOutParams addDraft(AddDraftInParams inParams) throws Exception {
+        userProcessor.addDraft(inParams.getEmail(), inParams.getTitle(), inParams.getContent(), inParams.getTime());
+        return new CommonOutParams(true);
+    }
+
+    /** 修改草稿 */
+    @BizType(BizTypeEnum.USER_MODIFYDRAFT)
+    public CommonOutParams modifyDraft(ModifyDraftInParams inParams) throws Exception {
+        userProcessor.modifyDraft(inParams.getEmail(), inParams.getTitle(), inParams.getContent(), inParams.getOld_time(), inParams.getNew_time());
+        return new CommonOutParams(true);
+    }
+
+    /** 删除草稿 */
+    // TODO
+
+    /** 发布草稿 */
+    @BizType(BizTypeEnum.USER_POSTDRAFT)
+    public CommonOutParams postDraft(PostDraftInParams inParams) throws Exception {
+        userProcessor.postDraft(inParams.getEmail(), inParams.getTitle(), inParams.getContent(), inParams.getOld_time(), inParams.getPost_time());
+        return new CommonOutParams(true);
+    }
+
+    /** 获取草稿箱列表 */
+    @BizType(BizTypeEnum.USER_DRAFTS)
+    public CommonOutParams getDrafts(CommonInParams inParams) throws Exception {
+        String res = userProcessor.getDrafts(inParams.getEmail());
+        return new DraftOutParams(res);
+    }
 }

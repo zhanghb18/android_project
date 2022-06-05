@@ -12,6 +12,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Component;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.w3c.dom.ranges.DocumentRange;
 
 import java.lang.reflect.Array;
 import java.net.URLDecoder;
@@ -354,20 +355,95 @@ public class UserProcessor {
         Update update = new Update();
         update.set("ifRead", true);
         mongoTemplate.updateFirst(query, update, User.Notices.class);
-//        Query query = new Query();
-//        query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email).and("notice.time").is(time));
-//        User user = mongoTemplate.findOne(query, User.class);
-//        if (user == null) {
-//            throw new CourseWarn(UserWarnEnum.NOTICE_FAILED);
-//        }
-//        User.Notice[] notices = user.getNotice();
-//        for (User.Notice notice : notices) {
-//            if (notice.getPostTime().equals(time)) {
-//                Query notice_query = new Query();
-//                mongoTemplate.findOne(query, User.Notice.class);
-//                return;
-//            }
-//        }
+    }
 
+    /** 新增草稿 */
+    public void addDraft(String email, String title, String content, String time) throws Exception {
+        email = email.replace("@", "%40");
+        if(title.length() >= 0 && title != null) {
+            title = URLDecoder.decode(title, "UTF-8");
+        }
+        if(content.length() >= 0 && content != null) {
+            content = URLDecoder.decode(content, "UTF-8");
+        }
+        time = URLDecoder.decode(time, "utf-8");
+        User.Drafts draft = new User.Drafts(title, content, time);
+        Query query = new Query();
+        query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email));
+        Update update = new Update();
+        update.push("draft", draft);
+        mongoTemplate.updateFirst(query, update, User.class);
+    }
+
+    /** 修改草稿 */
+    public void modifyDraft(String email, String title, String content, String old_time, String new_time) throws Exception {
+        email = email.replace("@", "%40");
+        if(title.length() >= 0 && title != null) {
+            title = URLDecoder.decode(title, "UTF-8");
+        }
+        if(content.length() >= 0 && content != null) {
+            content = URLDecoder.decode(content, "UTF-8");
+        }
+        old_time = URLDecoder.decode(old_time, "utf-8");
+        new_time = URLDecoder.decode(new_time, "utf-8");
+
+        Query query = new Query();
+        query.addCriteria(Criteria.where("time").is(old_time));
+        if (mongoTemplate.findOne(query, User.Drafts.class) == null) {
+            throw new CourseWarn(UserWarnEnum.DRAFT_FAILED);
+        }
+
+        Update update = new Update();
+        update.set("title", title);
+        update.set("content", content);
+        update.set("time", new_time);
+        mongoTemplate.updateFirst(query, update, User.Drafts.class);
+    }
+
+    /** 发布草稿 */
+    public void postDraft(String email, String title, String content, String old_time, String post_time) throws Exception {
+        // 确认草稿存在
+        email = email.replace("@", "%40");
+        old_time = URLDecoder.decode(old_time, "utf-8");
+        Query query = new Query();
+        query.addCriteria(Criteria.where("time").is(old_time));
+        if (mongoTemplate.findOne(query, User.Drafts.class) == null) {
+            throw new CourseWarn(UserWarnEnum.DRAFT_FAILED);
+        }
+
+        // 发布动态
+        MomentProcessor.CreateMomentByUser(email, title, content, post_time);
+
+        // 将当前草稿从草稿箱中删除
+        Query user_query = new Query();
+        user_query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email)
+                .and("draft.time").is(old_time));
+        User.Drafts[] drafts = mongoTemplate.findOne(user_query, User.class).getDraft();
+        for (User.Drafts draft : drafts) {
+            if (draft.getTime().equals(old_time)) {
+                Update update = new Update();
+                update.pull("draft", draft);
+                mongoTemplate.updateFirst(user_query, update, User.class);
+                return;
+            }
+        }
+    }
+
+    /** 获取草稿箱列表 */
+    public String getDrafts(String email) throws Exception {
+        email = email.replace("@", "%40");
+        Query query = new Query();
+        query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email));
+        User user = mongoTemplate.findOne(query, User.class);
+        if (user == null)
+            throw new CourseWarn(UserWarnEnum.USER_FAILED);
+        User.Drafts[] drafts = user.getDraft();
+        String res = "";
+        if (drafts != null) {
+            for(User.Drafts draft: drafts) {
+                res = res + draft.toString() + ",";
+            }
+        }
+        return res;
     }
 }
