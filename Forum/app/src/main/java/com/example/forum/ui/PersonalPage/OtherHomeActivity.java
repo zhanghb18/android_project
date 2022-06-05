@@ -114,6 +114,84 @@ public class OtherHomeActivity extends AppCompatActivity {
             }
         });
 
+        //判断是否关注
+        Retrofit concern_retrofit = RetrofitUtil.getRetrofit();
+        UserAPI concern_service = concern_retrofit.create(UserAPI.class);
+        Call<ResponseBody> concern_call = concern_service.UserIsStar(UserApplication.getEmail(),email);
+        concern_call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    JSONObject userInfoRes = GsonFunction.parseToJsonObject(response.body().string());
+                    if (userInfoRes.getBoolean("success")) {
+                        System.out.println("success");
+                        boolean flag = userInfoRes.getBoolean("flag");
+                        if(flag) {
+                            mConcernButton.setText("取消关注");
+                            mConcernButton.setBackgroundColor(Color.parseColor("#1d9bf0"));
+                            mConcernButton.setTextColor(Color.parseColor("#ffffff"));
+                        }
+                    }
+                    else {
+                        System.out.println("not success");
+//                        Snackbar.make(view, "Update Failed!", Snackbar.LENGTH_LONG)
+//                                .setAction("Action", null).show();
+//                        return;
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                System.out.println("failure");
+//                Snackbar.make(view, "添加失败", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null)
+//                        .show();
+            }
+        });
+
+        //判断是否屏蔽
+        Retrofit block_retrofit = RetrofitUtil.getRetrofit();
+        UserAPI block_service = concern_retrofit.create(UserAPI.class);
+        Call<ResponseBody> block_call = concern_service.UserIsBlock(UserApplication.getEmail(),email);
+        block_call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    JSONObject userInfoRes = GsonFunction.parseToJsonObject(response.body().string());
+                    if (userInfoRes.getBoolean("success")) {
+                        System.out.println("success");
+                        boolean flag = userInfoRes.getBoolean("flag");
+                        if(flag) {
+                            mBlockButton.setText("取消屏蔽");
+                            mBlockButton.setBackgroundColor(Color.parseColor("#1d9bf0"));
+                            mBlockButton.setTextColor(Color.parseColor("#ffffff"));
+                        }
+                    }
+                    else {
+                        System.out.println("not success");
+//                        Snackbar.make(view, "Update Failed!", Snackbar.LENGTH_LONG)
+//                                .setAction("Action", null).show();
+//                        return;
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                System.out.println("failure");
+//                Snackbar.make(view, "添加失败", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null)
+//                        .show();
+            }
+        });
+
         // 获取个人动态
         System.out.println("获取个人动态");
         Retrofit retrofit = RetrofitUtil.getRetrofit();

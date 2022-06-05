@@ -80,6 +80,9 @@ public class PersonInfoPage extends AppCompatActivity {
                 mLinearLayout.requestFocus(0);
                 User.ModifyInfo(view,UserApplication.getEmail(),mIdContentView.getText().toString(),mNicknameContentView.getText().toString(), mPersonInfoView.getText().toString());
                 User.UserInfo(UserApplication.getEmail());
+                if(mPersonInfoView.getText().toString().equals("")) {
+                    mPersonInfoView.setText(UserApplication.getAboutMe());
+                }
             }
         });
 

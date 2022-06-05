@@ -20,6 +20,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.forum.databinding.FragmentHomeBinding;
 import com.example.forum.ui.PersonalPage.PersonHomeActivity;
+import com.example.forum.user.UserApplication;
 
 public class HomeFragment extends Fragment {
 
@@ -47,6 +48,8 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        TextView my_nickname = view.findViewById(R.id.my_nickname);
+        my_nickname.setText(UserApplication.getNickname());
         view.findViewById(R.id.person).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
