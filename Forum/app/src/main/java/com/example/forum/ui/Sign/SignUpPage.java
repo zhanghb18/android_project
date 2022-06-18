@@ -145,7 +145,7 @@ public class SignUpPage extends Fragment {
     private void signup() {
         // TODO
         Sign.SignUp(getContext(), getView(), editTexts.get(0).getText().toString(),
-                editTexts.get(2).getText().toString(), editTexts.get(1).getText().toString(),
+                editTexts.get(1).getText().toString(), editTexts.get(2).getText().toString(),
                 editTexts.get(4).getText().toString());
     }
 }
