@@ -57,8 +57,8 @@ public class BlockActivity extends AppCompatActivity {
                     JSONObject userInfoRes = GsonFunction.parseToJsonObject(response.body().string());
                     if (userInfoRes.getBoolean("success")) {
                         System.out.println("success");
-                        String tmp = userInfoRes.getString("stars");
-                        String[] stars = tmp.split("Stars");
+                        String tmp = userInfoRes.getString("blocks");
+                        String[] stars = tmp.split("Blocks");
                         for(String star : stars) {
                             if(star.endsWith(",")) star = star.substring(0, star.length()-1);
                             if(!star.contains("{")) continue;
