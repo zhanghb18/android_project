@@ -59,6 +59,7 @@ public class MomentsAdapter extends
         public final TextView title_view;
         public final TextView nickname_view;
         public final TextView time_view;
+        public final LinearLayout concerned_box;
         final MomentsAdapter mAdapter;
         private AdapterView.OnItemClickListener mOnItemClickListener;
         boolean like_flag=false;
@@ -99,6 +100,7 @@ public class MomentsAdapter extends
             title_view = itemView.findViewById(R.id.moment_title);
             nickname_view=itemView.findViewById(R.id.moment_nickname);
             time_view=itemView.findViewById(R.id.moment_time);
+            concerned_box=itemView.findViewById(R.id.concerned_box);
             this.mAdapter = adapter;
             itemView.setOnClickListener(this);
 
@@ -401,6 +403,7 @@ public class MomentsAdapter extends
         holder.content_view.setText(moment.content);
         holder.nickname_view.setText(moment.nickname);
         holder.time_view.setText(moment.post_time);
+
     }
 
     /**

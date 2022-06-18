@@ -36,7 +36,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/white"
-                    android:text="按时间顺序显示"
+                    android:text="按时间升序显示"
                     />
             </LinearLayout>
 

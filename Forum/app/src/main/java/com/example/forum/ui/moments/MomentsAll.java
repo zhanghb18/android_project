@@ -99,12 +99,14 @@ public class MomentsAll extends Fragment {
                     momentList.sort((t2,t1)->t2.post_time.compareTo(t1.post_time));
                     mAdapter.notifyDataSetChanged();
                     timeorder_flag=1;
+                    button_time_order.setText("按时间降序显示");
                 }
                 //升序转降序
                 else {
                     momentList.sort((t1,t2)->t2.post_time.compareTo(t1.post_time));
                     mAdapter.notifyDataSetChanged();
                     timeorder_flag=0;
+                    button_time_order.setText("按时间升序显示");
                 }
             }
         });
