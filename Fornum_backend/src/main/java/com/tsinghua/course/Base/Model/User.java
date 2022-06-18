@@ -152,7 +152,8 @@ public class User {
     // 通知
     public static class Notices {
         // 通知类型
-        private NoticeType type;
+//        private NoticeType type;
+        private String type;
 
         // 该通知的关联用户
         private String email;
@@ -160,15 +161,15 @@ public class User {
         // 通知时间
         private String post_time;
 
-        // 通知内容
-        private String content;
+//        // 通知内容
+//        private String content;
 
-        // 是否已读
-        private boolean ifRead;
+//        // 是否已读
+//        private boolean ifRead;
 
-        public boolean getIfRead() { return ifRead; }
-
-        public void setIfRead(boolean i) { this.ifRead = i; }
+//        public boolean getIfRead() { return ifRead; }
+//
+//        public void setIfRead(boolean i) { this.ifRead = i; }
 
         public String getEmail() { return email; }
 
@@ -178,41 +179,41 @@ public class User {
 
         public void setPostTime(String time) { this.post_time = time; }
 
-        public String getContent() { return content; }
+//        public String getContent() { return content; }
+//
+//        public void setContent(String c) { this.content = c; }
 
-        public void setContent(String c) { this.content = c; }
+//        public NoticeType getNoticeType() { return type; }
+//
+//        public void setNoticeType(NoticeType nt) { this.type = nt; }
 
-        public NoticeType getNoticeType() { return type; }
-
-        public void setNoticeType(NoticeType nt) { this.type = nt; }
-
-        public Notices(String email, NoticeType type, String time) {
+        public Notices(String email, String type, String post_time) {
             this.email = email;
             this.type = type;
-            this.ifRead =false;
-            this.post_time = time;
+//            this.ifRead =false;
+            this.post_time = post_time;
         }
 
         public String noticeString(String nickname) {
             switch (type) {
-                case LIKE:
+                case "LIKE":
                     return "Notice{" +
                             "notice='" + "用户" + nickname + "给你点赞啦！" + '\'' +
-                            ", ifRead='" + ifRead +
+//                            ", ifRead='" + ifRead +
                             ", time='" + post_time +
                             ", type='" + type +
                             '}';
-                case COMMENT:
+                case "COMMENT":
                     return "Notice{" +
                             "notice='" + "用户" + nickname + "评论了你！" + '\'' +
-                            ", ifRead='" + ifRead +
+//                            ", ifRead='" + ifRead +
                             ", time='" + post_time +
                             ", type='" + type +
                             '}';
-                case UPDATE:
+                case "UPDATE":
                     return "Notice{" +
                             "notice='" + "你关注的用户" + nickname + "发布新动态啦！" + '\'' +
-                            ", ifRead='" + ifRead +
+//                            ", ifRead='" + ifRead +
                             ", time='" + post_time +
                             ", type='" + type +
                             '}';

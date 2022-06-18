@@ -452,7 +452,7 @@ public class UserProcessor {
         Query fan_query = new Query();
         fan_query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email));
         User.Fans[] fans = mongoTemplate.findOne(fan_query, User.class).getFan();
-        User.Notices notice = new User.Notices(email, UPDATE, time);
+        User.Notices notice = new User.Notices(email, "UPDATE", time);
         if (fans != null) {
             for (User.Fans fan : fans) {
                 String fan_email = fan.getEmail();
