@@ -3,6 +3,7 @@ package com.example.forum.ui.DraftPage;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.forum.R;
 import com.example.forum.network.User;
+import com.example.forum.network.UserAPI;
 import com.example.forum.user.UserApplication;
 
 import android.content.Intent;
@@ -47,10 +48,7 @@ public class ChangeMomentsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String content = mContentView.getText().toString();
                 String title = mContentView.getText().toString();
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                String new_post_time = simpleDateFormat.format(new Date());
-                //TODO 这里等待添加
-
+                User.ModifyDraft(view,UserApplication.getEmail(),title,content,post_time);
                 Intent intent = new Intent(ChangeMomentsActivity.this,DraftActivity.class);
                 startActivity(intent);
             }
@@ -59,8 +57,7 @@ public class ChangeMomentsActivity extends AppCompatActivity {
         delete_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO 这里等待添加
-
+                User.DeleteDraft(view,UserApplication.getEmail(),post_time);
                 Intent intent = new Intent(ChangeMomentsActivity.this,DraftActivity.class);
                 startActivity(intent);
             }
@@ -71,9 +68,7 @@ public class ChangeMomentsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String content = mContentView.getText().toString();
                 String title = mContentView.getText().toString();
-                //TODO 这里等待修改
-                //User.PostMoment(view, UserApplication.getEmail(), title, content);
-
+                User.PostDraft(view, UserApplication.getEmail(), title, content, post_time);
                 Intent intent = new Intent(ChangeMomentsActivity.this,DraftActivity.class);
                 startActivity(intent);
             }
