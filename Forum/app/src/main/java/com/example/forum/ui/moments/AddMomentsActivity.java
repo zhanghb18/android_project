@@ -45,6 +45,7 @@ public class AddMomentsActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 String inputTitle = title.getText().toString();
                 String inputContent = content.getText().toString();
+                User.AddDraft(view, UserApplication.getEmail(), inputTitle, inputContent);
                 setResult(RESULT_CANCELED,intent);
                 finish();
             }

@@ -55,6 +55,12 @@ public interface UserAPI {
     @GET("user/notice_read")
     Call<ResponseBody> UserNoticeRead(@Query("email") String email, @Query("time") String time);
 
+    @GET("user/add_draft")
+    Call<ResponseBody> AddDraft(@Query("email") String email, @Query("title") String title, @Query("content") String content, @Query("post_time")String post_time);
+
+    @GET("user/drafts")
+    Call<ResponseBody> GetDraft(@Query("email") String email);
+
     // Moment
     @GET("moment/post")
     Call<ResponseBody> PostNewMoment(@Query("email") String email, @Query("title") String title, @Query("content") String content, @Query("post_time")String post_time);

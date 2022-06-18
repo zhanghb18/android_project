@@ -273,6 +273,40 @@ public class User {
         });
     }
 
+    // 用户添加草稿箱
+    public static void AddDraft(View v, String email, String title, String content) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String time = simpleDateFormat.format(new Date());
+        Retrofit retrofit = RetrofitUtil.getRetrofit();
+        UserAPI service = retrofit.create(UserAPI.class);
+        Call<ResponseBody> call = service.AddDraft(email, title, content, time);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    JSONObject userInfoRes = GsonFunction.parseToJsonObject(response.body().string());
+                    if (userInfoRes.getBoolean("success")) {
+                        Snackbar.make(v, "保存草稿成功", Snackbar.LENGTH_SHORT).show();
+                    }
+                    else {
+                        String msg = userInfoRes.getString("msg");
+                        Snackbar.make(v, msg, Snackbar.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Snackbar.make(v, "添加失败", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null)
+                        .show();
+            }
+        });
+    }
+
     // 用户发布动态
     public static void PostMoment(View v, String email, String title, String content) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
