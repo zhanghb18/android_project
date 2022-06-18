@@ -390,22 +390,17 @@ public class UserProcessor {
         old_time = URLDecoder.decode(old_time, "utf-8");
         new_time = URLDecoder.decode(new_time, "utf-8");
 
-        Query query = new Query();
-        query.addCriteria(Criteria.where("time").is(old_time));
-        if (mongoTemplate.findOne(query, User.Drafts.class) == null) {
-            throw new CourseWarn(UserWarnEnum.DRAFT_FAILED);
-        }
+        // 新增新草稿
+        addDraft(email, title, content, new_time);
 
-        Update update = new Update();
-        update.set("title", title);
-        update.set("content", content);
-        update.set("time", new_time);
-        mongoTemplate.updateFirst(query, update, User.Drafts.class);
+        // 删除旧草稿
+        deleteDraft(email, old_time);
     }
 
     /** 删除草稿 */
     public void deleteDraft(String email, String time) throws Exception {
         Query user_query = new Query();
+        email = email.replace("@", "%40");
         user_query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email)
                 .and("draft.time").is(time));
         User.Drafts[] drafts = mongoTemplate.findOne(user_query, User.class).getDraft();
@@ -428,8 +423,9 @@ public class UserProcessor {
         email = email.replace("@", "%40");
         old_time = URLDecoder.decode(old_time, "utf-8");
         Query query = new Query();
-        query.addCriteria(Criteria.where("time").is(old_time));
-        if (mongoTemplate.findOne(query, User.Drafts.class) == null) {
+        query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email)
+                .and("draft.time").is(old_time));
+        if (mongoTemplate.findOne(query, User.class) == null) {
             throw new CourseWarn(UserWarnEnum.DRAFT_FAILED);
         }
 
