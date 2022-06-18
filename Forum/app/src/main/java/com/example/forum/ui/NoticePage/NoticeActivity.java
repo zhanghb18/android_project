@@ -55,6 +55,7 @@ public class NoticeActivity extends AppCompatActivity {
                     if (userInfoRes.getBoolean("success")) {
                         System.out.println("success");
                         String tmp = userInfoRes.getString("notice");
+                        System.out.println(tmp);
                         String[] moments = tmp.split("Notice");
                         for(String moment : moments) {
                             if(moment.endsWith(",")) moment = moment.substring(0, moment.length()-1);
@@ -63,6 +64,8 @@ public class NoticeActivity extends AppCompatActivity {
                             String time = jsonObject.getString("time");
                             String content = jsonObject.getString("notice");
                             String type = jsonObject.getString("type");
+                            System.out.println("time");
+                            System.out.println(time);
                             SingleNoticeMoment momentItem = new SingleNoticeMoment(time,type,content);
                             momentList.add(momentItem);
                         }
