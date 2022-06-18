@@ -243,7 +243,7 @@ public class User {
         @Override
         public String toString() {
             return "Draft{" +
-                    "title='" + title + '\'' + '\'' +
+                    "title='" + title + '\'' +
                     ", content='" + content + '\'' +
                     ", time='" + time + '\'' +
                     '}';
