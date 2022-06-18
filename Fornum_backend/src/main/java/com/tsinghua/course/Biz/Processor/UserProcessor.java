@@ -401,6 +401,7 @@ public class UserProcessor {
     public void deleteDraft(String email, String time) throws Exception {
         Query user_query = new Query();
         email = email.replace("@", "%40");
+        time = URLDecoder.decode(time, "utf-8");
         user_query.addCriteria(Criteria.where(KeyConstant.EMAIL).is(email)
                 .and("draft.time").is(time));
         User.Drafts[] drafts = mongoTemplate.findOne(user_query, User.class).getDraft();
