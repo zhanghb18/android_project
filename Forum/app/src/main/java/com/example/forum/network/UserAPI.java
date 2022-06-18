@@ -61,6 +61,17 @@ public interface UserAPI {
     @GET("user/drafts")
     Call<ResponseBody> GetDraft(@Query("email") String email);
 
+    @GET("user/modify_draft")
+    Call<ResponseBody> ModifyDraft(@Query("email") String email, @Query("title") String title, @Query("content") String content,
+                                   @Query("old_time") String old_time, @Query("new_time") String new_time);
+
+    @GET("user/post_draft")
+    Call<ResponseBody> PostDraft(@Query("email") String email, @Query("title") String title, @Query("content") String content,
+                                   @Query("old_time") String old_time, @Query("post_time") String post_time);
+
+    @GET("user/delete_draft")
+    Call<ResponseBody> DeleteDraft(@Query("email") String email, @Query("time") String time);
+
     // Moment
     @GET("moment/post")
     Call<ResponseBody> PostNewMoment(@Query("email") String email, @Query("title") String title, @Query("content") String content, @Query("post_time")String post_time);
