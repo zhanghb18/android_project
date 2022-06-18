@@ -101,7 +101,7 @@ public class User {
     public static void ModifyInfo(View view,String email, String userID, String nickname, String aboutMe) {
         Retrofit retrofit = RetrofitUtil.getRetrofit();
         UserAPI service = retrofit.create(UserAPI.class);
-        Call<ResponseBody> call = service.UserModifyInfo(email, userID, nickname);
+        Call<ResponseBody> call = service.UserModifyInfo(email, userID, nickname, aboutMe);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -112,6 +112,7 @@ public class User {
                         System.out.println(userInfoRes);
                         UserApplication.setUserID(userID);
                         UserApplication.setNickname(nickname);
+                        UserApplication.setAboutMe(aboutMe);
                         Snackbar.make(view, "保存成功", Snackbar.LENGTH_SHORT).show();
                     }
                     else {

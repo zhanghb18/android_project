@@ -20,7 +20,7 @@ public interface UserAPI {
     Call<ResponseBody> UserInfo(@Query("email") String email);
 
     @GET("user/modify_info")
-    Call<ResponseBody> UserModifyInfo(@Query("email") String email, @Query("userID") String userID, @Query("nickname") String nickname);
+    Call<ResponseBody> UserModifyInfo(@Query("email") String email, @Query("userID") String userID, @Query("nickname") String nickname, @Query("aboutMe") String aboutMe);
 
     @GET("user/password")
     Call<ResponseBody> Password(@Query("email") String email, @Query("password") String password);
