@@ -93,57 +93,6 @@ public class MomentsAll extends Fragment {
                 intentActivityResultLauncher.launch(intent);
             }
         });
-
-        // 获取全部动态列表
-        System.out.println("获取动态");
-        Retrofit retrofit = RetrofitUtil.getRetrofit();
-        UserAPI service = retrofit.create(UserAPI.class);
-        Call<ResponseBody> call = service.GetMoments(UserApplication.getEmail());
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                try {
-                    JSONObject userInfoRes = GsonFunction.parseToJsonObject(response.body().string());
-                    if (userInfoRes.getBoolean("success")) {
-                        System.out.println("success");
-                        String tmp = userInfoRes.getString("moments");
-                        String[] moments = tmp.split("Moment");
-                        LinkedList<SingleMoment> items = new LinkedList<SingleMoment>();
-                        for(String moment : moments) {
-                            if(moment.endsWith(",")) moment = moment.substring(0, moment.length()-1);
-                            if(!moment.contains("{")) continue;
-                            SingleMoment momentItem = parser(moment);
-                            momentList.add(momentItem);
-                        }
-                        mAdapter.notifyDataSetChanged();
-                        System.out.println(momentList);
-                    }
-                    else {
-                        Snackbar.make(view, "Update Failed!", Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
-                        return;
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Snackbar.make(view, "添加失败", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null)
-                        .show();
-            }
-        });
-
-//        for (int i = 1; i <= 10; i++) {
-//            SingleMoment moment = new SingleMoment();
-//            moment.title = "标题" + i;
-//            moment.content = "内容" + i;
-//            momentList.add(moment);
-//        }
-        // Inflate the layout for this fragment.
         return view;
     }
 
@@ -176,5 +125,53 @@ public class MomentsAll extends Fragment {
             e.printStackTrace();
         }
         return momentItem;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // 获取全部动态列表
+        momentList.clear();
+        System.out.println("获取动态");
+        Retrofit retrofit = RetrofitUtil.getRetrofit();
+        UserAPI service = retrofit.create(UserAPI.class);
+        Call<ResponseBody> call = service.GetMoments(UserApplication.getEmail());
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    JSONObject userInfoRes = GsonFunction.parseToJsonObject(response.body().string());
+                    if (userInfoRes.getBoolean("success")) {
+                        System.out.println("success");
+                        String tmp = userInfoRes.getString("moments");
+                        String[] moments = tmp.split("Moment");
+                        LinkedList<SingleMoment> items = new LinkedList<SingleMoment>();
+                        for(String moment : moments) {
+                            if(moment.endsWith(",")) moment = moment.substring(0, moment.length()-1);
+                            if(!moment.contains("{")) continue;
+                            SingleMoment momentItem = parser(moment);
+                            momentList.add(momentItem);
+                        }
+                        mAdapter.notifyDataSetChanged();
+                        System.out.println(momentList);
+                    }
+                    else {
+//                        Snackbar.make(view, "Update Failed!", Snackbar.LENGTH_LONG)
+//                                .setAction("Action", null).show();
+//                        return;
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                Snackbar.make(view, "添加失败", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null)
+//                        .show();
+            }
+        });
     }
 }
