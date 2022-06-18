@@ -96,7 +96,7 @@ public class NoticeAdapter extends
                                                               int viewType) {
         // Inflate an item view.
         View mItemView = mInflater.inflate(
-                R.layout.concern_list, parent, false);
+                R.layout.notice_list, parent, false);
 
         //MomentsViewHolder momentsViewHolder=new MomentsViewHolder(mItemView,mOnItemClickListener)
 
