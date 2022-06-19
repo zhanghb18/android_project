@@ -72,6 +72,7 @@ public interface UserAPI {
     @GET("user/delete_draft")
     Call<ResponseBody> DeleteDraft(@Query("email") String email, @Query("time") String time);
 
+
     // Moment
     @GET("moment/post")
     Call<ResponseBody> PostNewMoment(@Query("email") String email, @Query("title") String title, @Query("content") String content, @Query("post_time")String post_time);
