@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="1dp"
+    android:layout_marginBottom="1dp"
     android:background="@color/white"
     android:maxHeight="400dp"
     android:orientation="horizontal"
@@ -16,7 +16,8 @@
         android:layout_height="fill_parent"
         android:layout_marginLeft="10dp"
         android:layout_weight="1"
-        android:gravity="center">
+
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -33,6 +34,23 @@
                 android:src="@drawable/test"
                 app:shapeAppearanceOverlay="@style/RoundStyle"
                 app:strokeColor="#FFFFFF" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/concerned_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_gravity="center_horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="已关注"
+                android:textSize="10dp"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_concerned"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -76,6 +94,17 @@
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title" />
+        <TextView
+            android:id="@+id/moment_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:text="2022年6月18日"
+            android:textColor="#A1A1A1"
+            android:textSize="13dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/moment_content" />
 
         <LinearLayout
             android:id="@+id/button_box"

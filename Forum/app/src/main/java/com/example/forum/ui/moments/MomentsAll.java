@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.forum.bean.GsonFunction;
 import com.example.forum.network.RetrofitUtil;
@@ -43,6 +44,8 @@ public class MomentsAll extends Fragment {
     private RecyclerView recyclerView;
     private MomentsAdapter mAdapter;
     List<SingleMoment> momentList = new ArrayList<>();
+    //0:时间降序 1：时间升序
+    private int timeorder_flag=0;
     public ActivityResultLauncher<Intent> intentActivityResultLauncher;
 
     public MomentsAll() {
@@ -85,6 +88,29 @@ public class MomentsAll extends Fragment {
                 }
             }
         });
+
+        Button button_time_order=view.findViewById(R.id.order_time);
+        button_time_order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("点击！");
+                //降序转升序
+                if(timeorder_flag==0){
+                    momentList.sort((t2,t1)->t2.post_time.compareTo(t1.post_time));
+                    mAdapter.notifyDataSetChanged();
+                    timeorder_flag=1;
+                    button_time_order.setText("按时间降序显示");
+                }
+                //升序转降序
+                else {
+                    momentList.sort((t1,t2)->t2.post_time.compareTo(t1.post_time));
+                    mAdapter.notifyDataSetChanged();
+                    timeorder_flag=0;
+                    button_time_order.setText("按时间升序显示");
+                }
+            }
+        });
+
         FloatingActionButton fab = view.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

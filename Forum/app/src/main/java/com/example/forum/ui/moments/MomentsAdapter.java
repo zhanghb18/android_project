@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.icu.text.Transliterator;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
@@ -18,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -56,6 +58,8 @@ public class MomentsAdapter extends
         public final TextView content_view;
         public final TextView title_view;
         public final TextView nickname_view;
+        public final TextView time_view;
+        public final LinearLayout concerned_box;
         final MomentsAdapter mAdapter;
         private AdapterView.OnItemClickListener mOnItemClickListener;
         boolean like_flag=false;
@@ -95,6 +99,8 @@ public class MomentsAdapter extends
             content_view = itemView.findViewById(R.id.moment_content);
             title_view = itemView.findViewById(R.id.moment_title);
             nickname_view=itemView.findViewById(R.id.moment_nickname);
+            time_view=itemView.findViewById(R.id.moment_time);
+            concerned_box=itemView.findViewById(R.id.concerned_box);
             this.mAdapter = adapter;
             itemView.setOnClickListener(this);
 
@@ -152,9 +158,21 @@ public class MomentsAdapter extends
 
                 }
             });
+
+            comment_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Comment comment=(Comment) commentsAdapter.getItem(i);
+                    String cur_content=comment.getContent();
+                    System.out.println("cur_content");
+                    System.out.println(cur_content);
+                }
+            });
         }
 
         //初始化评论列表
+
+        //删除评论
 
         //弹出评论框
             @SuppressLint("WrongConstant")
@@ -293,19 +311,6 @@ public class MomentsAdapter extends
             }
         };
 
-        //评论
-        public View.OnClickListener comment_click=new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("clicked comment");
-                //弹出键盘
-//                InputMethodManager inputMethodManager=(InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-//                inputMethodManager.toggleSoftInput(0,InputMethodManager.HIDE_NOT_ALWAYS);
-                //弹出评论框
-                //rl_comment.setVisibility(View.VISIBLE);
-            }
-        };
-
         //分享
         public View.OnClickListener share_click=new View.OnClickListener() {
             @Override
@@ -397,6 +402,8 @@ public class MomentsAdapter extends
         holder.title_view.setText(moment.title);
         holder.content_view.setText(moment.content);
         holder.nickname_view.setText(moment.nickname);
+        holder.time_view.setText(moment.post_time);
+
     }
 
     /**

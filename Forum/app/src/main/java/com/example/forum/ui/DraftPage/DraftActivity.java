@@ -45,7 +45,13 @@ public class DraftActivity extends AppCompatActivity {
         mAdapter = new DraftAdapter(DraftActivity.this,momentList);
         recyclerView.setAdapter(mAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(DraftActivity.this));
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        // 获取全部动态列表
+        momentList.clear();
         // 获取草稿箱列表
         Retrofit retrofit = RetrofitUtil.getRetrofit();
         UserAPI service = retrofit.create(UserAPI.class);

@@ -47,10 +47,9 @@ public class ChangeMomentsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String content = mContentView.getText().toString();
-                String title = mContentView.getText().toString();
+                String title = mTitleView.getText().toString();
                 User.ModifyDraft(view,UserApplication.getEmail(),title,content,post_time);
-                Intent intent = new Intent(ChangeMomentsActivity.this,DraftActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
 
@@ -58,8 +57,7 @@ public class ChangeMomentsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 User.DeleteDraft(view,UserApplication.getEmail(),post_time);
-                Intent intent = new Intent(ChangeMomentsActivity.this,DraftActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
 
@@ -67,10 +65,9 @@ public class ChangeMomentsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String content = mContentView.getText().toString();
-                String title = mContentView.getText().toString();
+                String title = mTitleView.getText().toString();
                 User.PostDraft(view, UserApplication.getEmail(), title, content, post_time);
-                Intent intent = new Intent(ChangeMomentsActivity.this,DraftActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
     }
